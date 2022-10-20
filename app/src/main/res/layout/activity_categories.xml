@@ -69,7 +69,6 @@
         android:layout_width="500dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10sp"
         android:text="CATEGORIES"
         android:textColor="@color/white"
         android:textSize="80sp"
@@ -77,16 +76,17 @@
 
         />
 
-    <RadioGroup
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="425dp"
         android:layout_marginTop="5dp"
+        android:orientation="vertical"
+
         >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="140dp"
         android:orientation="horizontal"
-
         >
 
         <LinearLayout
@@ -96,10 +96,10 @@
             android:layout_weight="1"
 
             >
-        <RadioButton
-            android:id="@+id/radioButtonAction"
+        <Button
+            android:id="@+id/buttonAction"
             android:text="ACTION"
-            android:textColor="@color/purple_eywa"
+            android:textColor="@color/white"
             android:gravity="center"
             android:textSize="@dimen/button_text"
             android:textStyle="bold"
@@ -107,7 +107,7 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
-            android:background="@drawable/rounded_corners_white"
+            android:background="@drawable/rounded_corners_red"
             />
 
 
@@ -119,8 +119,8 @@
             android:layout_weight="1"
 
             >
-            <RadioButton
-                android:id="@+id/radioButtonComedy"
+            <Button
+                android:id="@+id/buttonComedy"
                 android:text="COMEDY"
                 android:textColor="@color/purple_eywa"
                 android:gravity="center"
@@ -141,7 +141,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="140dp"
             android:orientation="horizontal"
 
             >
@@ -153,8 +153,8 @@
                 android:layout_weight="1"
 
                 >
-                <RadioButton
-                    android:id="@+id/radioButtonScienceFiction"
+                <Button
+                    android:id="@+id/buttonScienceFiction"
                     android:text="SCIENCE FICTION"
                     android:textColor="@color/purple_eywa"
                     android:gravity="center"
@@ -176,8 +176,8 @@
                 android:layout_weight="1"
 
                 >
-                <RadioButton
-                    android:id="@+id/radioButtonHorror"
+                <Button
+                    android:id="@+id/buttonHorror"
                     android:text="HORROR"
                     android:textColor="@color/purple_eywa"
                     android:gravity="center"
@@ -197,7 +197,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="140dp"
             android:orientation="horizontal"
 
             >
@@ -209,8 +209,8 @@
                 android:layout_weight="1"
 
                 >
-                <RadioButton
-                    android:id="@+id/radioButtonAnimation"
+                <Button
+                    android:id="@+id/buttonAnimation"
                     android:text="ANIMATION"
                     android:textColor="@color/purple_eywa"
                     android:gravity="center"
@@ -232,8 +232,8 @@
                 android:layout_weight="1"
 
                 >
-                <RadioButton
-                    android:id="@+id/radioButtonDrama"
+                <Button
+                    android:id="@+id/buttonDrama"
                     android:text="DRAMA"
                     android:textColor="@color/purple_eywa"
                     android:gravity="center"
@@ -251,7 +251,7 @@
 
         </LinearLayout>
 
-    </RadioGroup>
+    </LinearLayout>
 
     <Button
         android:layout_width="300dp"
