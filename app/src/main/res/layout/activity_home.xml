@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_eywa"
+    android:orientation="vertical"
     >
 
     <LinearLayout
@@ -13,13 +14,13 @@
         android:orientation="horizontal"
         >
 
-
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
             >
             <Button
+                android:id="@+id/btnLangMenu"
                 android:layout_width="150dp"
                 android:layout_gravity="center"
                 android:layout_height="50dp"
@@ -63,5 +64,95 @@
 
 
     </LinearLayout>
+
+   <!--
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+    !-->
+
+
+
+        <LinearLayout
+        android:layout_width="850dp"
+        android:layout_height="350dp"
+        android:background="@drawable/rounded_corners_white"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum felis sit amet libero dapibus, ut mollis eros sollicitudin. Duis vel venenatis ligula. Suspendisse erat leo, porta ut fringilla ac, placerat non lacus. Vivamus commodo metus ut pretium tincidunt. In magna orci, varius eget euismod et, scelerisque et libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:gravity="left"
+            />
+
+    </LinearLayout>
+
+        <!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            >
+            <LinearLayout
+                android:id="@+id/langMenuLayout"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="50dp"
+                android:background="@drawable/rounded_corners_white"
+                android:visibility="invisible"
+                android:orientation="vertical"
+                >
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                >
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/userMenuLayout"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/rounded_corners_white"
+                android:visibility="invisible"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+    !-->
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:background="@drawable/rounded_corners_yellow"
+        android:layout_gravity="center"
+        android:layout_marginTop="65dp"
+        android:text="PLAY"
+        android:textStyle="bold"
+        android:textColor="@color/purple_eywa"
+        android:textSize="@dimen/button_text"
+        />
+
+
 
 </LinearLayout>
