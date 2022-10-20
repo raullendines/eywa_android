@@ -4,8 +4,10 @@ import android.R.attr
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 
@@ -15,10 +17,16 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val img_on = findViewById<ImageView>(R.id.show_pass_btn)
-        val img_off = findViewById<ImageView>(R.id.hide_pass_btn)
-        val password = findViewById<EditText>(R.id.edit_password)
+        var img_on = findViewById<ImageView>(R.id.btnShow)
+        var img_off = findViewById<ImageView>(R.id.btnHide)
+        var password = findViewById<EditText>(R.id.textPassword)
+        var btnLogin = findViewById<Button>(R.id.btnLogin)
 
+        btnLogin.setOnClickListener(){
+            var username = findViewById<EditText>(R.id.textUsername)
+            var password = findViewById<EditText>(R.id.textPassword)
+            //Omplir amb les dades per contrastar amb el JSON
+        }
         //Turn on password
         img_on.setOnClickListener {
             if (img_on.isVisible){
