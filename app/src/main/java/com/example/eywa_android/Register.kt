@@ -1,11 +1,13 @@
 package com.example.eywa_android
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.view.isVisible
 
 class Register : AppCompatActivity() {
@@ -13,13 +15,21 @@ class Register : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        val intentRegister = getIntent()
+
         val img_on_1 = findViewById<ImageView>(R.id.show_pass_btn)
         val img_off_1 = findViewById<ImageView>(R.id.hide_pass_btn)
         val img_on_2 = findViewById<ImageView>(R.id.show_pass_btn2)
         val img_off_2 = findViewById<ImageView>(R.id.hide_pass_btn2)
         val password_1 = findViewById<EditText>(R.id.edit_password)
         val password_2 = findViewById<EditText>(R.id.repeat_password)
+        var btnLogin = findViewById<TextView>(R.id.btnLoginRegister)
 
+        btnLogin.setOnClickListener(){
+            val intentLogin = Intent(this, Login::class.java)
+            startActivity(intentLogin)
+            finish()
+        }
         //Turn on password 1 edittext
         img_on_1.setOnClickListener {
             if (img_on_1.isVisible){

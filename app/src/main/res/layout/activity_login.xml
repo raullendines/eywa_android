@@ -38,6 +38,7 @@
                 >
 
                 <EditText
+                    android:id="@+id/textUsername"
                     android:layout_width="700dp"
                     android:layout_height="wrap_content"
                     android:background="@color/light_grey"
@@ -48,6 +49,7 @@
                     android:textSize="30dp"
                     android:textStyle="bold"
                     android:hint="Username"
+                    android:inputType="text"
                     android:textColorHint="@color/grey"
                     />
 
@@ -57,7 +59,7 @@
                     android:layout_marginTop="10dp">
 
                     <EditText
-                        android:id="@+id/edit_password"
+                        android:id="@+id/textPassword"
                         android:layout_width="fill_parent"
                         android:layout_height="45dp"
                         android:background="@color/light_grey"
@@ -71,7 +73,7 @@
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:id="@+id/show_pass_btn"
+                        android:id="@+id/btnHide"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
@@ -82,7 +84,7 @@
                         android:src="@drawable/visibility_on" />
 
                     <ImageView
-                        android:id="@+id/hide_pass_btn"
+                        android:id="@+id/btnShow"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignParentRight="true"
@@ -114,20 +116,19 @@
                         />
 
                     <TextView
-                        android:id="@+id/text_click"
+                        android:id="@+id/btnRegisterLogin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Create an account!"
                         android:textColor="@color/purple_eywa"
                         android:textStyle="bold"
                         android:textSize="17dp"
-
                         android:clickable="true"
-                        android:onClick="clickTextView"
                         android:layout_marginRight="50dp"
                         />
 
                     <Button
+                        android:id="@+id/btnLogin"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/button"

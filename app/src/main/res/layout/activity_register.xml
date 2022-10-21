@@ -150,12 +150,11 @@
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="17dp"
-                        android:onClick="clickTextView"
                         android:layout_marginRight="7dp"
                         />
 
                     <TextView
-                        android:id="@+id/text_click"
+                        android:id="@+id/btnLoginRegister"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Login!"
@@ -163,7 +162,6 @@
                         android:textStyle="bold"
                         android:textSize="17dp"
                         android:clickable="true"
-                        android:onClick="clickTextView"
                         android:layout_marginRight="50dp"
                         />
 
