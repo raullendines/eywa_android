@@ -25,15 +25,17 @@ class Login : AppCompatActivity() {
         var btnLogin = findViewById<Button>(R.id.btnLogin)
         var btnRegister = findViewById<TextView>(R.id.btnRegisterLogin)
 
+
         btnRegister.setOnClickListener(){
             val intentRegister = Intent(this, Register::class.java)
             startActivity(intentRegister)
             finish()
+
         }
         
         btnLogin.setOnClickListener(){
-            var username = findViewById<EditText>(R.id.textUsername)
-            var password = findViewById<EditText>(R.id.textPassword)
+            val username = findViewById<EditText>(R.id.textUsername)
+            val password = findViewById<EditText>(R.id.textPassword)
             //Omplir amb les dades per contrastar amb el JSON
         }
         //Turn on password
