@@ -1,6 +1,7 @@
 package com.example.eywa_android
 
 import android.R.attr
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
@@ -11,17 +12,25 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 
-
 class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val intentLogin = getIntent()
+
         var img_on = findViewById<ImageView>(R.id.btnShow)
         var img_off = findViewById<ImageView>(R.id.btnHide)
         var password = findViewById<EditText>(R.id.textPassword)
         var btnLogin = findViewById<Button>(R.id.btnLogin)
+        var btnRegister = findViewById<TextView>(R.id.btnRegisterLogin)
 
+        btnRegister.setOnClickListener(){
+            val intentRegister = Intent(this, Register::class.java)
+            startActivity(intentRegister)
+            finish()
+        }
+        
         btnLogin.setOnClickListener(){
             var username = findViewById<EditText>(R.id.textUsername)
             var password = findViewById<EditText>(R.id.textPassword)

@@ -116,16 +116,14 @@
                         />
 
                     <TextView
-                        android:id="@+id/text_click"
+                        android:id="@+id/btnRegisterLogin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Create an account!"
                         android:textColor="@color/purple_eywa"
                         android:textStyle="bold"
                         android:textSize="17dp"
-
                         android:clickable="true"
-                        android:onClick="clickTextView"
                         android:layout_marginRight="50dp"
                         />
 
