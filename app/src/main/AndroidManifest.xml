@@ -17,6 +17,14 @@
             android:name=".Difficulty"
             android:exported="true"
             android:screenOrientation="landscape"/>
+		<activity
+            android:name=".Categories"
+            android:exported="true"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".Register"
             android:exported="true"
