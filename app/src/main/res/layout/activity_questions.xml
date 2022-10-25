@@ -5,17 +5,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-
-
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/sci_fi"
     android:orientation="vertical"
     android:weightSum="5">
-
-    //Pregunta
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -150,7 +145,6 @@
                 android:layout_width="450dp"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
-
                 android:background="@drawable/answer_button"
                 android:tag="unselected"
                 android:text="Answer 2"
@@ -177,10 +171,60 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:gravity="center"
         android:background="@color/white"
         >
 
-
+        <View
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/circle_current" />
+        <View
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/circle_todo" />
+        <View
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/circle_todo" />
+        <View
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/circle_todo" />
+        <View
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/circle_todo" />
+        <View
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/circle_todo" />
+        <View
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/circle_todo" />
+        <View
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/circle_todo" />
+        <View
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/circle_todo" />
+        <View
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/circle_todo" />
 
     </LinearLayout>
 
