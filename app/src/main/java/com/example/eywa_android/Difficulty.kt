@@ -7,6 +7,7 @@ import android.transition.Transition
 import android.transition.TransitionManager
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -14,25 +15,36 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.transition.MaterialContainerTransform
+import org.w3c.dom.Text
 
 class Difficulty : AppCompatActivity() {
 
     var difficultySelected : Int = 0
     var lang : String = "eng"
+    var volume : Boolean = true;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_difficulty)
 
 
-        val fabMenu = findViewById<FloatingActionButton>(R.id.fab)
-        //val close = findViewById<TextView>(R.id.tvClose)
-        val linearLay = findViewById<LinearLayout>(R.id.LinLayout)
+        val btnLang = findViewById<LinearLayout>(R.id.btnLangMenu)
+        val changeVolume = findViewById<ImageView>(R.id.changeVolume)
 
         val btnEasy = findViewById<Button>(R.id.btnEasy)
         val btnMedium = findViewById<Button>(R.id.btnMedium)
         val btnHard = findViewById<Button>(R.id.btnHard)
         val btnLegend = findViewById<Button>(R.id.btnLegend)
+
+        changeVolume.setOnClickListener(){
+            if(volume){
+                changeVolume.setImageResource(R.drawable.ic_baseline_volume_off_24)
+            } else{
+                changeVolume.setImageResource(R.drawable.ic_baseline_volume_on_24)
+            }
+            volume = !volume
+        }
+
 
         val difficultyBtn = arrayOf<Button>(
             btnEasy, btnMedium, btnHard, btnLegend
@@ -73,34 +85,27 @@ class Difficulty : AppCompatActivity() {
 
 
 
-        fabMenu.setOnClickListener(){
-            //fabMenu.setExpanded(true)
-            displayLangMenu(fabMenu)
+        btnLang.setOnClickListener(){
+            displayLangMenu(btnLang)
         }
 
-        /*close.setOnClickListener(){
-            fabMenu.setExpanded(false)
-        }
-        */
+
         val catalanLayout = findViewById<LinearLayout>(R.id.catalanLayout)
         val espanyolLayout = findViewById<LinearLayout>(R.id.espanyolLayout)
         val englishLayout = findViewById<LinearLayout>(R.id.englishLayout)
 
         catalanLayout.setOnClickListener(){
-            hideLangMenu(fabMenu)
-            fabMenu.setImageResource(R.drawable.catalunya_bandera)
+            hideLangMenu(btnLang)
             lang = "cat"
             changeLang(difficultyBtn)
         }
         espanyolLayout.setOnClickListener(){
-            hideLangMenu(fabMenu)
-            fabMenu.setImageResource(R.drawable.espanya_bandera)
+            hideLangMenu(btnLang)
             lang = "esp"
             changeLang(difficultyBtn)
         }
         englishLayout.setOnClickListener(){
-            hideLangMenu(fabMenu)
-            fabMenu.setImageResource(R.drawable.english_bandera)
+            hideLangMenu(btnLang)
             lang = "eng"
             changeLang(difficultyBtn)
         }
@@ -109,7 +114,7 @@ class Difficulty : AppCompatActivity() {
 
     }
 
-    private fun displayLangMenu(fabMenu : FloatingActionButton){
+    private fun displayLangMenu(fabMenu : LinearLayout){
         val endCard = findViewById<MaterialCardView>(R.id.end_card)
         val myLayout = findViewById<LinearLayout>(R.id.LinLayout)
         val backgroundOpacity = findViewById<LinearLayout>(R.id.backgroundOpacity)
@@ -129,9 +134,7 @@ class Difficulty : AppCompatActivity() {
 
         TransitionManager.beginDelayedTransition(root, transition as? Transition)
 
-        if(fabMenu != null){
-            fabMenu.visibility = View.INVISIBLE
-        }
+
         if(endCard != null){
             endCard.visibility = View.VISIBLE
         }
@@ -147,7 +150,7 @@ class Difficulty : AppCompatActivity() {
 
     }
 
-    private fun hideLangMenu(fabMenu : FloatingActionButton){
+    private fun hideLangMenu(fabMenu : LinearLayout){
         val goBack = findViewById<TextView>(R.id.goBack)
         goBack.isClickable = false
         goBack.visibility = View.INVISIBLE
@@ -177,8 +180,12 @@ class Difficulty : AppCompatActivity() {
     private fun changeLang(difficultyBtn : Array<Button>){
         val txtViewDifficulty = findViewById<TextView>(R.id.txtViewDifficulty)
         val playButton = findViewById<Button>(R.id.btnPlay)
+        val imageBandera = findViewById<ImageView>(R.id.imageBandera)
+        val txtLang = findViewById<TextView>(R.id.txtLang)
         when(lang){
             "cat" -> {
+                imageBandera.setImageResource(R.drawable.catalunya_bandera)
+                txtLang.setText("CAT")
                 txtViewDifficulty.setText("DIFICULTAT")
                 difficultyBtn[0].setText("FÀCIL")
                 difficultyBtn[1].setText("MITJANA")
@@ -187,6 +194,8 @@ class Difficulty : AppCompatActivity() {
                 playButton.setText("JUGAR")
             }
             "esp" -> {
+                imageBandera.setImageResource(R.drawable.espanya_bandera)
+                txtLang.setText("ESP")
                 txtViewDifficulty.setText("DIFICULTAD")
                 difficultyBtn[0].setText("FÁCIL")
                 difficultyBtn[1].setText("MEDIANA")
@@ -195,6 +204,8 @@ class Difficulty : AppCompatActivity() {
                 playButton.setText("JUGAR")
             }
             "eng" -> {
+                imageBandera.setImageResource(R.drawable.english_bandera)
+                txtLang.setText("ENG")
                 txtViewDifficulty.setText("DIFFICULTY")
                 difficultyBtn[0].setText("EASY")
                 difficultyBtn[1].setText("MEDIUM")
