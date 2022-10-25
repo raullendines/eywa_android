@@ -11,11 +11,13 @@
 
 
         <ImageView
+            android:id="@+id/logoEywa"
             android:layout_width="500sp"
             android:layout_height="500sp"
             android:layout_gravity="center"
             android:src="@drawable/logo_eywa"
             android:layout_weight="1"
+
             />
 
 

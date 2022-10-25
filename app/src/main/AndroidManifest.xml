@@ -28,6 +28,11 @@
             android:screenOrientation="landscape"
             />
         <activity
+            android:name=".Score"
+            android:exported="true"
+            android:screenOrientation="landscape"
+            />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="landscape">
