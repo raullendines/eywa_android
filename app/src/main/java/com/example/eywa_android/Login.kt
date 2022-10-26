@@ -25,6 +25,8 @@ class Login : AppCompatActivity() {
         var btnLogin = findViewById<Button>(R.id.btnLogin)
         var btnRegister = findViewById<TextView>(R.id.btnRegisterLogin)
 
+        var users = FilesManager.getUsers(this)
+
         btnRegister.setOnClickListener(){
             val intentRegister = Intent(this, Register::class.java)
             startActivity(intentRegister)
@@ -34,7 +36,15 @@ class Login : AppCompatActivity() {
         btnLogin.setOnClickListener(){
             var username = findViewById<EditText>(R.id.textUsername)
             var password = findViewById<EditText>(R.id.textPassword)
+
             //Omplir amb les dades per contrastar amb el JSON
+            if (userExist(username.text.toString(),password.text.toString(),users)){
+                println("Correcte")
+            }
+            else {
+                println("Incorrecte")
+            }
+
         }
         //Turn on password
         img_on.setOnClickListener {
@@ -57,5 +67,18 @@ class Login : AppCompatActivity() {
         }
 
 
+    }
+    fun userExist(user : String, password : String, users : MutableList<User>): Boolean {
+
+        var existUser : Boolean = false
+        var index : Int = 0
+        do {
+            if (users[index].username == user && users[index].password == password)
+            {
+                existUser = true
+            }
+            index++
+        }while(!existUser && index < users.size)
+        return existUser
     }
 }
