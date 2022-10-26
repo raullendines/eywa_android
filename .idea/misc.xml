@@ -10,6 +10,8 @@
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_login.xml" value="0.1707920792079208" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/debug/res/drawable/answer_button.xml" value="0.2545" />
+        <entry key="app/src/debug/res/drawable/answer_button_correct.xml" value="0.1225" />
+        <entry key="app/src/debug/res/drawable/answer_button_error.xml" value="0.2545" />
         <entry key="app/src/debug/res/drawable/answer_button_selected.xml" value="0.2545" />
         <entry key="app/src/debug/res/drawable/timer.xml" value="0.25" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2545" />

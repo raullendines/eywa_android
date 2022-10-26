@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.util.Log
 import android.view.ActionMode
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -21,110 +22,125 @@ class QuestionsActivity : AppCompatActivity() {
 
     private fun getObject() = object {
         var contador = 10000
-    }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_questions)
-
         val answer1 = findViewById<Button>(R.id.answer1)
         val answer2 = findViewById<Button>(R.id.answer2)
         val answer3 = findViewById<Button>(R.id.answer3)
         val answer4 = findViewById<Button>(R.id.answer4)
         val question = findViewById<TextView>(R.id.txtQuestion)
-
-        var contadorTiempo = getObject().contador/1000
-        val timer = findViewById<TextView>(R.id.txtTimer)
-
         val selected: Drawable? =
             ResourcesCompat.getDrawable(resources, R.drawable.answer_button_selected, null)
         val unselected: Drawable? =
             ResourcesCompat.getDrawable(resources, R.drawable.answer_button, null)
+        val correct_button: Drawable? =
+            ResourcesCompat.getDrawable(resources, R.drawable.answer_button_correct, null)
+        val incorrect_button: Drawable? =
+            ResourcesCompat.getDrawable(resources, R.drawable.answer_button_error, null)
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_questions)
+
+        val questionsList = Constants.getQuestions()
+        Log.i("Questions size:", "${questionsList.size}")
+
+        val currentPosition = 1
+        val question: Question? = questionsList[currentPosition - 1]
+        getObject().question.text = question!!.question
+        getObject().answer1.text = question!!.correct_answer
+        Log.i("Incorrect:", "${question.incorrect_answers[1]}")
+        getObject().answer2.text = question.incorrect_answers[0]
+        getObject().answer3.text = question!!.incorrect_answers[1]
+        //getObject().answer4.text = question!!.incorrect_answers[2]
+
+
+        var contadorTiempo = getObject().contador/1000
+        val timer = findViewById<TextView>(R.id.txtTimer)
         val animation = findViewById<LottieAnimationView>(R.id.animationWin)
 
-        println("Texto"+answer1.text)
-        //Answer 1
-        answer1.setOnClickListener() {
-            if (answer1.tag == "unselected") {
-                answer1.tag = "selected"
-                answer1.setTextColor(Color.parseColor("#FFFFFF"))
-                answer1.background = selected
 
-                if (answer1.text == "Answer 1"){
-                    correct(animation, answer1, answer2, answer3, answer4, question)
+        //Answer 1
+        getObject().answer1.setOnClickListener() {
+            if (getObject().answer1.tag == "unselected") {
+                getObject().answer1.tag = "selected"
+                getObject().answer1.setTextColor(Color.parseColor("#FFFFFF"))
+                getObject().answer1.background = getObject().selected
+
+                if (getObject().answer1.text == "Answer 1"){
+                    correct(animation)
                 }
                 else{
-                    incorrect(animation, answer1, answer2, answer3, answer4, question)
+                    incorrect(animation)
                 }
             } else {
-                answer1.tag = "unselected"
-                answer1.setTextColor(Color.parseColor("#000000"))
-                answer1.background = unselected
+                getObject().answer1.tag = "unselected"
+                getObject().answer1.setTextColor(Color.parseColor("#000000"))
+                getObject().answer1.background = getObject().unselected
             }
-            disabled(answer1, answer2, answer3, answer4)
+            disabled()
         }
 
         //Answer 2
-        answer2.setOnClickListener() {
-            if (answer2.tag == "unselected") {
-                answer2.tag = "selected"
-                answer2.setTextColor(Color.parseColor("#FFFFFF"))
-                answer2.background = selected
+        getObject().answer2.setOnClickListener() {
+            if (getObject().answer2.tag == "unselected") {
+                getObject().answer2.tag = "selected"
+                getObject().answer2.setTextColor(Color.parseColor("#FFFFFF"))
+                getObject().answer2.background = getObject().selected
 
-                if (answer2.text == "Answer 1"){
-                    correct(animation, answer1, answer2, answer3, answer4, question)
+                if (getObject().answer2.text == "Answer 1"){
+                    correct(animation)
                 }
                 else{
-                    incorrect(animation, answer1, answer2, answer3, answer4, question)
+                    incorrect(animation)
                 }
             } else {
-                answer2.tag = "unselected"
-                answer2.setTextColor(Color.parseColor("#000000"))
-                answer2.background = unselected
+                getObject().answer2.tag = "unselected"
+                getObject().answer2.setTextColor(Color.parseColor("#000000"))
+                getObject().answer2.background = getObject().unselected
             }
-            disabled(answer1, answer2, answer3, answer4)
+            disabled()
         }
 
 
         //Answer 3
-        answer3.setOnClickListener() {
-            if (answer3.tag == "unselected") {
-                answer3.tag = "selected"
-                answer3.setTextColor(Color.parseColor("#FFFFFF"))
-                answer3.background = selected
+        getObject().answer3.setOnClickListener() {
+            if (getObject().answer3.tag == "unselected") {
+                getObject().answer3.tag = "selected"
+                getObject().answer3.setTextColor(Color.parseColor("#FFFFFF"))
+                getObject().answer3.background = getObject().selected
 
-                if (answer3.text == "Answer 1"){
-                    correct(animation, answer1, answer2, answer3, answer4, question)
+                if (getObject().answer3.text == "Answer 1"){
+                    correct(animation)
                 }
                 else{
-                    incorrect(animation, answer1, answer2, answer3, answer4, question)
+                    incorrect(animation)
                 }
             } else {
-                answer3.tag = "unselected"
-                answer3.setTextColor(Color.parseColor("#000000"))
-                answer3.background = unselected
+                getObject().answer3.tag = "unselected"
+                getObject().answer3.setTextColor(Color.parseColor("#000000"))
+                getObject().answer3.background = getObject().unselected
             }
-            disabled(answer1, answer2, answer3, answer4)
+            disabled()
         }
 
         //Answer 4
-        answer4.setOnClickListener() {
-            if (answer4.tag == "unselected") {
-                answer4.tag = "selected"
-                answer4.setTextColor(Color.parseColor("#FFFFFF"))
-                answer4.background = selected
+        getObject().answer4.setOnClickListener() {
+            if (getObject().answer4.tag == "unselected") {
+                getObject().answer4.tag = "selected"
+                getObject().answer4.setTextColor(Color.parseColor("#FFFFFF"))
+                getObject().answer4.background = getObject().selected
 
-                if (answer4.text == "Answer 1"){
-                    correct(animation, answer1, answer2, answer3, answer4, question)
+                if (getObject().answer4.text == "Answer 1"){
+                    correct(animation)
                 }
                 else{
-                    incorrect(animation, answer1, answer2, answer3, answer4, question)
+                    incorrect(animation)
                 }
             } else {
-                answer4.tag = "unselected"
-                answer4.setTextColor(Color.parseColor("#000000"))
-                answer4.background = unselected
+                getObject().answer4.tag = "unselected"
+                getObject().answer4.setTextColor(Color.parseColor("#000000"))
+                getObject().answer4.background = getObject().unselected
             }
-            disabled(answer1, answer2, answer3, answer4)
+            disabled()
         }
 
         contador_timer = object : CountDownTimer( getObject().contador.toLong(), 1000) {
@@ -137,7 +153,8 @@ class QuestionsActivity : AppCompatActivity() {
             override fun onFinish() {
 
                 Handler().postDelayed({
-                    incorrect(animation, answer1, answer2, answer3, answer4, question)
+                    timer.text = "0"
+                    incorrect(animation)
                 }, 100)
             }
         }.start()
@@ -148,40 +165,43 @@ class QuestionsActivity : AppCompatActivity() {
         contador_timer.cancel()
     }
 
-    fun stopTimer(answer1: Button, answer2: Button, answer3: Button, answer4: Button, question: TextView){
+    fun stopTimer(){
         contador_timer.cancel()
     }
 
-    fun newQuestion(answer1: Button, answer2: Button, answer3: Button, answer4: Button, question: TextView){
+    fun newQuestion(){
 
-        contador_timer.start()
         getObject().contador = 10000
-        question.text = "¿Quien es mejor?"
-        answer1.text = "Respuesta 1"
-        answer2.text = "Respuesta 2"
-        answer3.text = "Respuesta 3"
-        answer4.text = "Respuesta 4"
+        contador_timer.start()
+
+        getObject().question.text = "¿Quien es mejor?"
+        getObject().answer1.text = "Respuesta 1"
+        getObject().answer2.text = "Respuesta 2"
+        getObject().answer3.text = "Respuesta 3"
+        getObject().answer4.text = "Respuesta 4"
 
     }
 
-    fun disabled(answer1: Button, answer2: Button, answer3: Button, answer4: Button){
-        answer1.isEnabled = false
-        answer2.isEnabled = false
-        answer3.isEnabled = false
-        answer4.isEnabled = false
+    fun disabled(){
+        getObject().answer1.isEnabled = false
+        getObject().answer2.isEnabled = false
+        getObject().answer3.isEnabled = false
+        getObject().answer4.isEnabled = false
     }
 
-    fun enabled(answer1: Button, answer2: Button, answer3: Button, answer4: Button){
-        answer1.isEnabled = true
-        answer2.isEnabled = true
-        answer3.isEnabled = true
-        answer4.isEnabled = true
+    fun enabled(){
+        getObject().answer1.isEnabled = true
+        getObject().answer2.isEnabled = true
+        getObject().answer3.isEnabled = true
+        getObject().answer4.isEnabled = true
     }
 
-    fun correct(animation: LottieAnimationView, answer1: Button, answer2: Button, answer3: Button, answer4: Button, question: TextView) {
+    fun correct(animation: LottieAnimationView) {
+        var correcto = true;
         animation.setAnimation(R.raw.animation_correct)
         animation.playAnimation()
-
+        stopTimer()
+        colorBtn(correcto)
         val animacion = AnimationUtils.loadAnimation(this, R.anim.fade_out)
 
 
@@ -194,15 +214,51 @@ class QuestionsActivity : AppCompatActivity() {
                 animation.startAnimation(animacion)
                 Handler().postDelayed({
                     animation.visibility = View.INVISIBLE
-                    stopTimer(answer1, answer2, answer3, answer4, question)
                 }, 100)
             }
         }.start()
     }
 
-    fun incorrect(animation: LottieAnimationView, answer1: Button, answer2: Button, answer3: Button, answer4: Button, question: TextView) {
+    fun colorBtn(isCorrect: Boolean) {
+        if (isCorrect) {
+            if (getObject().answer1.tag.equals("selected")) {
+                getObject().answer1.setTextColor(Color.parseColor("#FFFFFF"))
+                getObject().answer1.background = getObject().correct_button
+            } else if (getObject().answer2.tag.equals("selected")) {
+                getObject().answer2.setTextColor(Color.parseColor("#FFFFFF"))
+                getObject().answer2.background = getObject().correct_button
+            } else if (getObject().answer3.tag.equals("selected")) {
+                getObject().answer3.setTextColor(Color.parseColor("#FFFFFF"))
+                getObject().answer3.background = getObject().correct_button
+            } else if (getObject().answer3.tag.equals("selected")) {
+                getObject().answer3.setTextColor(Color.parseColor("#FFFFFF"))
+                getObject().answer3.background = getObject().correct_button
+            }
+        }
+        else{
+            if (getObject().answer1.tag.equals("selected")) {
+                getObject().answer1.setTextColor(Color.parseColor("#FFFFFF"))
+                getObject().answer1.background = getObject().incorrect_button
+            } else if (getObject().answer2.tag.equals("selected")) {
+                getObject().answer2.setTextColor(Color.parseColor("#FFFFFF"))
+                getObject().answer2.background = getObject().incorrect_button
+            } else if (getObject().answer3.tag.equals("selected")) {
+                getObject().answer3.setTextColor(Color.parseColor("#FFFFFF"))
+                getObject().answer3.background = getObject().incorrect_button
+            } else if (getObject().answer3.tag.equals("selected")) {
+                getObject().answer3.setTextColor(Color.parseColor("#FFFFFF"))
+                getObject().answer3.background = getObject().incorrect_button
+            }
+        }
+    }
+
+    fun incorrect(animation: LottieAnimationView, ) {
         animation.setAnimation(R.raw.animation_incorrect)
         animation.playAnimation()
+        stopTimer()
+
+        var correcto = false;
+        colorBtn(correcto)
 
         val animacion = AnimationUtils.loadAnimation(this, R.anim.fade_out)
 
