@@ -1,8 +1,15 @@
 package com.example.eywa_android
 
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
+import android.os.CountDownTimer
+import android.view.View
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +20,24 @@ class MainActivity : AppCompatActivity() {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_main)
 
+            var imageView : ImageView = findViewById(R.id.logoEywa)
+
+            val animation_in : Animation = AnimationUtils.loadAnimation(this,R.anim.fade_in)
+            val animation_out : Animation = AnimationUtils.loadAnimation(this,R.anim.fade_out)
+
+            imageView.startAnimation(animation_in)
+
+            val timer = object: CountDownTimer(3000, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+
+                }
+
+                override fun onFinish() {
+
+                    imageView.startAnimation(animation_out)
+                }
+            }
+            timer.start()
 
 
             var users : MutableList<User> = FilesManager.getUsers(this)
@@ -21,23 +46,12 @@ class MainActivity : AppCompatActivity() {
             var questionsES : MutableList<Question> = FilesManager.getQuestionsES(this)
             var characters : MutableList<Characters> = FilesManager.getCharacters(this)
 
-            val listUsers = findViewById<ListView>(R.id.ListUsers)
 
-            var adapter =UserAdapter(this, R.layout.user_layout, users)
-
-            listUsers.adapter = adapter
 
 
 
 
 
         }
-
-
-
-
-
-
-
 
 }
