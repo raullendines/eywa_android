@@ -1,6 +1,5 @@
 package com.example.eywa_android
 
-import android.R.attr
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
@@ -9,8 +8,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+
 
 class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,13 +37,18 @@ class Login : AppCompatActivity() {
         btnLogin.setOnClickListener(){
             var username = findViewById<EditText>(R.id.textUsername)
             var password = findViewById<EditText>(R.id.textPassword)
-
+            var userExists : Boolean = userExist(username.text.toString(),password.text.toString(),users)
             //Omplir amb les dades per contrastar amb el JSON
-            if (userExist(username.text.toString(),password.text.toString(),users)){
-                println("Correcte")
+            if (username.text.isEmpty() || password.text.isEmpty()){
+                Toast.makeText(applicationContext, "Please fill all camps", Toast.LENGTH_SHORT).show()
             }
             else {
-                println("Incorrecte")
+                if (userExists){
+                    Toast.makeText(applicationContext, "Correcte", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(applicationContext, "User doesn't exist", Toast.LENGTH_SHORT).show()
+                }
             }
 
         }
@@ -72,8 +78,10 @@ class Login : AppCompatActivity() {
 
         var existUser : Boolean = false
         var index : Int = 0
+
         do {
-            if (users[index].username == user && users[index].password == password)
+            var hashedPasswordEquals = Bcrypt.checkpw(password,users[index].password)
+            if (users[index].username == user && hashedPasswordEquals)
             {
                 existUser = true
             }

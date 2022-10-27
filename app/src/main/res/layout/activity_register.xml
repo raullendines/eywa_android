@@ -38,6 +38,7 @@
                 >
 
                 <EditText
+                    android:id="@+id/LblUsernameRegister"
                     android:layout_width="700dp"
                     android:layout_height="wrap_content"
                     android:background="@color/light_grey"
@@ -172,6 +173,7 @@
                         />
 
                     <Button
+                        android:id="@+id/BtnRegister"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/button"

@@ -53,7 +53,7 @@ class FilesManager {
             val jsonFilePath = context.filesDir.toString() + "/json/users_android.json"
             val jsonFile = FileWriter(jsonFilePath)
             var gson = Gson()
-            var jsonElement = gson.toJson(jsonFile)
+            var jsonElement = gson.toJson(users)
             jsonFile.write(jsonElement)
             jsonFile.close()
         }
