@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 
 
-private const val CATEGORY = "category"
+private const val CATEGORY = "categorySelected"
 
 class CategoryFragment : Fragment(), Home.mainPage {
 
@@ -28,11 +30,13 @@ class CategoryFragment : Fragment(), Home.mainPage {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_category, container, false)
     }
 
     override fun onStart() {
         super.onStart()
+        buttonSelected = 0
         val categoryButtons = arrayOf(
             requireView().findViewById<Button>(R.id.buttonAction),
             requireView().findViewById<Button>(R.id.buttonComedy),
@@ -48,25 +52,18 @@ class CategoryFragment : Fragment(), Home.mainPage {
                 buttonStyle(button)
             }
         }
-    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CategoryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance() =
-            CategoryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(CATEGORY, categoryToReturn)
-                }
-            }
+        val myActivity : Home = activity as Home
+        changeLang(myActivity.lang)
+
+        val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
+        btnPlay.setOnClickListener(){
+
+            val bundle = bundleOf(CATEGORY to categoryToReturn)
+            findNavController().navigate(R.id.action_categoryFragment_to_difficultyFragment, bundle)
+
+        }
+
     }
 
     override fun changeLang(lang: String) {
@@ -81,12 +78,9 @@ class CategoryFragment : Fragment(), Home.mainPage {
 
         val txtViewCategory = requireView().findViewById<TextView>(R.id.txtCategories)
         val playButton = requireView().findViewById<Button>(R.id.btnPlay)
-        val imageBandera = requireView().findViewById<ImageView>(R.id.imageBandera)
-        val txtLang = requireView().findViewById<TextView>(R.id.txtLang)
+
         when(lang){
             "cat" -> {
-                imageBandera.setImageResource(R.drawable.catalunya_bandera)
-                txtLang.setText("CAT")
                 txtViewCategory.setText("CATEGORIES")
                 categoryButtons[0].setText("ACCIÓ")
                 categoryButtons[1].setText("COMEDIA")
@@ -98,8 +92,6 @@ class CategoryFragment : Fragment(), Home.mainPage {
                 playButton.setText("JUGAR")
             }
             "esp" -> {
-                imageBandera.setImageResource(R.drawable.espanya_bandera)
-                txtLang.setText("ESP")
                 txtViewCategory.setText("CATEGORIAS")
                 categoryButtons[0].setText("ACCIÓN")
                 categoryButtons[1].setText("COMEDIA")
@@ -110,8 +102,6 @@ class CategoryFragment : Fragment(), Home.mainPage {
                 playButton.setText("JUGAR")
             }
             "eng" -> {
-                imageBandera.setImageResource(R.drawable.english_bandera)
-                txtLang.setText("ENG")
                 txtViewCategory.setText("CATEGORIES")
                 categoryButtons[0].setText("ACTION")
                 categoryButtons[1].setText("COMEDY")
@@ -136,26 +126,32 @@ class CategoryFragment : Fragment(), Home.mainPage {
             resources.getIdentifier("buttonAction", "id", requireActivity().packageName) -> {
                 button.setBackgroundResource(R.drawable.rounded_corners_red)
                 buttonSelected = 0
+                categoryToReturn = "Action"
             }
             resources.getIdentifier("buttonComedy", "id", requireActivity().packageName) -> {
                 button.setBackgroundResource(R.drawable.rounded_corners_yellow)
                 buttonSelected = 1
+                categoryToReturn = "Comedy"
             }
             resources.getIdentifier("buttonScienceFiction", "id", requireActivity().packageName) -> {
                 button.setBackgroundResource(R.drawable.rounded_corners_red)
                 buttonSelected = 2
+                categoryToReturn = "Science Fiction"
             }
             resources.getIdentifier("buttonHorror", "id", requireActivity().packageName) -> {
                 button.setBackgroundResource(R.drawable.rounded_corners_yellow)
                 buttonSelected = 3
+                categoryToReturn = "Horror"
             }
             resources.getIdentifier("buttonAnimation", "id", requireActivity().packageName) -> {
                 button.setBackgroundResource(R.drawable.rounded_corners_red)
                 buttonSelected = 4
+                categoryToReturn = "Animation"
             }
             resources.getIdentifier("buttonDrama", "id", requireActivity().packageName) -> {
                 button.setBackgroundResource(R.drawable.rounded_corners_yellow)
                 buttonSelected = 5
+                categoryToReturn = "Drama"
             }
         }
         button.setTextColor(Color.parseColor("#FFFFFF"))

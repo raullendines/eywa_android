@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.*
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import androidx.navigation.findNavController
 import com.example.eywa_android.R
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.transition.MaterialContainerTransform
@@ -17,12 +18,11 @@ import com.google.android.material.transition.MaterialContainerTransform
 class Home : AppCompatActivity() {
 
 
-    var lang = "eng"
+    public var lang = "eng"
 
     interface mainPage {
         fun changeLang(lang: String)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,29 +63,31 @@ class Home : AppCompatActivity() {
         val espanyolLayout = findViewById<LinearLayout>(R.id.espanyolLayout)
         val englishLayout = findViewById<LinearLayout>(R.id.englishLayout)
 
+        var myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
+        var myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
+
 
         catalanLayout.setOnClickListener(){
             hideLangMenu(btnLang)
             lang = "cat"
-
-
-            val homeFragment = this.supportFragmentManager.findFragmentById(R.id.homeFragment)
-            if(homeFragment is HomeFragment ){
-                Toast.makeText(this, "sometext", 10000)
-            }
-
-//            homeFragment.changeLang(lang)
-            //changeLang(buttons)
+            myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
+            myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
+            changeFragmentLang(myFragment as Home.mainPage)
         }
+
         espanyolLayout.setOnClickListener(){
             hideLangMenu(btnLang)
             lang = "esp"
-            //changeLang(buttons)
+            myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
+            myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
+            changeFragmentLang(myFragment as Home.mainPage)
         }
         englishLayout.setOnClickListener(){
             hideLangMenu(btnLang)
             lang = "eng"
-            //changeLang(buttons)
+            myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
+            myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
+            changeFragmentLang(myFragment as Home.mainPage)
         }
 
     }
@@ -210,7 +212,27 @@ class Home : AppCompatActivity() {
         backgroundOpacity.visibility = View.INVISIBLE
     }
 
-    private fun test (omplirFragment : mainPage){
-        omplirFragment.changeLang(lang)
+
+    private fun changeFragmentLang (currentFragment : mainPage){
+        currentFragment.changeLang(lang)
+
+        val imageBandera = findViewById<ImageView>(R.id.imageBandera)
+        val txtLang = findViewById<TextView>(R.id.txtLang)
+        when(lang){
+            "cat" -> {
+                imageBandera.setImageResource(R.drawable.catalunya_bandera)
+                txtLang.text = "CAT"
+            }
+            "esp" -> {
+                imageBandera.setImageResource(R.drawable.espanya_bandera)
+                txtLang.text = "ESP"
+            }
+            "eng" -> {
+                imageBandera.setImageResource(R.drawable.english_bandera)
+                txtLang.text = "ENG"
+            }
+
+        }
+
     }
 }

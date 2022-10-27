@@ -14,18 +14,11 @@ import java.lang.RuntimeException
 
 class HomeFragment : Fragment(), Home.mainPage {
 
-    private var activityContenedora : Home.mainPage? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if(context is Home.mainPage){
-            activityContenedora = context
-        } else throw RuntimeException(context.toString() + " Debe implementar interficie")
     }
 
     override fun onCreateView(
@@ -42,6 +35,8 @@ class HomeFragment : Fragment(), Home.mainPage {
         btnPlay.setOnClickListener(){
             findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
         }
+        val myActivity : Home = activity as Home
+        changeLang(myActivity.lang)
     }
 
     override fun changeLang(lang: String) {
@@ -58,8 +53,10 @@ class HomeFragment : Fragment(), Home.mainPage {
             }
             "eng" -> {
                 btnPlay.setText("PLAY")
-                textIntro.text = "(CAT)"
+                textIntro.text = "(A LOT OF ENGLISH THINGS)"
             }
         }
     }
+
+
 }

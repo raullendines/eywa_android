@@ -23,5 +23,17 @@
         android:id="@+id/categoryFragment"
         android:name="com.example.eywa_android.CategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_difficultyFragment"
+            app:destination="@id/difficultyFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/difficultyFragment"
+        android:name="com.example.eywa_android.DifficultyFragment"
+        android:label="DifficultyFragment" />
 </navigation>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/txtViewDifficulty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DIFFICULTY"
+        android:textSize="70sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        />
+
+    <Button
+        android:id="@+id/categoryButton"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:background="@drawable/rounded_corners_white"
+        android:text="ACTION"
+        android:textColor="@color/purple_eywa"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:clickable="false"
+        />
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/btnEasy"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="EASY"
+            android:textColor="@color/purple_eywa"
+            android:background="@drawable/rounded_corners_yellow"
+            android:layout_margin="20dp"
+
+            />
+
+        <Button
+            android:id="@+id/btnMedium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="MEDIUM"
+            android:textColor="@color/purple_eywa"
+            android:background="@drawable/rounded_corners_white"
+            android:layout_margin="20dp"
+            />
+
+        <Button
+            android:id="@+id/btnHard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="HARD"
+            android:textColor="@color/purple_eywa"
+            android:background="@drawable/rounded_corners_white"
+            android:layout_margin="20dp"
+            />
+
+        <Button
+            android:id="@+id/btnLegend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="LEGEND"
+            android:textColor="@color/purple_eywa"
+            android:background="@drawable/rounded_corners_white"
+            android:layout_margin="20dp"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:background="@drawable/rounded_corners_yellow"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="PLAY"
+        android:textStyle="bold"
+        android:textColor="@color/purple_eywa"
+        android:textSize="@dimen/button_text"
+        />
+
+
+</LinearLayout>
