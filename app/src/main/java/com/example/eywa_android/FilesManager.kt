@@ -33,7 +33,7 @@ class FilesManager {
             return questionsEn
         }
         fun getQuestionsES(context:Context): MutableList<Question> {
-            val questionsEsJsonFilePath = context.filesDir.toString() + "/json/questions_en.json"
+            val questionsEsJsonFilePath = context.filesDir.toString() + "/json/questions_es.json"
             val questionsEsJsonFile = FileReader(questionsEsJsonFilePath)
             val listQuestionsEsType = object: TypeToken<MutableList<Question>>(){}.type
             val questionsEs : MutableList<Question> = Gson().fromJson(questionsEsJsonFile,listQuestionsEsType)

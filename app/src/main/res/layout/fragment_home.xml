@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HomeFragment">
+
+    <LinearLayout
+        android:layout_width="850dp"
+        android:layout_height="350dp"
+        android:background="@drawable/rounded_corners_white"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        >
+
+        <TextView
+            android:id="@+id/txtIntro"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum felis sit amet libero dapibus, ut mollis eros sollicitudin. Duis vel venenatis ligula. Suspendisse erat leo, porta ut fringilla ac, placerat non lacus. Vivamus commodo metus ut pretium tincidunt. In magna orci, varius eget euismod et, scelerisque et libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:gravity="left"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:background="@drawable/rounded_corners_yellow"
+        android:layout_gravity="center"
+        android:layout_marginTop="65dp"
+        android:text="PLAY"
+        android:textStyle="bold"
+        android:textColor="@color/purple_eywa"
+        android:textSize="@dimen/button_text"
+        />
+
+</LinearLayout>

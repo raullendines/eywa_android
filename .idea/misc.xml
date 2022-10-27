@@ -8,9 +8,16 @@
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_categories.xml" value="0.14212046204620463" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_difficulty.xml" value="0.15" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_home.xml" value="0.18" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_loading.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_login.xml" value="0.1707920792079208" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_register.xml" value="0.14817708333333332" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_category.xml" value="0.14114583333333333" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_home.xml" value="0.13411458333333334" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_loading.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_register.xml" value="0.1" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_splash.xml" value="0.18333333333333332" />
         <entry key="app/src/main/res/drawable-v24/rounded_corners_grey.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/button.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/rounded_corners.xml" value="0.25" />
