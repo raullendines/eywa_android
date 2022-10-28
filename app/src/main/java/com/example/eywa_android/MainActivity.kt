@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
             val fragmentLoading = LoadingFragment()
 
 
-
 //            var imageView : ImageView = findViewById(R.id.logoEywa)
 //
 //            val animation_in : Animation = AnimationUtils.loadAnimation(this,R.anim.fade_in)
