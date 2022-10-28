@@ -1,6 +1,5 @@
 package com.example.eywa_android
 
-import android.app.Fragment
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,8 +9,6 @@ import android.view.View
 import android.widget.*
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import androidx.navigation.findNavController
-import com.example.eywa_android.R
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.transition.MaterialContainerTransform
 
@@ -68,26 +65,15 @@ class Home : AppCompatActivity() {
 
 
         catalanLayout.setOnClickListener(){
-            hideLangMenu(btnLang)
-            lang = "cat"
-            myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
-            myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
-            changeFragmentLang(myFragment as Home.mainPage)
+            buttonChangeLang("cat")
         }
 
         espanyolLayout.setOnClickListener(){
-            hideLangMenu(btnLang)
-            lang = "esp"
-            myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
-            myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
-            changeFragmentLang(myFragment as Home.mainPage)
+            buttonChangeLang("esp")
         }
+
         englishLayout.setOnClickListener(){
-            hideLangMenu(btnLang)
-            lang = "eng"
-            myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
-            myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
-            changeFragmentLang(myFragment as Home.mainPage)
+            buttonChangeLang("eng")
         }
 
     }
@@ -210,6 +196,15 @@ class Home : AppCompatActivity() {
             userButton.visibility = View.VISIBLE
         }
         backgroundOpacity.visibility = View.INVISIBLE
+    }
+
+    private fun buttonChangeLang(lang: String){
+        val btnLang = findViewById<LinearLayout>(R.id.btnLangMenu)
+        hideLangMenu(btnLang)
+        this.lang = lang
+        val myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
+        val myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
+        changeFragmentLang(myFragment as Home.mainPage)
     }
 
 
