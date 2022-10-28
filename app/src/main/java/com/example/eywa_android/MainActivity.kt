@@ -21,23 +21,5 @@ class MainActivity : AppCompatActivity() {
             var questionsES : MutableList<Question> = FilesManager.getQuestionsES(this)
             var characters : MutableList<Characters> = FilesManager.getCharacters(this)
 
-            val listUsers = findViewById<ListView>(R.id.ListUsers)
-
-            var adapter =UserAdapter(this, R.layout.user_layout, users)
-
-            listUsers.adapter = adapter
-
-
-
-
-
         }
-
-
-
-
-
-
-
-
 }
