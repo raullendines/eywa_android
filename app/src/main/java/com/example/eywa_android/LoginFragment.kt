@@ -7,10 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
@@ -44,19 +41,17 @@ class LoginFragment : Fragment() {
         var btnLogin = requireView().findViewById<Button>(R.id.btnLogin)
         var btnRegister = requireView().findViewById<TextView>(R.id.btnRegisterLogin)
 
+        var users = FilesManager.getUsers(this.requireContext())
+
         btnRegister.setOnClickListener(){
             //change fragments
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
         btnLogin.setOnClickListener(){
-            var username = requireView().findViewById<EditText>(R.id.textUsername)
-            var password = requireView().findViewById<EditText>(R.id.textPassword)
-
-            val intentHome = Intent(activity, Home::class.java)
-            startActivity(intentHome)
-            //Omplir amb les dades per contrastar amb el JSON
+           loginFun(users)
         }
+
         //Turn on password
         img_on.setOnClickListener {
             if (img_on.isVisible){
@@ -78,6 +73,41 @@ class LoginFragment : Fragment() {
         }
 
 
+    }
+
+    fun loginFun(users : MutableList<User>){
+        var username = requireView().findViewById<EditText>(R.id.textUsername)
+        var password = requireView().findViewById<EditText>(R.id.textPassword)
+        var userExists : Boolean = userExist(username.text.toString(),password.text.toString(),users)
+        //Omplir amb les dades per contrastar amb el JSON
+        if (username.text.isEmpty() || password.text.isEmpty()){
+            Toast.makeText(this.activity, "Please fill all camps", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            if (userExists){
+                val intentHome = Intent(activity, Home::class.java)
+                startActivity(intentHome)
+            }
+            else {
+                Toast.makeText(this.activity, "User doesn't exist", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    fun userExist(user : String, password : String, users : MutableList<User>): Boolean {
+
+        var existUser : Boolean = false
+        var index : Int = 0
+
+        do {
+            var hashedPasswordEquals = Bcrypt.checkpw(password,users[index].password)
+            if (users[index].username == user && hashedPasswordEquals)
+            {
+                existUser = true
+            }
+            index++
+        }while(!existUser && index < users.size)
+        return existUser
     }
 
 

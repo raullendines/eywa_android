@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.findNavController
 import java.lang.RuntimeException
@@ -18,6 +19,9 @@ class HomeFragment : Fragment(), Home.mainPage {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+
+        }
 
     }
 

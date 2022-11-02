@@ -7,9 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 
@@ -40,6 +38,12 @@ class RegisterFragment : Fragment() {
         val password_1 = requireView().findViewById<EditText>(R.id.edit_password)
         val password_2 = requireView().findViewById<EditText>(R.id.repeat_password)
         var btnLogin = requireView().findViewById<TextView>(R.id.btnLoginRegister)
+        var btnRegister = requireView().findViewById<Button>(R.id.BtnRegister)
+        var users = FilesManager.getUsers(requireContext())
+
+        btnRegister.setOnClickListener(){
+            registerUser(users)
+        }
 
         btnLogin.setOnClickListener(){
             //NAV
@@ -91,5 +95,38 @@ class RegisterFragment : Fragment() {
                 password_1.setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
                 password_2.setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)            }
         }
+    }
+
+    fun registerUser(users : MutableList<User>){
+        val username = requireView().findViewById<EditText>(R.id.LblUsernameRegister)
+        val password_1 = requireView().findViewById<EditText>(R.id.edit_password)
+        val password_2 = requireView().findViewById<EditText>(R.id.repeat_password)
+        var registerIntent = false
+        if(username.text.isEmpty() || password_1.text.isEmpty() || password_2.text.isEmpty()){
+            Toast.makeText(this.activity, "Please fill all camps", Toast.LENGTH_SHORT).show()
+        }else{
+            var userExist = false
+            for (user : User in users) {
+                if (user.username.equals(username.text.toString())){
+                    Toast.makeText(this.activity, "User already exist", Toast.LENGTH_SHORT).show()
+                    userExist = true
+                }
+            }
+            if (!userExist){
+                if (password_1.text.toString().equals(password_2.text.toString())){
+                    var salt : String = Bcrypt.gensalt()
+                    var hashedPassword : String = Bcrypt.hashpw(password_1.text.toString(),salt)
+                    var newUser : User = User(username.text.toString(),hashedPassword,"foto.png","male",18)
+                    users.add(users.size-1, newUser)
+                    FilesManager.saveUser(requireContext(),users)
+                    Toast.makeText(this.activity, "User registered", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                }
+                else {
+                    Toast.makeText(this.activity, "Passwords are different", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
     }
 }
