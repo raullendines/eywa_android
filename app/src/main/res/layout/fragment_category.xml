@@ -198,6 +198,7 @@
         android:layout_width="300dp"
         android:layout_height="75dp"
         android:background="@drawable/rounded_corners_yellow"
+        android:backgroundTint="@color/amarillo_eywa"
         android:layout_gravity="center"
         android:text="PLAY"
         android:textStyle="bold"

@@ -35,7 +35,7 @@
         android:layout_width="300dp"
         android:layout_height="75dp"
         android:background="@drawable/rounded_corners_white"
-        android:backgroundTint="@color/purple_500"
+        android:backgroundTint="@color/amarillo_eywa"
         android:layout_gravity="center"
         android:layout_marginTop="65dp"
         android:text="PLAY"
