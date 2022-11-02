@@ -11,6 +11,10 @@
     <color name="light_grey">#f4f6fc</color>
     <color name="amarillo_eywa">#ffe047</color>
     <color name="purple_eywa">#3d0066</color>
+    <color name="sci_fi">#3d0066</color>
+    <color name="green">#01B225</color>
+    <color name="blue">#0361A3</color>
+    <color name="red">#EB080E</color>
 
 
 </resources>

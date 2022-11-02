@@ -69,13 +69,6 @@ class MainActivity : AppCompatActivity() {
 //            var questionsES : MutableList<Question> = FilesManager.getQuestionsES(this)
 //            var characters : MutableList<Characters> = FilesManager.getCharacters(this)
 
-
-
-
-
-
-
-
         }
 
 }

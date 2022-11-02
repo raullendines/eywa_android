@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/drawable/rounded_corners_white.xml" value="0.3055" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/drawable/rounded_corners_yellow.xml" value="0.3055" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_categories.xml" value="0.14212046204620463" />
@@ -10,6 +11,12 @@
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_home.xml" value="0.18" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_login.xml" value="0.1707920792079208" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/debug/res/drawable/answer_button.xml" value="0.2545" />
+        <entry key="app/src/debug/res/drawable/answer_button_correct.xml" value="0.1225" />
+        <entry key="app/src/debug/res/drawable/answer_button_error.xml" value="0.2545" />
+        <entry key="app/src/debug/res/drawable/answer_button_selected.xml" value="0.2545" />
+        <entry key="app/src/debug/res/drawable/timer.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2545" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/activity_register.xml" value="0.14817708333333332" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_category.xml" value="0.1" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_difficulty.xml" value="0.125" />
@@ -20,11 +27,21 @@
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_splash.xml" value="0.13411458333333334" />
         <entry key="app/src/main/res/drawable-v24/rounded_corners_grey.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/button.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/circle_bad.xml" value="0.2545" />
+        <entry key="app/src/main/res/drawable/circle_current.xml" value="0.2545" />
+        <entry key="app/src/main/res/drawable/circle_ok.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/circle_todo.xml" value="0.2545" />
+        <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2545" />
+        <entry key="app/src/main/res/drawable/ic_baseline_volume_off_24.xml" value="0.2545" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2545" />
         <entry key="app/src/main/res/drawable/rounded_corners.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/rounded_corners_white.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_categories.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/rounded_corners_yellow.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_categories.xml" value="0.19500122070312503" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.12447916666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/activity_questions.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="app/src/main/res/layout/login.xml" value="0.3921356201171877" />
         <entry key="app/src/main/res/layout/login_back_white.xml" value="0.33616504854368934" />

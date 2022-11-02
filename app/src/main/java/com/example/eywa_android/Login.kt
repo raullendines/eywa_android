@@ -26,18 +26,22 @@ class Login : AppCompatActivity() {
         var btnLogin = findViewById<Button>(R.id.btnLogin)
         var btnRegister = findViewById<TextView>(R.id.btnRegisterLogin)
 
+
         var users = FilesManager.getUsers(this)
 
         btnRegister.setOnClickListener(){
             val intentRegister = Intent(this, Register::class.java)
             startActivity(intentRegister)
             finish()
+
         }
         
         btnLogin.setOnClickListener(){
+
             var username = findViewById<EditText>(R.id.textUsername)
             var password = findViewById<EditText>(R.id.textPassword)
             var userExists : Boolean = userExist(username.text.toString(),password.text.toString(),users)
+
             //Omplir amb les dades per contrastar amb el JSON
             if (username.text.isEmpty() || password.text.isEmpty()){
                 Toast.makeText(applicationContext, "Please fill all camps", Toast.LENGTH_SHORT).show()
