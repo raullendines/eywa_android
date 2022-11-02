@@ -236,9 +236,14 @@
             android:layout_height="60dp"
             android:layout_marginHorizontal="5dp"
             android:background="@drawable/circle_todo" />
-
+        <Button
+            android:id="@+id/defaultButton"
+            android:visibility="invisible"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+          />
     </LinearLayout>
-
 
 </LinearLayout>
     <com.airbnb.lottie.LottieAnimationView
