@@ -23,7 +23,7 @@ import kotlin.random.Random
 class QuestionsActivity : AppCompatActivity() {
 
     private lateinit var contador_timer: CountDownTimer
-    var currentPosition = 10
+    var currentPosition = 0
     var countQuestions = 0
     var correctAnswers = 0
     var incorrectAnswers = 0
@@ -31,7 +31,7 @@ class QuestionsActivity : AppCompatActivity() {
     var correct_answer = true
     var possibleAnswers = ArrayList<String>()
     var correct = 0
-    var maxAnswers = 2
+    var maxAnswers = 9
 
     private fun getObject() = object {
         val answer1 = findViewById<Button>(R.id.answer1)
