@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.ScaleAnimation
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -122,11 +124,13 @@ class CategoryFragment : Fragment(), Home.mainPage {
 
     private fun buttonStyle(button : Button){
 
+
         when (button.id){
             resources.getIdentifier("buttonAction", "id", requireActivity().packageName) -> {
                 button.setBackgroundResource(R.drawable.rounded_corners_red)
                 buttonSelected = 0
                 categoryToReturn = "Action"
+
             }
             resources.getIdentifier("buttonComedy", "id", requireActivity().packageName) -> {
                 button.setBackgroundResource(R.drawable.rounded_corners_yellow)
@@ -157,4 +161,6 @@ class CategoryFragment : Fragment(), Home.mainPage {
         button.setTextColor(Color.parseColor("#FFFFFF"))
 
     }
+
+
 }

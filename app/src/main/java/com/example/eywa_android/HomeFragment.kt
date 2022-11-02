@@ -2,10 +2,14 @@ package com.example.eywa_android
 
 import android.content.Context
 import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.ScaleAnimation
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.addCallback
@@ -41,6 +45,29 @@ class HomeFragment : Fragment(), Home.mainPage {
         }
         val myActivity : Home = activity as Home
         changeLang(myActivity.lang)
+
+        val btnAnim = requireView().findViewById<Button>(R.id.btnAnim)
+
+        btnAnim.setOnClickListener(){
+            val myAnim : Animation = AnimationUtils.loadAnimation(this.requireContext(), R.anim.scale_in)
+            btnPlay.startAnimation(myAnim)
+
+//            val resizeAnim : Animation = AnimationUtils.loadAnimation(this.requireContext(), R.anim.rescale)
+//            val timer = object: CountDownTimer(500, 100) {
+//                override fun onTick(millisUntilFinished: Long) {
+//
+//                }
+//
+//                override fun onFinish() {
+//
+//                    btnPlay.startAnimation(resizeAnim)
+//                }
+//            }
+//            timer.start()
+
+
+        }
+
     }
 
     override fun changeLang(lang: String) {
@@ -60,6 +87,17 @@ class HomeFragment : Fragment(), Home.mainPage {
                 textIntro.text = "(A LOT OF ENGLISH THINGS)"
             }
         }
+    }
+
+    private fun scaleAnimation(v : View, startScale : Float, endScale : Float){
+        val anim = ScaleAnimation(1f, 2f,
+            startScale, endScale,
+            Animation.RELATIVE_TO_SELF, 0f,
+            Animation.RELATIVE_TO_SELF, 1f)
+        anim.fillAfter = true
+        anim.duration = 1000
+        v.startAnimation(anim)
+
     }
 
 
