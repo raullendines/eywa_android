@@ -3,4 +3,179 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="900dp"
+            android:layout_height="435dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/rounded_corners_white"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                >
+
+                <EditText
+                    android:id="@+id/LblUsernameRegister"
+                    android:layout_width="700dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_grey"
+                    android:padding="5dp"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:minLines="1"
+                    android:maxLines="1"
+                    android:lines="1"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:hint="Username"
+                    android:textColorHint="@color/grey"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/edit_password"
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dp"
+                        android:background="@color/light_grey"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:padding="5dp"
+                        android:text=""
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey"
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/show_pass_btn"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:padding="5dp"
+                        android:visibility="visible"
+                        android:src="@drawable/visibility_on" />
+
+                    <ImageView
+                        android:id="@+id/hide_pass_btn"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:padding="5dp"
+                        android:visibility="invisible"
+                        android:src="@drawable/visibility_off" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/repeat_password"
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dp"
+                        android:background="@color/light_grey"
+                        android:hint="Confirm password"
+                        android:inputType="textPassword"
+                        android:padding="5dp"
+                        android:text=""
+                        android:maxLines="1"
+                        android:lines="1"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey"
+                        android:textSize="30dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/show_pass_btn2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:padding="5dp"
+                        android:visibility="visible"
+                        android:src="@drawable/visibility_on" />
+
+                    <ImageView
+                        android:id="@+id/hide_pass_btn2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:padding="5dp"
+                        android:visibility="invisible"
+                        android:src="@drawable/visibility_off" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal"
+                    android:gravity="right"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="You have an account?"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:layout_marginRight="7dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/btnLoginRegister"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Login!"
+                        android:textColor="@color/purple_eywa"
+                        android:textStyle="bold"
+                        android:textSize="17dp"
+                        android:clickable="true"
+                        android:layout_marginRight="50dp"
+                        />
+
+                    <Button
+                        android:id="@+id/BtnRegister"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button"
+                        android:text="Register"
+                        android:textSize="20dp"
+                        android:textColor="@color/purple_eywa">
+                    </Button>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+

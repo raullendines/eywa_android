@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
             val fragmentLoading = LoadingFragment()
 
 
+
 //            var imageView : ImageView = findViewById(R.id.logoEywa)
 //
 //            val animation_in : Animation = AnimationUtils.loadAnimation(this,R.anim.fade_in)
@@ -67,6 +68,7 @@ class MainActivity : AppCompatActivity() {
 //            var questionsEN : MutableList<Question> = FilesManager.getQuestionsEN(this)
 //            var questionsES : MutableList<Question> = FilesManager.getQuestionsES(this)
 //            var characters : MutableList<Characters> = FilesManager.getCharacters(this)
+
 
 
 
