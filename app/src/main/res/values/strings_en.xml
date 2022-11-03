@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">eywa_android</string>
+    <string name="category_language">ENG</string>
+    <string name="category_title">Categories</string>
+    <string name="category_action">Action</string>
+    <string name="category_scifi">Science fiction</string>
+    <string name="category_comedy">Comedy</string>
+    <string name="category_horror">Horror</string>
+    <string name="category_animation">Animation</string>
+    <string name="category_drama">Drama</string>
+    <string name="btnPlay">Play</string>
+</resources>
