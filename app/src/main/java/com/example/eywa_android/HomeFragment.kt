@@ -1,6 +1,5 @@
 package com.example.eywa_android
 
-import android.content.Context
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
@@ -13,9 +12,8 @@ import android.view.animation.ScaleAnimation
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.addCallback
-import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.findNavController
-import java.lang.RuntimeException
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(), Home.mainPage {
 
@@ -49,21 +47,21 @@ class HomeFragment : Fragment(), Home.mainPage {
         val btnAnim = requireView().findViewById<Button>(R.id.btnAnim)
 
         btnAnim.setOnClickListener(){
-            val myAnim : Animation = AnimationUtils.loadAnimation(this.requireContext(), R.anim.scale_in)
+            val myAnim : Animation = AnimationUtils.loadAnimation(this.requireContext(), R.anim.scale_to_100)
             btnPlay.startAnimation(myAnim)
 
-//            val resizeAnim : Animation = AnimationUtils.loadAnimation(this.requireContext(), R.anim.rescale)
-//            val timer = object: CountDownTimer(500, 100) {
-//                override fun onTick(millisUntilFinished: Long) {
-//
-//                }
-//
-//                override fun onFinish() {
-//
-//                    btnPlay.startAnimation(resizeAnim)
-//                }
-//            }
-//            timer.start()
+            val resizeAnim : Animation = AnimationUtils.loadAnimation(this.requireContext(), R.anim.rescale)
+            val timer = object: CountDownTimer(500, 100) {
+                override fun onTick(millisUntilFinished: Long) {
+
+                }
+
+                override fun onFinish() {
+
+                    btnPlay.startAnimation(resizeAnim)
+                }
+            }
+            timer.start()
 
 
         }
@@ -71,8 +69,10 @@ class HomeFragment : Fragment(), Home.mainPage {
     }
 
     override fun changeLang(lang: String) {
+
         val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
         val textIntro = requireView().findViewById<TextView>(R.id.txtIntro)
+
         when(lang){
             "cat" -> {
                 btnPlay.setText("JUGAR")

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/questions_nav"
+    app:startDestination="@id/startQuizFragment">
+    <fragment
+        android:id="@+id/startQuizFragment"
+        android:name="com.example.eywa_android.StartQuizFragment"
+        android:label="fragment_start_quiz"
+        tools:layout="@layout/fragment_start_quiz" >
+        <action
+            android:id="@+id/action_startQuizFragment_to_questionsFragment"
+            app:destination="@id/questionsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionsFragment"
+        android:name="com.example.eywa_android.QuestionsFragment"
+        android:label="QuestionsFragment" />
+</navigation>

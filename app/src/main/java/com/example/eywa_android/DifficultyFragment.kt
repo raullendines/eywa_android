@@ -2,6 +2,7 @@ package com.example.eywa_android
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentResultListener
+import androidx.navigation.fragment.findNavController
+import java.nio.file.Files
+import java.util.ArrayList
+import java.util.function.Predicate
 
 private const val CATEGORY = "categorySelected"
 private const val DIFFICULTY = "difficulty"
@@ -84,32 +90,37 @@ class DifficultyFragment : Fragment(), Home.mainPage {
 
         val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
         btnPlay.setOnClickListener(){
-            val intentQuestion = Intent(activity, Home::class.java)
-            intentQuestion.putExtra(CATEGORY, category)
-            intentQuestion.putExtra(DIFFICULTY, difficultySelected + 1)
+
+            val intentQuestion = Intent(this.activity, QuestionsActivity::class.java)
+
+            var Questions : MutableList<Question> = mutableListOf<Question>()
+            when(myActivity.lang){
+                "cat" -> Questions = FilesManager.getQuestionsCA(requireContext())
+                "esp" -> Questions = FilesManager.getQuestionsES(requireContext())
+                "eng" -> Questions = FilesManager.getQuestionsEN(requireContext())
+            }
+            var difficulty : String = (difficultySelected + 1).toString()
+
+            var questionsReturn : MutableList<Question> = mutableListOf<Question>()
+            for(q in Questions){
+                if(q.category == category!!.lowercase() && q.difficulty != difficulty){
+                    questionsReturn.add(q)
+                }
+            }
+
+            if(questionsReturn.size > 10){
+                questionsReturn.shuffle()
+                questionsReturn.subList(10, Questions.size).clear()
+            }
+
+            intentQuestion.putParcelableArrayListExtra(QuestionsActivity.Questions.QUESTIONS, questionsReturn as ArrayList<Question>)
+
             startActivity(intentQuestion)
+
+
         }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DifficultyFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DifficultyFragment().apply {
-                arguments = Bundle().apply {
-                    putString(CATEGORY, param1)
-                    putString(DIFFICULTY, param2)
-                }
-            }
-    }
 
     override fun changeLang(lang: String) {
         val difficultyButtons = arrayOf(

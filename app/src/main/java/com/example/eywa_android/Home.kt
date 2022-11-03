@@ -63,7 +63,6 @@ class Home : AppCompatActivity() {
         var myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
         var myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
 
-
         catalanLayout.setOnClickListener(){
             buttonChangeLang("cat")
         }

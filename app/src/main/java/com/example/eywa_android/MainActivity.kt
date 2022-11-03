@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity() {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_main)
 
-
-
             val fragmentTransaction = supportFragmentManager.beginTransaction()
             val fragmentLoading = LoadingFragment()
 
