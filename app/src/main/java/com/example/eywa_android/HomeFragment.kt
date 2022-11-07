@@ -13,7 +13,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.fragment_home.*
+//import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(), Home.mainPage {
 
@@ -41,8 +41,6 @@ class HomeFragment : Fragment(), Home.mainPage {
         btnPlay.setOnClickListener(){
             findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
         }
-        val myActivity : Home = activity as Home
-        changeLang(myActivity.lang)
 
         val btnAnim = requireView().findViewById<Button>(R.id.btnAnim)
 
@@ -68,25 +66,11 @@ class HomeFragment : Fragment(), Home.mainPage {
 
     }
 
-    override fun changeLang(lang: String) {
+    override fun changeLang() {
 
         val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
-        val textIntro = requireView().findViewById<TextView>(R.id.txtIntro)
+        btnPlay.setText(R.string.btnPlay)
 
-        when(lang){
-            "cat" -> {
-                btnPlay.setText("JUGAR")
-                textIntro.text = "(CAT)"
-            }
-            "esp" -> {
-                btnPlay.setText("JUGAR")
-                textIntro.text = "(ESP)"
-            }
-            "eng" -> {
-                btnPlay.setText("PLAY")
-                textIntro.text = "(A LOT OF ENGLISH THINGS)"
-            }
-        }
     }
 
     private fun scaleAnimation(v : View, startScale : Float, endScale : Float){

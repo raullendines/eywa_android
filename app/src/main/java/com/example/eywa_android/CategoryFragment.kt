@@ -1,6 +1,7 @@
 package com.example.eywa_android
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
 
 class CategoryFragment : Fragment(), Home.mainPage {
@@ -52,9 +54,6 @@ class CategoryFragment : Fragment(), Home.mainPage {
             }
         }
 
-        val myActivity : Home = activity as Home
-        changeLang(myActivity.lang)
-
         val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
         btnPlay.setOnClickListener(){
 
@@ -65,7 +64,8 @@ class CategoryFragment : Fragment(), Home.mainPage {
 
     }
 
-    override fun changeLang(lang: String) {
+    override fun changeLang() {
+
         val categoryButtons = arrayOf(
             requireView().findViewById<Button>(R.id.buttonAction),
             requireView().findViewById<Button>(R.id.buttonComedy),
@@ -78,39 +78,16 @@ class CategoryFragment : Fragment(), Home.mainPage {
         val txtViewCategory = requireView().findViewById<TextView>(R.id.txtCategories)
         val playButton = requireView().findViewById<Button>(R.id.btnPlay)
 
-        when(lang){
-            "cat" -> {
-                txtViewCategory.setText("CATEGORIES")
-                categoryButtons[0].setText("ACCIÓ")
-                categoryButtons[1].setText("COMEDIA")
-                categoryButtons[2].setText("CIENCIA FICCIÓ")
-                categoryButtons[3].setText("TERROR")
-                categoryButtons[4].setText("ANIMACIÓ")
-                categoryButtons[5].setText("DRAMA")
+        txtViewCategory.setText(R.string.category_title)
+        categoryButtons[0].setText(R.string.category_action)
+        categoryButtons[1].setText(R.string.category_comedy)
+        categoryButtons[2].setText(R.string.category_scifi)
+        categoryButtons[3].setText(R.string.category_horror)
+        categoryButtons[4].setText(R.string.category_animation)
+        categoryButtons[5].setText(R.string.category_drama)
 
-                playButton.setText("JUGAR")
-            }
-            "esp" -> {
-                txtViewCategory.setText("CATEGORIAS")
-                categoryButtons[0].setText("ACCIÓN")
-                categoryButtons[1].setText("COMEDIA")
-                categoryButtons[2].setText("CIENCIA FICCIÓN")
-                categoryButtons[3].setText("TERROR")
-                categoryButtons[4].setText("ANIMACIÓN")
-                categoryButtons[5].setText("DRAMA")
-                playButton.setText("JUGAR")
-            }
-            "eng" -> {
-                txtViewCategory.setText("CATEGORIES")
-                categoryButtons[0].setText("ACTION")
-                categoryButtons[1].setText("COMEDY")
-                categoryButtons[2].setText("SCIENCE FICTION")
-                categoryButtons[3].setText("HORROR")
-                categoryButtons[4].setText("ANIMATION")
-                categoryButtons[5].setText("DRAMA")
-                playButton.setText("PLAY")
-            }
-        }
+        playButton.setText(R.string.btnPlay)
+
     }
 
     private fun uncheckButton(button : Button){

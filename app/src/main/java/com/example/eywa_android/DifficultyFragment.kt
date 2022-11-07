@@ -1,6 +1,8 @@
 package com.example.eywa_android
 
 import android.content.Intent
+import android.content.res.Resources
+import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
@@ -10,11 +12,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
+import androidx.core.os.ConfigurationCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentResultListener
 import androidx.navigation.fragment.findNavController
 import java.nio.file.Files
-import java.util.ArrayList
+import java.util.*
 import java.util.function.Predicate
 
 private const val CATEGORY = "categorySelected"
@@ -38,6 +42,7 @@ class DifficultyFragment : Fragment(), Home.mainPage {
         return inflater.inflate(R.layout.fragment_difficulty, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onStart() {
         super.onStart()
 
@@ -84,20 +89,28 @@ class DifficultyFragment : Fragment(), Home.mainPage {
             }
         }
 
-
-        val myActivity : Home = activity as Home
-        changeLang(myActivity.lang)
-
         val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
         btnPlay.setOnClickListener(){
 
             val intentQuestion = Intent(this.activity, QuestionsActivity::class.java)
 
             var Questions : MutableList<Question> = mutableListOf<Question>()
-            when(myActivity.lang){
-                "cat" -> Questions = FilesManager.getQuestionsCA(requireContext())
-                "esp" -> Questions = FilesManager.getQuestionsES(requireContext())
-                "eng" -> Questions = FilesManager.getQuestionsEN(requireContext())
+
+            var locale : Locale? = null
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                locale = resources.configuration.locales.get(0);
+            } else{
+                //noinspection deprecation
+                locale = resources.configuration.locale
+            }
+            var localeLang = locale!!.language
+
+
+
+            when(localeLang){
+                "ca" -> Questions = FilesManager.getQuestionsCA(requireContext())
+                "es" -> Questions = FilesManager.getQuestionsES(requireContext())
+                "en" -> Questions = FilesManager.getQuestionsEN(requireContext())
             }
             var difficulty : String = (difficultySelected + 1).toString()
 
@@ -122,7 +135,7 @@ class DifficultyFragment : Fragment(), Home.mainPage {
     }
 
 
-    override fun changeLang(lang: String) {
+    override fun changeLang() {
         val difficultyButtons = arrayOf(
             requireView().findViewById<Button>(R.id.btnEasy),
             requireView().findViewById<Button>(R.id.btnMedium),
@@ -133,6 +146,7 @@ class DifficultyFragment : Fragment(), Home.mainPage {
         val txtViewDifficulty = requireView().findViewById<TextView>(R.id.txtViewDifficulty)
         val playButton = requireView().findViewById<Button>(R.id.btnPlay)
 
+        /*
         when(lang){
             "cat" -> {
                 txtViewDifficulty.setText("DIFICULTAT")
@@ -188,6 +202,8 @@ class DifficultyFragment : Fragment(), Home.mainPage {
                 buttonCategory.text = category!!.uppercase()
             }
         }
+
+         */
 
     }
 }

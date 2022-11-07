@@ -20,6 +20,8 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 private const val SCORE = "SCORE"
@@ -95,12 +97,11 @@ class QuestionsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        var questionsES : MutableList<Question> = this.arguments?.getParcelableArrayList<Question>("QUESTIONS") as MutableList<Question>
-        category = questionsES[0].category
-        difficulty = questionsES[0].difficulty
+        var questions : MutableList<Question> = this.arguments?.getParcelableArrayList<Question>("QUESTIONS") as MutableList<Question>
+        category = questions[0].category
+        difficulty = questions[0].difficulty
 
-        //var questionsES : MutableList<Question> = FilesManager.getQuestionsES(requireContext())
-        var shuffle : MutableList<Question> = questionsES.shuffled().toMutableList()
+        var shuffle : MutableList<Question> = questions.shuffled().toMutableList()
         randomQuestion(shuffle)
         val timer = requireView().findViewById<TextView>(R.id.txtTimer)
         val animation = requireView().findViewById<LottieAnimationView>(R.id.animationWin)

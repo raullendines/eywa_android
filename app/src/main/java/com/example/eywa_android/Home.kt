@@ -1,24 +1,29 @@
 package com.example.eywa_android
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.transition.Transition
 import android.transition.TransitionManager
 import android.view.View
-import android.widget.*
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import androidx.navigation.findNavController
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.transition.MaterialContainerTransform
+import kotlinx.android.synthetic.main.activity_home.*
+import java.util.*
+
 
 class Home : AppCompatActivity() {
 
-
-    public var lang = "eng"
-
     interface mainPage {
-        fun changeLang(lang: String)
+        fun changeLang()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,15 +69,15 @@ class Home : AppCompatActivity() {
         var myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
 
         catalanLayout.setOnClickListener(){
-            buttonChangeLang("cat")
+            buttonChangeLang("ca")
         }
 
         espanyolLayout.setOnClickListener(){
-            buttonChangeLang("esp")
+            buttonChangeLang("es")
         }
 
         englishLayout.setOnClickListener(){
-            buttonChangeLang("eng")
+            buttonChangeLang("en")
         }
 
     }
@@ -199,34 +204,48 @@ class Home : AppCompatActivity() {
 
     private fun buttonChangeLang(lang: String){
         val btnLang = findViewById<LinearLayout>(R.id.btnLangMenu)
-        hideLangMenu(btnLang)
-        this.lang = lang
-        val myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
-        val myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
-        changeFragmentLang(myFragment as Home.mainPage)
-    }
-
-
-    private fun changeFragmentLang (currentFragment : mainPage){
-        currentFragment.changeLang(lang)
-
         val imageBandera = findViewById<ImageView>(R.id.imageBandera)
         val txtLang = findViewById<TextView>(R.id.txtLang)
+        hideLangMenu(btnLang)
         when(lang){
-            "cat" -> {
+            "ca" -> {
                 imageBandera.setImageResource(R.drawable.catalunya_bandera)
                 txtLang.text = "CAT"
+                setLocale(lang, "ES")
             }
-            "esp" -> {
+            "es" -> {
                 imageBandera.setImageResource(R.drawable.espanya_bandera)
                 txtLang.text = "ESP"
+                setLocale(lang, "ES")
             }
-            "eng" -> {
+            "en" -> {
                 imageBandera.setImageResource(R.drawable.english_bandera)
                 txtLang.text = "ENG"
+                setLocale(Locale.getDefault().language, Locale.getDefault().country)
             }
 
         }
 
+        val myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
+        val myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
+        changeFragmentLang(myFragment as Home.mainPage)
+
+
+    }
+
+
+    private fun changeFragmentLang (currentFragment : mainPage){
+
+        currentFragment.changeLang()
+
+    }
+
+    fun setLocale(lang: String, loc: String){
+        val locale = Locale(lang, loc)
+        val config = resources.configuration
+        config.setLocale(locale)
+        // createConfigurationContext(config) No funciona
+        // updateConfiguration deprecated, pero funciona
+        resources.updateConfiguration(config, resources.displayMetrics)
     }
 }
