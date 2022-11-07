@@ -17,7 +17,12 @@ import android.view.animation.AnimationUtils.loadAnimation
 import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
+
+
+private const val SCORE = "SCORE"
 
 
 class QuestionsFragment : Fragment() {
@@ -32,7 +37,9 @@ class QuestionsFragment : Fragment() {
     var correct_answer = true
     var possibleAnswers = ArrayList<String>()
     var correct = 0
-    var maxAnswers = 9
+    var maxAnswers = 2
+    var category : String? = null
+    var difficulty : String? = null
 
     private fun getObject() = object {
         val answer1 = requireView().findViewById<Button>(R.id.answer1)
@@ -89,6 +96,9 @@ class QuestionsFragment : Fragment() {
         super.onStart()
 
         var questionsES : MutableList<Question> = this.arguments?.getParcelableArrayList<Question>("QUESTIONS") as MutableList<Question>
+        category = questionsES[0].category
+        difficulty = questionsES[0].difficulty
+
         //var questionsES : MutableList<Question> = FilesManager.getQuestionsES(requireContext())
         var shuffle : MutableList<Question> = questionsES.shuffled().toMutableList()
         randomQuestion(shuffle)
@@ -499,6 +509,11 @@ class QuestionsFragment : Fragment() {
         animation.visibility = View.VISIBLE
         animation.playAnimation()
 
+
+        val bundle = bundleOf( QuestionsActivity.Questions.SCORE to correctAnswers.toString(),
+            QuestionsActivity.Questions.CATEGORY to category,
+            QuestionsActivity.Questions.DIFFICULTY to difficulty)
+        findNavController().navigate(R.id.action_questionsFragment_to_characterFragment, bundle)
 
     }
 

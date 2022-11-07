@@ -11,7 +11,7 @@
         android:layout_width="500dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:text="CATEGORIES"
+        android:text="@string/category_title"
         android:textColor="@color/white"
         android:textSize="80sp"
         android:textStyle="bold"
@@ -40,7 +40,7 @@
                 >
                 <Button
                     android:id="@+id/buttonAction"
-                    android:text="ACTION"
+                    android:text="@string/category_action"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:textSize="@dimen/button_text"
@@ -63,7 +63,7 @@
                 >
                 <Button
                     android:id="@+id/buttonComedy"
-                    android:text="COMEDY"
+                    android:text="@string/category_comedy"
                     android:textColor="@color/purple_eywa"
                     android:gravity="center"
                     android:textSize="@dimen/button_text"
@@ -97,7 +97,7 @@
                 >
                 <Button
                     android:id="@+id/buttonScienceFiction"
-                    android:text="SCIENCE FICTION"
+                    android:text="@string/category_scifi"
                     android:textColor="@color/purple_eywa"
                     android:gravity="center"
                     android:textSize="@dimen/button_text"
@@ -120,7 +120,7 @@
                 >
                 <Button
                     android:id="@+id/buttonHorror"
-                    android:text="HORROR"
+                    android:text="@string/category_horror"
                     android:textColor="@color/purple_eywa"
                     android:gravity="center"
                     android:textSize="@dimen/button_text"
@@ -153,7 +153,7 @@
                 >
                 <Button
                     android:id="@+id/buttonAnimation"
-                    android:text="ANIMATION"
+                    android:text="@string/category_animation"
                     android:textColor="@color/purple_eywa"
                     android:gravity="center"
                     android:textSize="@dimen/button_text"
@@ -176,7 +176,7 @@
                 >
                 <Button
                     android:id="@+id/buttonDrama"
-                    android:text="DRAMA"
+                    android:text="@string/category_drama"
                     android:textColor="@color/purple_eywa"
                     android:gravity="center"
                     android:textSize="@dimen/button_text"
@@ -200,7 +200,7 @@
         android:background="@drawable/rounded_corners_yellow"
         android:backgroundTint="@color/amarillo_eywa"
         android:layout_gravity="center"
-        android:text="PLAY"
+        android:text="@string/btnPlay"
         android:textStyle="bold"
         android:textColor="@color/purple_eywa"
         android:textSize="@dimen/button_text"

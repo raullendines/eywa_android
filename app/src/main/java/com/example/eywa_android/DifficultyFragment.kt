@@ -21,7 +21,7 @@ private const val CATEGORY = "categorySelected"
 private const val DIFFICULTY = "difficulty"
 
 class DifficultyFragment : Fragment(), Home.mainPage {
-    // TODO: Rename and change types of parameters
+
     private var category: String? = "Action"
     private var difficultySelected: Int = 0
 
@@ -43,7 +43,7 @@ class DifficultyFragment : Fragment(), Home.mainPage {
 
         val buttonCategory = requireView().findViewById<Button>(R.id.categoryButton)
 
-        category = arguments?.getString(CATEGORY)
+        category = arguments?.getString(QuestionsActivity.Questions.CATEGORY)
 
         val difficultyButtons = arrayOf(
             requireView().findViewById<Button>(R.id.btnEasy),
@@ -103,7 +103,7 @@ class DifficultyFragment : Fragment(), Home.mainPage {
 
             var questionsReturn : MutableList<Question> = mutableListOf<Question>()
             for(q in Questions){
-                if(q.category == category!!.lowercase() && q.difficulty != difficulty){
+                if(q.category == category!!.lowercase() && q.difficulty == difficulty){
                     questionsReturn.add(q)
                 }
             }

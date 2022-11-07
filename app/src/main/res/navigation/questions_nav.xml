@@ -18,5 +18,15 @@
     <fragment
         android:id="@+id/questionsFragment"
         android:name="com.example.eywa_android.QuestionsFragment"
-        android:label="QuestionsFragment" />
+        android:label="QuestionsFragment" >
+        <action
+            android:id="@+id/action_questionsFragment_to_characterFragment"
+            app:destination="@id/characterFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterFragment"
+        android:name="com.example.eywa_android.CharacterFragment"
+        android:label="CharacterFragment" />
 </navigation>

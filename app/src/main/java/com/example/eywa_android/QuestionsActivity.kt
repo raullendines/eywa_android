@@ -29,6 +29,9 @@ class QuestionsActivity : AppCompatActivity() {
 
     object Questions {
         const val QUESTIONS = "QUESTIONS"
+        const val CATEGORY = "CATEGORY"
+        const val DIFFICULTY = "DIFFICULTY"
+        const val SCORE = "SCORE"
     }
 
     interface getQuestionsList{

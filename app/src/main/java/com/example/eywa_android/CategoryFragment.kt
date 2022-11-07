@@ -14,12 +14,9 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 
-
-private const val CATEGORY = "categorySelected"
-
 class CategoryFragment : Fragment(), Home.mainPage {
 
-    private var categoryToReturn: String? = null
+    private var categoryToReturn: String = "Action"
     private var buttonSelected = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +58,7 @@ class CategoryFragment : Fragment(), Home.mainPage {
         val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
         btnPlay.setOnClickListener(){
 
-            val bundle = bundleOf(CATEGORY to categoryToReturn)
+            val bundle = bundleOf(QuestionsActivity.Questions.CATEGORY to categoryToReturn)
             findNavController().navigate(R.id.action_categoryFragment_to_difficultyFragment, bundle)
 
         }
