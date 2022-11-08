@@ -88,6 +88,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+
                     >
                     <TextView
                         android:id="@+id/txtDescriptionCharacter"
@@ -95,7 +96,8 @@
                         android:layout_height="match_parent"
                         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum felis sit amet libero dapibus, ut mollis eros sollicitudin. Duis vel venenatis ligula. Suspendisse erat leo, porta ut fringilla ac, placerat non lacus. Vivamus commodo metus ut pretium tincidunt. In magna orci, varius eget euismod et, scelerisque et libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum felis sit amet libero dapibus, ut mollis eros sollicitudin. Duis vel venenatis ligula. Suspendisse erat leo, porta ut fringilla ac, placerat non lacus. Vivamus commodo metus ut pretium tincidunt. In magna orci, varius eget euismod et, scelerisque et libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum felis sit amet libero dapibus, ut mollis eros sollicitudin. Duis vel venenatis ligula. Suspendisse erat leo, porta ut fringilla ac, placerat non lacus. Vivamus commodo metus ut pretium tincidunt. In magna orci, varius eget euismod et, scelerisque et libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                         android:textColor="@color/black"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:layout_marginRight="15dp"/>
                 </LinearLayout>
 
 

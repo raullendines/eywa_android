@@ -16,7 +16,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
 
-class CategoryFragment : Fragment(), Home.mainPage {
+class CategoryFragment : Fragment(), Home.mainPage{
 
     private var categoryToReturn: String = "Action"
     private var buttonSelected = 0
@@ -91,8 +91,8 @@ class CategoryFragment : Fragment(), Home.mainPage {
     }
 
     private fun uncheckButton(button : Button){
-        button.setBackgroundResource(R.drawable.rounded_corners_white)
-        button.setTextColor(Color.parseColor("#3d0066"))
+        button.backgroundTintList = requireContext().getColorStateList(R.color.white)
+        button.setTextColor(requireContext().getColor(R.color.purple_eywa))
     }
 
 
@@ -101,33 +101,33 @@ class CategoryFragment : Fragment(), Home.mainPage {
 
         when (button.id){
             resources.getIdentifier("buttonAction", "id", requireActivity().packageName) -> {
-                button.setBackgroundResource(R.drawable.rounded_corners_red)
+                button.backgroundTintList = requireContext().getColorStateList(R.color.action)
                 buttonSelected = 0
                 categoryToReturn = "Action"
 
             }
             resources.getIdentifier("buttonComedy", "id", requireActivity().packageName) -> {
-                button.setBackgroundResource(R.drawable.rounded_corners_yellow)
+                button.backgroundTintList = requireContext().getColorStateList(R.color.comedy)
                 buttonSelected = 1
                 categoryToReturn = "Comedy"
             }
             resources.getIdentifier("buttonScienceFiction", "id", requireActivity().packageName) -> {
-                button.setBackgroundResource(R.drawable.rounded_corners_red)
+                button.backgroundTintList = requireContext().getColorStateList(R.color.sci_fi)
                 buttonSelected = 2
                 categoryToReturn = "Science Fiction"
             }
             resources.getIdentifier("buttonHorror", "id", requireActivity().packageName) -> {
-                button.setBackgroundResource(R.drawable.rounded_corners_yellow)
+                button.backgroundTintList = requireContext().getColorStateList(R.color.horror)
                 buttonSelected = 3
                 categoryToReturn = "Horror"
             }
             resources.getIdentifier("buttonAnimation", "id", requireActivity().packageName) -> {
-                button.setBackgroundResource(R.drawable.rounded_corners_red)
+                button.backgroundTintList = requireContext().getColorStateList(R.color.animation)
                 buttonSelected = 4
                 categoryToReturn = "Animation"
             }
             resources.getIdentifier("buttonDrama", "id", requireActivity().packageName) -> {
-                button.setBackgroundResource(R.drawable.rounded_corners_yellow)
+                button.backgroundTintList = requireContext().getColorStateList(R.color.drama)
                 buttonSelected = 5
                 categoryToReturn = "Drama"
             }
@@ -135,6 +135,5 @@ class CategoryFragment : Fragment(), Home.mainPage {
         button.setTextColor(Color.parseColor("#FFFFFF"))
 
     }
-
 
 }

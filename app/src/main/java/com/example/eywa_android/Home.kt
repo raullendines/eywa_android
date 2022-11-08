@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -25,6 +26,7 @@ class Home : AppCompatActivity() {
     interface mainPage {
         fun changeLang()
     }
+    private var goingBack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -221,7 +223,7 @@ class Home : AppCompatActivity() {
             "en" -> {
                 imageBandera.setImageResource(R.drawable.english_bandera)
                 txtLang.text = "ENG"
-                setLocale(Locale.getDefault().language, Locale.getDefault().country)
+                setLocale(lang, "US")
             }
 
         }
@@ -248,4 +250,17 @@ class Home : AppCompatActivity() {
         // updateConfiguration deprecated, pero funciona
         resources.updateConfiguration(config, resources.displayMetrics)
     }
+
+//    override fun onStart() {
+//        super.onStart()
+//        if (goingBack){
+//            onBackPressed()
+//        }
+//    }
+//
+//    override fun onPause() {
+//        super.onPause()
+//        goingBack = true
+//    }
+
 }

@@ -2,6 +2,7 @@ package com.example.eywa_android
 
 import android.content.Intent
 import android.content.res.Resources
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
@@ -24,7 +25,7 @@ import java.util.function.Predicate
 private const val CATEGORY = "categorySelected"
 private const val DIFFICULTY = "difficulty"
 
-class DifficultyFragment : Fragment(), Home.mainPage {
+class DifficultyFragment : Fragment(), Home.mainPage{
 
     private var category: String? = "Action"
     private var difficultySelected: Int = 0
@@ -48,8 +49,9 @@ class DifficultyFragment : Fragment(), Home.mainPage {
 
         val buttonCategory = requireView().findViewById<Button>(R.id.categoryButton)
 
-        category = arguments?.getString(QuestionsActivity.Questions.CATEGORY)
 
+        category = arguments?.getString(QuestionsActivity.Questions.CATEGORY)
+        setCategoryColor(buttonCategory)
         val difficultyButtons = arrayOf(
             requireView().findViewById<Button>(R.id.btnEasy),
             requireView().findViewById<Button>(R.id.btnMedium),
@@ -157,4 +159,44 @@ class DifficultyFragment : Fragment(), Home.mainPage {
         playButton.setText(R.string.btnPlay)
 
     }
+
+    private fun setCategoryColor(buttonCategory: Button){
+        when (category){
+            "Action" -> {
+                buttonCategory.backgroundTintList =
+                    requireContext().getColorStateList(R.color.action)
+                buttonCategory.setText(R.string.category_action)
+            }
+            "Comedy" -> {
+                buttonCategory.backgroundTintList =
+                    requireContext().getColorStateList(R.color.comedy)
+                buttonCategory.setText(R.string.category_comedy)
+            }
+            "Science Fiction" -> {
+                buttonCategory.backgroundTintList =
+                    requireContext().getColorStateList(R.color.sci_fi)
+                buttonCategory.setText(R.string.category_scifi)
+            }
+            "Horror" -> {
+                buttonCategory.backgroundTintList =
+                    requireContext().getColorStateList(R.color.horror)
+                buttonCategory.setText(R.string.category_horror)
+            }
+            "Animation" -> {
+                buttonCategory.backgroundTintList =
+                    requireContext().getColorStateList(R.color.animation)
+                buttonCategory.setText(R.string.category_animation)
+            }
+            "Drama" -> {
+                buttonCategory.backgroundTintList =
+                    requireContext().getColorStateList(R.color.drama)
+                buttonCategory.setText(R.string.category_drama)
+            }
+        }
+        buttonCategory.setTextColor(Color.parseColor("#FFFFFF"))
+    }
+
+
+
+
 }

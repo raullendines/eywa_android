@@ -49,7 +49,8 @@
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="25dp"
-                    android:background="@drawable/rounded_corners_red"
+                    android:background="@drawable/rounded_corners_white"
+                    android:backgroundTint="@color/action"
                     />
 
 
