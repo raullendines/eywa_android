@@ -1,15 +1,18 @@
 package com.example.eywa_android
 
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.findFragment
 import java.nio.file.Files
+import java.util.*
 
 private const val SCORE = "SCORE"
 class CharacterFragment : Fragment() {
@@ -22,8 +25,6 @@ class CharacterFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
 
     }
 
@@ -58,13 +59,34 @@ class CharacterFragment : Fragment() {
 
         var score : String = "$correctAnswers/10"
         txtViewScore.setText(score)
-//        val imagePath = requireContext().filesDir.path.toString() + "/img/" + characterToShow!!.image
-//        val bitmap = BitmapFactory.decodeFile(imagePath)
-//        imageCharacter.setImageBitmap(bitmap)
+        val imagePath = requireContext().filesDir.path.toString() + "/img/" + characterToShow!!.image + ".jpeg"
+        val bitmap = BitmapFactory.decodeFile(imagePath)
+        imageCharacter.setImageBitmap(bitmap)
         txtNameCharacter.setText(characterToShow!!.name)
         txtFilmCharacter.setText(characterToShow!!.film)
         //FALTA IDIOMA
-        txtDescriptionCharacter.setText(characterToShow!!.description_esp)
+        var locale : Locale? = null
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            locale = resources.configuration.locales.get(0);
+        } else{
+            //noinspection deprecation
+            locale = resources.configuration.locale
+        }
+        var localeLang = locale!!.language
+
+        when(localeLang){
+            "ca" ->  txtDescriptionCharacter.setText(characterToShow!!.description_cat)
+            "es" ->  txtDescriptionCharacter.setText(characterToShow!!.description_esp)
+            "en" ->  txtDescriptionCharacter.setText(characterToShow!!.description_eng)
+        }
+
+
+
+        val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
+        btnPlay.setOnClickListener(){
+            val myActivity = this.activity as QuestionsActivity
+            myActivity.finishActivity()
+        }
 
     }
 }

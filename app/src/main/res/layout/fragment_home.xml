@@ -44,12 +44,4 @@
         android:textSize="@dimen/button_text"
         />
 
-    <Button
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:id="@+id/btnAnim"
-        android:layout_gravity="center"
-        />
-
-
 </LinearLayout>

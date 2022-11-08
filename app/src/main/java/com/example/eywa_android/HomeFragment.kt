@@ -41,29 +41,6 @@ class HomeFragment : Fragment(), Home.mainPage {
         btnPlay.setOnClickListener(){
             findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
         }
-
-        val btnAnim = requireView().findViewById<Button>(R.id.btnAnim)
-
-        btnAnim.setOnClickListener(){
-            val myAnim : Animation = AnimationUtils.loadAnimation(this.requireContext(), R.anim.scale_to_100)
-            btnPlay.startAnimation(myAnim)
-
-            val resizeAnim : Animation = AnimationUtils.loadAnimation(this.requireContext(), R.anim.rescale)
-            val timer = object: CountDownTimer(500, 100) {
-                override fun onTick(millisUntilFinished: Long) {
-
-                }
-
-                override fun onFinish() {
-
-                    btnPlay.startAnimation(resizeAnim)
-                }
-            }
-            timer.start()
-
-
-        }
-
     }
 
     override fun changeLang() {
@@ -72,17 +49,5 @@ class HomeFragment : Fragment(), Home.mainPage {
         btnPlay.setText(R.string.btnPlay)
 
     }
-
-    private fun scaleAnimation(v : View, startScale : Float, endScale : Float){
-        val anim = ScaleAnimation(1f, 2f,
-            startScale, endScale,
-            Animation.RELATIVE_TO_SELF, 0f,
-            Animation.RELATIVE_TO_SELF, 1f)
-        anim.fillAfter = true
-        anim.duration = 1000
-        v.startAnimation(anim)
-
-    }
-
 
 }

@@ -59,5 +59,9 @@ class QuestionsActivity : AppCompatActivity() {
     fun callFun(someObject : getQuestionsList, questions : MutableList<Question>){
         someObject.getQuestionsListFun(questions)
     }
+
+    fun finishActivity(){
+        finish()
+    }
 }
 

@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SCORE"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:textSize="@dimen/title_size"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -46,13 +46,16 @@
         >
         <LinearLayout
             android:layout_width="300sp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            >
             <ImageView
                 android:id="@+id/imageCharacter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/logo_eywa"/>
+                android:src="@drawable/logo_eywa"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -62,8 +65,7 @@
             <TextView
                 android:id="@+id/txtNameCharacter"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:text="Luke Skywalker"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -73,25 +75,38 @@
             <TextView
                 android:id="@+id/txtFilmCharacter"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:text="Star Wars"
                 android:textColor="@color/black"
                 android:textStyle="italic"
-                android:textSize="45sp"/>
-            <TextView
-                android:id="@+id/txtDescriptionCharacter"
+                android:textSize="45sp"
+                android:layout_marginBottom="10dp"/>
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum felis sit amet libero dapibus, ut mollis eros sollicitudin. Duis vel venenatis ligula. Suspendisse erat leo, porta ut fringilla ac, placerat non lacus. Vivamus commodo metus ut pretium tincidunt. In magna orci, varius eget euismod et, scelerisque et libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:layout_height="wrap_content"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <TextView
+                        android:id="@+id/txtDescriptionCharacter"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum felis sit amet libero dapibus, ut mollis eros sollicitudin. Duis vel venenatis ligula. Suspendisse erat leo, porta ut fringilla ac, placerat non lacus. Vivamus commodo metus ut pretium tincidunt. In magna orci, varius eget euismod et, scelerisque et libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum felis sit amet libero dapibus, ut mollis eros sollicitudin. Duis vel venenatis ligula. Suspendisse erat leo, porta ut fringilla ac, placerat non lacus. Vivamus commodo metus ut pretium tincidunt. In magna orci, varius eget euismod et, scelerisque et libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla bibendum felis sit amet libero dapibus, ut mollis eros sollicitudin. Duis vel venenatis ligula. Suspendisse erat leo, porta ut fringilla ac, placerat non lacus. Vivamus commodo metus ut pretium tincidunt. In magna orci, varius eget euismod et, scelerisque et libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                        android:textColor="@color/black"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+
+
+
+            </ScrollView>
         </LinearLayout>
 
 
     </LinearLayout>
     <Button
+        android:id="@+id/btnPlay"
         android:layout_width="300dp"
         android:layout_height="75dp"
         android:background="@drawable/rounded_corners_yellow"
