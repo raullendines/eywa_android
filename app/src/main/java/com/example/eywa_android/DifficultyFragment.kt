@@ -146,64 +146,15 @@ class DifficultyFragment : Fragment(), Home.mainPage {
         val txtViewDifficulty = requireView().findViewById<TextView>(R.id.txtViewDifficulty)
         val playButton = requireView().findViewById<Button>(R.id.btnPlay)
 
-        /*
-        when(lang){
-            "cat" -> {
-                txtViewDifficulty.setText("DIFICULTAT")
-                difficultyButtons[0].setText("FÀCIL")
-                difficultyButtons[1].setText("MITJANA")
-                difficultyButtons[2].setText("DIFICIL")
-                difficultyButtons[3].setText("LLEGENDA")
-                playButton.setText("JUGAR")
-            }
-            "esp" -> {
-                txtViewDifficulty.setText("DIFICULTAD")
-                difficultyButtons[0].setText("FÁCIL")
-                difficultyButtons[1].setText("MEDIANA")
-                difficultyButtons[2].setText("DIFÍCIL")
-                difficultyButtons[3].setText("LEYENDA")
-                playButton.setText("JUGAR")
-            }
-            "eng" -> {
-                txtViewDifficulty.setText("DIFFICULTY")
-                difficultyButtons[0].setText("EASY")
-                difficultyButtons[1].setText("MEDIUM")
-                difficultyButtons[2].setText("HARD")
-                difficultyButtons[3].setText("LEGEND")
-                playButton.setText("PLAY")
-            }
-        }
-        changeCategoryLang(lang)
-    }
 
-    private fun changeCategoryLang(lang : String){
-        val buttonCategory = requireView().findViewById<Button>(R.id.categoryButton)
-        when(lang){
-            "cat" -> {
-                when(category){
-                    "Action" -> buttonCategory.text = "ACCIÓ"
-                    "Comedy" -> buttonCategory.text = "COMEDIA"
-                    "Science Fiction" -> buttonCategory.text = "CIENCIA FICCIÓ"
-                    "Horror" -> buttonCategory.text = "TERROR"
-                    "Animation" -> buttonCategory.text = "ANIMACIÓ"
-                    "Drama" -> buttonCategory.text = "DRAMA"
-                }
-            }
-            "esp" -> {
-                when(category){
-                    "Action" -> buttonCategory.text = "ACCIÓN"
-                    "Comedy" -> buttonCategory.text = "COMEDIA"
-                    "Science Fiction" -> buttonCategory.text = "CIENCIA FICCIÓN"
-                    "Horror" -> buttonCategory.text = "TERROR"
-                    "Animation" -> buttonCategory.text = "ANIMACIÓN"
-                    "Drama" -> buttonCategory.text = "DRAMA"
-                }
-            } else -> {
-                buttonCategory.text = category!!.uppercase()
-            }
-        }
+        txtViewDifficulty.setText(R.string.difficulty)
+        difficultyButtons[0].setText(R.string.easy)
+        difficultyButtons[1].setText(R.string.medium)
+        difficultyButtons[2].setText(R.string.hard)
+        difficultyButtons[3].setText(R.string.legend)
 
-         */
+
+        playButton.setText(R.string.btnPlay)
 
     }
 }

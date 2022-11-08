@@ -15,7 +15,6 @@ class FilesManager {
             val listUsersType = object: TypeToken<MutableList<User>>() {}.type
             val users : MutableList<User> = Gson().fromJson(usersJsonFile, listUsersType)
             return users
-
         }
 
         fun getQuestionsCA(context:Context): MutableList<Question> {

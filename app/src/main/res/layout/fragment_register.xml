@@ -12,7 +12,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register"
+            android:text="@string/register_title"
             android:layout_marginTop="50dp"
             android:textSize="@dimen/title_size"
             android:textColor="@color/white"
@@ -48,7 +48,7 @@
                     android:lines="1"
                     android:textSize="30dp"
                     android:textStyle="bold"
-                    android:hint="Username"
+                    android:hint="@string/username"
                     android:textColorHint="@color/grey"
                     />
 
@@ -62,7 +62,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="45dp"
                         android:background="@color/light_grey"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:inputType="textPassword"
                         android:padding="5dp"
                         android:text=""
@@ -106,7 +106,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="45dp"
                         android:background="@color/light_grey"
-                        android:hint="Confirm password"
+                        android:hint="@string/password_repeat"
                         android:inputType="textPassword"
                         android:lines="1"
                         android:maxLines="1"
@@ -151,7 +151,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="You have an account?"
+                        android:text="@string/register_have"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="17dp"
@@ -162,7 +162,7 @@
                         android:id="@+id/btnLoginRegister"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Login!"
+                        android:text="@string/register_login"
                         android:textColor="@color/purple_eywa"
                         android:textStyle="bold"
                         android:textSize="17dp"
@@ -175,7 +175,7 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/button"
-                        android:text="Register"
+                        android:text="@string/register_btn"
                         android:textSize="20dp"
                         android:textColor="@color/purple_eywa">
                     </Button>

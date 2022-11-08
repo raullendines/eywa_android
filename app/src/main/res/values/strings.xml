@@ -10,4 +10,29 @@
     <string name="category_animation">Animation</string>
     <string name="category_drama">Drama</string>
     <string name="btnPlay">Play</string>
+
+    <string name="score">SCORE</string>
+    <string name="play_again">PLAY AGAIN</string>
+    <string name="difficulty">DIFFICULTY</string>
+    <string name="easy">EASY</string>
+    <string name="medium">MEDIUM</string>
+    <string name="hard">hard</string>
+    <string name="legend">legend</string>
+
+    <string name="loading">Loading</string>
+
+    <string name="login_title">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login_new">New here?</string>
+    <string name="login_create">Create an account!</string>
+    <string name="login_btn">Login</string>
+
+    <string name="register_title">Register</string>
+    <string name="password_repeat">Confirm password</string>
+    <string name="register_have">You have an account?</string>
+    <string name="register_login">Login!</string>
+    <string name="register_btn">register</string>
+
+
 </resources>

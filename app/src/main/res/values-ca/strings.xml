@@ -11,4 +11,25 @@
     <string name="category_drama">Drama</string>
     <string name="btnPlay">Jugar</string>
 
+    <string name="score">PUNTUACIÓ</string>
+    <string name="play_again">TORNAR A JUGAR</string>
+    <string name="difficulty">DIFICULTAT</string>
+    <string name="easy">FÀCIL</string>
+    <string name="medium">MITJANA</string>
+    <string name="hard">DIFICUL</string>
+    <string name="legend">LLEGENDA</string>
+
+    <string name="loading">Carregant</string>
+
+    <string name="login_title">Login</string>
+    <string name="username">Nom d\'usuari</string>
+    <string name="password">Contrassenya</string>
+    <string name="login_new">Nou aqui?</string>
+    <string name="login_create">Crea un compte!</string>
+    <string name="login_btn">Login</string>
+    <string name="register_title">Registre</string>
+    <string name="password_repeat">Confirmar contrassenya</string>
+    <string name="register_have">Tens un compte?</string>
+    <string name="register_login">Login!</string>
+    <string name="register_btn">registra\'t</string>
 </resources>

@@ -38,7 +38,7 @@
         android:backgroundTint="@color/amarillo_eywa"
         android:layout_gravity="center"
         android:layout_marginTop="65dp"
-        android:text="PLAY"
+        android:text="@string/btnPlay"
         android:textStyle="bold"
         android:textColor="@color/purple_eywa"
         android:textSize="@dimen/button_text"

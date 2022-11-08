@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="@string/login_title"
             android:layout_marginTop="50dp"
             android:textSize="@dimen/title_size"
             android:textColor="@color/white"
@@ -48,7 +48,7 @@
                     android:lines="1"
                     android:textSize="30dp"
                     android:textStyle="bold"
-                    android:hint="Username"
+                    android:hint="@string/username"
                     android:inputType="text"
                     android:textColorHint="@color/grey"
                     />
@@ -63,7 +63,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="45dp"
                         android:background="@color/light_grey"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:inputType="textPassword"
                         android:padding="5dp"
                         android:maxLines="1"
@@ -109,7 +109,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New here?"
+                        android:text="@string/login_new"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:textSize="17dp"
@@ -120,7 +120,7 @@
                         android:id="@+id/btnRegisterLogin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Create an account!"
+                        android:text="@string/login_create"
                         android:textColor="@color/purple_eywa"
                         android:textStyle="bold"
                         android:textSize="17dp"
@@ -133,7 +133,7 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/button"
-                        android:text="Login"
+                        android:text="@string/login_btn"
                         android:textSize="20dp"
                         android:textColor="@color/purple_eywa">
                     </Button>

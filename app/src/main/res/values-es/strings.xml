@@ -11,4 +11,25 @@
     <string name="category_drama">Drama</string>
     <string name="btnPlay">Jugar</string>
 
+    <string name="score">PUNTUACIÓN</string>
+    <string name="play_again">VOLVER A JUGAR</string>
+    <string name="difficulty">DIFICULTAD</string>
+    <string name="easy">FÁCIL</string>
+    <string name="medium">MEDIO</string>
+    <string name="hard">DIFÍCIL</string>
+    <string name="legend">LEYENDA</string>
+
+    <string name="loading">Cargando</string>
+    <string name="username">Nombe de usuario</string>
+    <string name="login_title">Login</string>
+    <string name="password">Contraseña</string>
+    <string name="login_new">¿Nuevo aqui?</string>
+    <string name="login_create">!Crea una cuenta!</string>
+    <string name="login_btn">Login</string>
+    <string name="register_title">Registro</string>
+    <string name="password_repeat">Confirmar contraseña</string>
+    <string name="register_have">¿Tienes una cuenta?</string>
+    <string name="register_login">Login!</string>
+    <string name="register_btn">registrate</string>
+
 </resources>
