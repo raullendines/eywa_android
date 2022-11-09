@@ -46,7 +46,8 @@
             android:layout_weight="1"
             android:text="@string/easy"
             android:textColor="@color/purple_eywa"
-            android:background="@drawable/rounded_corners_yellow"
+            android:background="@drawable/rounded_corners_white"
+            android:backgroundTint="@color/amarillo_eywa"
             android:layout_margin="20dp"
 
             />

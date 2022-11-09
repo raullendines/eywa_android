@@ -67,9 +67,6 @@ class Home : AppCompatActivity() {
         val espanyolLayout = findViewById<LinearLayout>(R.id.espanyolLayout)
         val englishLayout = findViewById<LinearLayout>(R.id.englishLayout)
 
-        var myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
-        var myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
-
         catalanLayout.setOnClickListener(){
             buttonChangeLang("ca")
         }
@@ -82,6 +79,39 @@ class Home : AppCompatActivity() {
             buttonChangeLang("en")
         }
 
+        //SET LANGUAGE BUTTON AND TEXT
+        setLangTextImage()
+
+    }
+
+    private fun setLangTextImage() {
+        val imageBandera = findViewById<ImageView>(R.id.imageBandera)
+        val textLang = findViewById<TextView>(R.id.txtLang)
+
+
+        var locale : Locale? = null
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            locale = resources.configuration.locales.get(0);
+        } else{
+            //noinspection deprecation
+            locale = resources.configuration.locale
+        }
+        var localeLang = locale!!.language
+
+        when(localeLang){
+            "ca" -> {
+                imageBandera.setImageResource(R.drawable.catalunya_bandera)
+                textLang.setText("CAT")
+            }
+            "es" -> {
+                imageBandera.setImageResource(R.drawable.espanya_bandera)
+                textLang.setText("ESP")
+            }
+            "en" -> {
+                imageBandera.setImageResource(R.drawable.english_bandera)
+                textLang.setText("ENG")
+            }
+        }
     }
 
     private fun displayLangMenu(selectLang : LinearLayout){

@@ -61,33 +61,33 @@ class DifficultyFragment : Fragment(), Home.mainPage{
 
         difficultyButtons[0].setOnClickListener(){
             if (difficultySelected != 0){
-                difficultyButtons[difficultySelected].setBackgroundResource(R.drawable.rounded_corners_white)
+                difficultyButtons[difficultySelected].backgroundTintList = requireContext().getColorStateList(R.color.white)
                 difficultySelected = 0
-                difficultyButtons[0].setBackgroundResource(R.drawable.rounded_corners_yellow)
+                difficultyButtons[0].backgroundTintList = requireContext().getColorStateList(R.color.green_easy)
             }
         }
 
         difficultyButtons[1].setOnClickListener(){
             if (difficultySelected != 1){
-                difficultyButtons[difficultySelected].setBackgroundResource(R.drawable.rounded_corners_white)
+                difficultyButtons[difficultySelected].backgroundTintList = requireContext().getColorStateList(R.color.white)
                 difficultySelected = 1
-                difficultyButtons[1].setBackgroundResource(R.drawable.rounded_corners_red)
+                difficultyButtons[1].backgroundTintList = requireContext().getColorStateList(R.color.orange_medium)
             }
         }
 
         difficultyButtons[2].setOnClickListener(){
             if (difficultySelected != 2){
-                difficultyButtons[difficultySelected].setBackgroundResource(R.drawable.rounded_corners_white)
+                difficultyButtons[difficultySelected].backgroundTintList = requireContext().getColorStateList(R.color.white)
                 difficultySelected = 2
-                difficultyButtons[2].setBackgroundResource(R.drawable.rounded_corners_yellow)
+                difficultyButtons[2].backgroundTintList = requireContext().getColorStateList(R.color.red)
             }
         }
 
         difficultyButtons[3].setOnClickListener(){
             if (difficultySelected != 3){
-                difficultyButtons[difficultySelected].setBackgroundResource(R.drawable.rounded_corners_white)
+                difficultyButtons[difficultySelected].backgroundTintList = requireContext().getColorStateList(R.color.white)
                 difficultySelected = 3
-                difficultyButtons[3].setBackgroundResource(R.drawable.rounded_corners_red)
+                difficultyButtons[3].backgroundTintList = requireContext().getColorStateList(R.color.yellow_legend)
             }
         }
 

@@ -44,12 +44,23 @@ class CharacterFragment : Fragment() {
         difficulty = arguments?.getString(QuestionsActivity.Questions.DIFFICULTY)
 
         var characterToShow : Characters? = null
-        for (character in characterList){
-            if(character.category == category && character.difficulty == "E" && difficulty == "1"
-                && character.num_correct == correctAnswers){
-                characterToShow = character
+        var founded = false
+        var count = 0
+        do{
+            if (characterList[count].category == category
+                && characterList[count].difficulty == difficulty
+                && characterList[count].num_correct == correctAnswers){
+                founded = true
             }
-        }
+            count++
+        } while(count>characterList.size && !founded)
+
+//        for (character in characterList){
+//            if(character.category == category && character.difficulty == "E" && difficulty == "1"
+//                && character.num_correct == correctAnswers){
+//                characterToShow = character
+//            }
+//        }
 
         val txtViewScore = requireView().findViewById<TextView>(R.id.txtViewScore)
         val imageCharacter = requireView().findViewById<ImageView>(R.id.imageCharacter)
@@ -57,7 +68,7 @@ class CharacterFragment : Fragment() {
         val txtFilmCharacter = requireView().findViewById<TextView>(R.id.txtFilmCharacter)
         val txtDescriptionCharacter = requireView().findViewById<TextView>(R.id.txtDescriptionCharacter)
 
-        var score : String = "$correctAnswers/10"
+        var score = "$correctAnswers/10"
         txtViewScore.setText(score)
         val imagePath = requireContext().filesDir.path.toString() + "/img/" + characterToShow!!.image + ".jpeg"
         val bitmap = BitmapFactory.decodeFile(imagePath)

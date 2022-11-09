@@ -15,9 +15,12 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.AnimationUtils.loadAnimation
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
+import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
 import java.util.*
@@ -99,6 +102,68 @@ class QuestionsFragment : Fragment() {
 
         var questions : MutableList<Question> = this.arguments?.getParcelableArrayList<Question>("QUESTIONS") as MutableList<Question>
         category = questions[0].category
+        //setbackground for each category
+        val backgroundLayout = requireView().findViewById<LinearLayout>(R.id.backgroundLayout)
+        val txtTitle = requireView().findViewById<TextView>(R.id.txtTitle)
+        when (category){
+            "action" -> {
+                backgroundLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.action
+                    )
+                )
+                txtTitle.setText(R.string.category_action)
+            }
+            "comedy" -> {
+                backgroundLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.comedy
+                    )
+                )
+                txtTitle.setText(R.string.category_comedy)
+            }
+            "science Fiction" -> {
+                backgroundLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.sci_fi
+                    )
+                )
+                txtTitle.setText(R.string.category_scifi)
+            }
+            "horror" -> {
+                backgroundLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.horror
+                    )
+                )
+                txtTitle.setText(R.string.category_horror)
+            }
+            "animation" -> {
+                backgroundLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.animation
+                    )
+                )
+                txtTitle.setText(R.string.category_animation)
+            }
+            "drama" -> {
+                backgroundLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.drama
+                    )
+                )
+                txtTitle.setText(R.string.category_drama)
+            }
+        }
+
+
+
         difficulty = questions[0].difficulty
 
         var shuffle : MutableList<Question> = questions.shuffled().toMutableList()
@@ -274,11 +339,15 @@ class QuestionsFragment : Fragment() {
             getObject().answer4
         )
 
-        var index : Int = 0
+        var index = 0
+        //set text
+        for(i in 0..3){
+            answers[i].text = possibleAnswers[i]
+        }
+        //animations
         val anim_timer = object: CountDownTimer(500, 100) {
             override fun onTick(millisUntilFinished: Long) {
                 if(index < 4) {
-                    answers[index].text = possibleAnswers[index]
                     animate(answers[index])
                     index++
                 }
@@ -288,10 +357,6 @@ class QuestionsFragment : Fragment() {
         }
         anim_timer.start()
 
-//        getObject().answer1.text = possibleAnswers[0]
-//        getObject().answer2.text = possibleAnswers[1]
-//        getObject().answer3.text = possibleAnswers[2]
-//        getObject().answer4.text = possibleAnswers[3]
     }
 
     private fun animate(v : View){
