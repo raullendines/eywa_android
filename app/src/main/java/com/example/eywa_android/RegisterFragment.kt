@@ -44,6 +44,7 @@ class RegisterFragment : Fragment() {
         btnRegister.setOnClickListener(){
             registerUser(users)
         }
+        requireView().findViewById<>(android.R.layout.simple_list_item_2)
 
         btnLogin.setOnClickListener(){
             //NAV
