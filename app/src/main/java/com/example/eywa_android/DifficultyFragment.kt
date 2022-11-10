@@ -128,14 +128,27 @@ class DifficultyFragment : Fragment(), Home.mainPage{
 
                 if(questionsReturn.size > 10){
                     questionsReturn.shuffle()
-                    questionsReturn.subList(10, Questions.size).clear()
+                    questionsReturn = questionsReturn.drop(questionsReturn.size - 10).toMutableList()
+                    //questionsReturn.subList(10, Questions.size).clear()
+                }
+
+                val noQ = Question("100000", "No hay suficientes preguntas",
+                    category!!, difficulty!!,
+                    "This is the correct one",
+                    arrayOf("Not this one", "Not this one", "Not this one")
+                )
+
+                if (questionsReturn.size != 10){
+                    for (i in questionsReturn.size..10){
+                        questionsReturn.add(noQ)
+                    }
                 }
 
                 intentQuestion.putParcelableArrayListExtra(QuestionsActivity.Questions.QUESTIONS, questionsReturn as ArrayList<Question>)
 
                 startActivity(intentQuestion)
             } else{
-                Toast.makeText(requireContext(), "Drama questions not supported", Toast.LENGTH_LONG)
+                Toast.makeText(requireContext(), "Drama questions not supported", Toast.LENGTH_LONG).show()
             }
 
 

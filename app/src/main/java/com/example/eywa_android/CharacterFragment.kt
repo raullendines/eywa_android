@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.findFragment
 import java.nio.file.Files
 import java.util.*
@@ -50,7 +51,10 @@ class CharacterFragment : Fragment() {
             if (characterList[count].category == category
                 //&& characterList[count].difficulty == difficulty
                 && characterList[count].num_correct == correctAnswers){
+                characterToShow=characterList[count]
                 founded = true
+
+
             }
             count++
         } while(count<characterList.size && !founded)
@@ -68,28 +72,33 @@ class CharacterFragment : Fragment() {
         val txtFilmCharacter = requireView().findViewById<TextView>(R.id.txtFilmCharacter)
         val txtDescriptionCharacter = requireView().findViewById<TextView>(R.id.txtDescriptionCharacter)
 
-        var score = "$correctAnswers/10"
-        txtViewScore.setText(score)
-        val imagePath = requireContext().filesDir.path.toString() + "/img/" + characterToShow!!.image + ".jpeg"
-        val bitmap = BitmapFactory.decodeFile(imagePath)
-        imageCharacter.setImageBitmap(bitmap)
-        txtNameCharacter.setText(characterToShow!!.name)
-        txtFilmCharacter.setText(characterToShow!!.film)
-        //FALTA IDIOMA
-        var locale : Locale? = null
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            locale = resources.configuration.locales.get(0);
-        } else{
-            //noinspection deprecation
-            locale = resources.configuration.locale
-        }
-        var localeLang = locale!!.language
+        if(characterToShow != null){
+            var score = "$correctAnswers/10"
+            txtViewScore.setText(score)
+            val imagePath = requireContext().filesDir.path.toString() + "/img/" + characterToShow!!.image + ".jpeg"
+            val bitmap = BitmapFactory.decodeFile(imagePath)
+            imageCharacter.setImageBitmap(bitmap)
+            txtNameCharacter.setText(characterToShow!!.name)
+            txtFilmCharacter.setText(characterToShow!!.film)
+            //FALTA IDIOMA
+            var locale : Locale? = null
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                locale = resources.configuration.locales.get(0);
+            } else{
+                //noinspection deprecation
+                locale = resources.configuration.locale
+            }
+            var localeLang = locale!!.language
 
-        when(localeLang){
-            "ca" ->  txtDescriptionCharacter.setText(characterToShow!!.description_cat)
-            "es" ->  txtDescriptionCharacter.setText(characterToShow!!.description_esp)
-            "en" ->  txtDescriptionCharacter.setText(characterToShow!!.description_eng)
+            when(localeLang){
+                "ca" ->  txtDescriptionCharacter.setText(characterToShow!!.description_cat)
+                "es" ->  txtDescriptionCharacter.setText(characterToShow!!.description_esp)
+                "en" ->  txtDescriptionCharacter.setText(characterToShow!!.description_eng)
+            }
+        } else {
+            Toast.makeText(requireContext(), "PROBLEMAS", Toast.LENGTH_LONG).show()
         }
+
 
 
 

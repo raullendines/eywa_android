@@ -42,7 +42,7 @@ class QuestionsFragment : Fragment() {
     var correct_answer = true
     var possibleAnswers = ArrayList<String>()
     var correct = 0
-    var maxAnswers = 9
+    var maxAnswers = 3
     var category : String? = null
     var difficulty : String? = null
 
