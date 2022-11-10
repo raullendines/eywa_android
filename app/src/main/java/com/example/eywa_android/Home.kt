@@ -49,6 +49,7 @@ class Home : AppCompatActivity() {
             hideUserMenu(btnUser)
         }
         lougoutLayout.setOnClickListener(){
+            finish()
             hideUserMenu(btnUser)
         }
 

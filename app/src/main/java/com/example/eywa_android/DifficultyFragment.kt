@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.os.ConfigurationCompat
 import androidx.core.os.bundleOf
@@ -94,43 +95,49 @@ class DifficultyFragment : Fragment(), Home.mainPage{
         val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
         btnPlay.setOnClickListener(){
 
-            val intentQuestion = Intent(this.activity, QuestionsActivity::class.java)
 
-            var Questions : MutableList<Question> = mutableListOf<Question>()
+            if(category != "Drama"){
+                val intentQuestion = Intent(this.activity, QuestionsActivity::class.java)
 
-            var locale : Locale? = null
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-                locale = resources.configuration.locales.get(0);
-            } else{
-                //noinspection deprecation
-                locale = resources.configuration.locale
-            }
-            var localeLang = locale!!.language
+                var Questions : MutableList<Question> = mutableListOf<Question>()
 
-
-
-            when(localeLang){
-                "ca" -> Questions = FilesManager.getQuestionsCA(requireContext())
-                "es" -> Questions = FilesManager.getQuestionsES(requireContext())
-                "en" -> Questions = FilesManager.getQuestionsEN(requireContext())
-            }
-            var difficulty : String = (difficultySelected + 1).toString()
-
-            var questionsReturn : MutableList<Question> = mutableListOf<Question>()
-            for(q in Questions){
-                if(q.category == category!!.lowercase() && q.difficulty == difficulty){
-                    questionsReturn.add(q)
+                var locale : Locale? = null
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                    locale = resources.configuration.locales.get(0);
+                } else{
+                    //noinspection deprecation
+                    locale = resources.configuration.locale
                 }
+                var localeLang = locale!!.language
+
+
+
+                when(localeLang){
+                    "ca" -> Questions = FilesManager.getQuestionsCA(requireContext())
+                    "es" -> Questions = FilesManager.getQuestionsES(requireContext())
+                    "en" -> Questions = FilesManager.getQuestionsEN(requireContext())
+                }
+                var difficulty : String = (difficultySelected + 1).toString()
+
+                var questionsReturn : MutableList<Question> = mutableListOf<Question>()
+                for(q in Questions){
+                    if(q.category == category!!.lowercase() && q.difficulty == difficulty){
+                        questionsReturn.add(q)
+                    }
+                }
+
+                if(questionsReturn.size > 10){
+                    questionsReturn.shuffle()
+                    questionsReturn.subList(10, Questions.size).clear()
+                }
+
+                intentQuestion.putParcelableArrayListExtra(QuestionsActivity.Questions.QUESTIONS, questionsReturn as ArrayList<Question>)
+
+                startActivity(intentQuestion)
+            } else{
+                Toast.makeText(requireContext(), "Drama questions not supported", Toast.LENGTH_LONG)
             }
 
-            if(questionsReturn.size > 10){
-                questionsReturn.shuffle()
-                questionsReturn.subList(10, Questions.size).clear()
-            }
-
-            intentQuestion.putParcelableArrayListExtra(QuestionsActivity.Questions.QUESTIONS, questionsReturn as ArrayList<Question>)
-
-            startActivity(intentQuestion)
 
 
         }

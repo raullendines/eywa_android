@@ -48,12 +48,12 @@ class CharacterFragment : Fragment() {
         var count = 0
         do{
             if (characterList[count].category == category
-                && characterList[count].difficulty == difficulty
+                //&& characterList[count].difficulty == difficulty
                 && characterList[count].num_correct == correctAnswers){
                 founded = true
             }
             count++
-        } while(count>characterList.size && !founded)
+        } while(count<characterList.size && !founded)
 
 //        for (character in characterList){
 //            if(character.category == category && character.difficulty == "E" && difficulty == "1"

@@ -1,6 +1,7 @@
 <resources>
 
     <string name="app_name">EYWA</string>
+    <string name="intro">(Subjecte a canvis) Aquesta aplicació està pensada per construir una bona cultura cinefila dels socis de Citizen Kane. Mitjançant jocs interactius podràs aprendre i trobar recomanacions de pel·lícules de culte.</string>
     <string name="category_language">CAT</string>
     <string name="category_title">Categories</string>
     <string name="category_action">Acció</string>

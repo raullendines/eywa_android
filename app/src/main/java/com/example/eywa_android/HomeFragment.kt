@@ -12,6 +12,7 @@ import android.view.animation.ScaleAnimation
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.addCallback
+import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.findNavController
 //import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -46,7 +47,9 @@ class HomeFragment : Fragment(), Home.mainPage {
     override fun changeLang() {
 
         val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
+        val txtIntro = requireView().findViewById<TextView>(R.id.txtIntro)
         btnPlay.setText(R.string.btnPlay)
+        txtIntro.setText(R.string.intro)
 
     }
 
