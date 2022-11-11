@@ -25,7 +25,7 @@
     <string name="login_title">Login</string>
     <string name="password">Contraseña</string>
     <string name="login_new">¿Nuevo aqui?</string>
-    <string name="login_create">!Crea una cuenta!</string>
+    <string name="login_create">¡Crea una cuenta!</string>
     <string name="login_btn">Login</string>
     <string name="register_title">Registro</string>
     <string name="password_repeat">Confirmar contraseña</string>

@@ -132,13 +132,14 @@ class DifficultyFragment : Fragment(), Home.mainPage{
                     //questionsReturn.subList(10, Questions.size).clear()
                 }
 
-                val noQ = Question("100000", "No hay suficientes preguntas",
-                    category!!, difficulty!!,
-                    "This is the correct one",
-                    arrayOf("Not this one", "Not this one", "Not this one")
-                )
-
                 if (questionsReturn.size != 10){
+
+                    val noQ = Question("100000", "No hay suficientes preguntas",
+                        category!!, difficulty!!,
+                        "This is the correct one",
+                        arrayOf("Not this one", "Not this one", "Not this one")
+                    )
+
                     for (i in questionsReturn.size..10){
                         questionsReturn.add(noQ)
                     }

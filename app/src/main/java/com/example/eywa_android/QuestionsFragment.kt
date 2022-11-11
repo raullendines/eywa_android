@@ -42,7 +42,7 @@ class QuestionsFragment : Fragment() {
     var correct_answer = true
     var possibleAnswers = ArrayList<String>()
     var correct = 0
-    var maxAnswers = 3
+    var maxAnswers = 9
     var category : String? = null
     var difficulty : String? = null
 
@@ -223,10 +223,11 @@ class QuestionsFragment : Fragment() {
             shuffle.removeAt(shuffle.size-1)
         }
 
-        contador_timer = object : CountDownTimer( 10000, 1000) {
+        contador_timer = object : CountDownTimer( 15000, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 var contador = millisUntilFinished / 1000
+                contador++
                 timer.text = contador.toString()
             }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">EYWA</string>
-    <string name="intro">(Subject to change) This application is designed to build a good cinephile culture of Citizen Kane partners. Through interactive games you can learn and find recommendations for cult movies.</string>
+    <string name="intro">(Susceptible to change) This application is designed to build a good cinephile culture of Citizen Kane partners. Through interactive games you can learn and find recommendations for cult movies.</string>
     <string name="category_language">ENG</string>
     <string name="category_title">Categories</string>
     <string name="category_action">Action</string>
