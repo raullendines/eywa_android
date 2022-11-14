@@ -1,22 +1,19 @@
-package com.example.eywa_android
+package com.example.eywa_android.Home
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.view.animation.ScaleAnimation
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.addCallback
-import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.findNavController
+import com.example.eywa_android.R
+
 //import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment(), Home.mainPage {
+class HomeFragment : Fragment(), HomeActivity.mainPage {
 
 
 

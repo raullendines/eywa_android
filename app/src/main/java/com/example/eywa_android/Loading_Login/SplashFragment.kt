@@ -1,4 +1,4 @@
-package com.example.eywa_android
+package com.example.eywa_android.Loading_Login
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
+import com.example.eywa_android.R
 
 
 class SplashFragment : Fragment() {
@@ -39,8 +40,8 @@ class SplashFragment : Fragment() {
         super.onStart()
         var imageView : ImageView = requireView().findViewById(R.id.logoEywa)
 
-        val animation_in : Animation = AnimationUtils.loadAnimation(this.context,R.anim.fade_in)
-        val animation_out : Animation = AnimationUtils.loadAnimation(this.context,R.anim.fade_out)
+        val animation_in : Animation = AnimationUtils.loadAnimation(this.context, R.anim.fade_in)
+        val animation_out : Animation = AnimationUtils.loadAnimation(this.context, R.anim.fade_out)
 
         imageView.startAnimation(animation_in)
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CategoryFragment">
+    tools:context=".Home.CategoryFragment">
 
     <TextView
         android:id="@+id/txtCategories"
@@ -41,7 +41,7 @@
                 <Button
                     android:id="@+id/buttonAction"
                     android:text="@string/category_action"
-                    android:textColor="@color/white"
+                    android:textColor="@color/purple_eywa"
                     android:gravity="center"
                     android:textSize="@dimen/button_text"
                     android:textStyle="bold"
@@ -50,7 +50,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="25dp"
                     android:background="@drawable/rounded_corners_white"
-                    android:backgroundTint="@color/action"
+                    android:tag="Action"
                     />
 
 
@@ -74,6 +74,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="25dp"
                     android:background="@drawable/rounded_corners_white"
+                    android:tag="Comedy"
                     />
 
 
@@ -108,6 +109,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="25dp"
                     android:background="@drawable/rounded_corners_white"
+                    android:tag="Science Fiction"
                     />
 
 
@@ -131,6 +133,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="25dp"
                     android:background="@drawable/rounded_corners_white"
+                    android:tag="Horror"
                     />
 
 
@@ -164,6 +167,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="25dp"
                     android:background="@drawable/rounded_corners_white"
+                    android:tag="Animation"
                     />
 
 
@@ -187,6 +191,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="25dp"
                     android:background="@drawable/rounded_corners_white"
+                    android:tag="Drama"
                     />
 
 

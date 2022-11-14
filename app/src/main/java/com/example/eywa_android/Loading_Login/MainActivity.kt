@@ -1,18 +1,10 @@
-package com.example.eywa_android
+package com.example.eywa_android.Loading_Login
 
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ListView
-import android.os.CountDownTimer
-import android.view.View
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.eywa_android.R
 
 
 class MainActivity : AppCompatActivity() {

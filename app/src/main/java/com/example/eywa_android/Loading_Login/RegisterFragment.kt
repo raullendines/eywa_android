@@ -1,6 +1,5 @@
-package com.example.eywa_android
+package com.example.eywa_android.Loading_Login
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import androidx.fragment.app.Fragment
@@ -10,6 +9,10 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import com.example.eywa_android.Management.Bcrypt
+import com.example.eywa_android.Management.FilesManager
+import com.example.eywa_android.R
+import com.example.eywa_android.ClassObject.User
 
 
 class RegisterFragment : Fragment() {
@@ -115,10 +118,10 @@ class RegisterFragment : Fragment() {
             if (!userExist){
                 if (password_1.text.toString().equals(password_2.text.toString())){
                     var salt : String = Bcrypt.gensalt()
-                    var hashedPassword : String = Bcrypt.hashpw(password_1.text.toString(),salt)
+                    var hashedPassword : String = Bcrypt.hashpw(password_1.text.toString(), salt)
                     var newUser : User = User(username.text.toString(),hashedPassword,"foto.png","male",18)
                     users.add(users.size-1, newUser)
-                    FilesManager.saveUser(requireContext(),users)
+                    FilesManager.saveUser(requireContext(), users)
                     Toast.makeText(this.activity, "User registered", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                 }

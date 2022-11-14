@@ -1,4 +1,4 @@
-package com.example.eywa_android
+package com.example.eywa_android.Loading_Login
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
+import com.example.eywa_android.R
 
 
 class LoadingFragment : Fragment() {

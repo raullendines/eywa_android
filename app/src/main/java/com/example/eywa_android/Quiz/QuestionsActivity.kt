@@ -1,28 +1,10 @@
-package com.example.eywa_android
+package com.example.eywa_android.Quiz
 
 import android.app.Fragment
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.os.Handler
-import android.util.Log
-import android.view.ActionMode
-import android.view.View
-import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import com.airbnb.lottie.LottieAnimationView
-import org.w3c.dom.Text
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.random.Random.Default.nextInt
-import kotlin.random.Random
-
+import com.example.eywa_android.ClassObject.Question
+import com.example.eywa_android.R
 
 
 class QuestionsActivity : AppCompatActivity() {

@@ -6,7 +6,7 @@
     app:startDestination="@id/startQuizFragment">
     <fragment
         android:id="@+id/startQuizFragment"
-        android:name="com.example.eywa_android.StartQuizFragment"
+        android:name="com.example.eywa_android.Quiz.StartQuizFragment"
         android:label="fragment_start_quiz"
         tools:layout="@layout/fragment_start_quiz" >
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/questionsFragment"
-        android:name="com.example.eywa_android.QuestionsFragment"
+        android:name="com.example.eywa_android.Quiz.QuestionsFragment"
         android:label="QuestionsFragment" >
         <action
             android:id="@+id/action_questionsFragment_to_characterFragment"
@@ -27,6 +27,6 @@
     </fragment>
     <fragment
         android:id="@+id/characterFragment"
-        android:name="com.example.eywa_android.CharacterFragment"
+        android:name="com.example.eywa_android.Quiz.CharacterFragment"
         android:label="CharacterFragment" />
 </navigation>

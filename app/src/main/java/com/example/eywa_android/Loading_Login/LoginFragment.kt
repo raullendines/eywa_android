@@ -1,4 +1,4 @@
-package com.example.eywa_android
+package com.example.eywa_android.Loading_Login
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,11 @@ import android.widget.*
 import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import com.example.eywa_android.Management.Bcrypt
+import com.example.eywa_android.Management.FilesManager
+import com.example.eywa_android.Home.HomeActivity
+import com.example.eywa_android.R
+import com.example.eywa_android.ClassObject.User
 
 
 class LoginFragment : Fragment() {
@@ -85,7 +90,7 @@ class LoginFragment : Fragment() {
         }
         else {
             if (userExists){
-                val intentHome = Intent(activity, Home::class.java)
+                val intentHome = Intent(activity, HomeActivity::class.java)
                 startActivity(intentHome)
             }
             else {
@@ -100,7 +105,7 @@ class LoginFragment : Fragment() {
         var index : Int = 0
 
         do {
-            var hashedPasswordEquals = Bcrypt.checkpw(password,users[index].password)
+            var hashedPasswordEquals = Bcrypt.checkpw(password, users[index].password)
             if (users[index].username == user && hashedPasswordEquals)
             {
                 existUser = true

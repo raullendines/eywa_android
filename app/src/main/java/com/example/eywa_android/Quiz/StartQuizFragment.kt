@@ -1,4 +1,4 @@
-package com.example.eywa_android
+package com.example.eywa_android.Quiz
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import com.example.eywa_android.ClassObject.Question
+import com.example.eywa_android.R
 
 private const val QUESTIONS = "QUESTIONS"
 class StartQuizFragment : Fragment(), QuestionsActivity.getQuestionsList {
