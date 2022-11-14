@@ -8,7 +8,7 @@
     android:background="@drawable/fondo_eywa"
     tools:context=".RankingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,50 +21,92 @@
             android:gravity="center"
             android:textSize="56dp"
             android:text="LEADERBOARD"
-            
+
             />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
+        <ImageView
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:src="@drawable/monarquia"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginBottom="100px"
         >
-        
-        <ImageView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/circulo_plata"
-            android:layout_weight="1"/>
-        
-        <ImageView
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/circulo_plata"
+                android:paddingTop="75px"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/circulo_oro"
-            android:layout_weight="1"/>
-    
-        <ImageView
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/circulo_oro"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/circulo_bronce"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/circulo_bronce"
+                android:layout_weight="1"
+                android:paddingTop="100px"/>
+        </LinearLayout>
+
     </LinearLayout>
-    
-    
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="200px"
         >
-        
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corners_white"
             />
-        
+
     </LinearLayout>
 
 
