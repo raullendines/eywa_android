@@ -55,24 +55,6 @@ class QuestionsFragment : Fragment() {
     var difficulty : String? = null
 
     private fun getObject() = object {
-        val answer1 = requireView().findViewById<Button>(R.id.answer1)
-        val answer2 = requireView().findViewById<Button>(R.id.answer2)
-        val answer3 = requireView().findViewById<Button>(R.id.answer3)
-        val answer4 = requireView().findViewById<Button>(R.id.answer4)
-        val default = requireView().findViewById<Button>(R.id.defaultButton)
-
-        val txtQuestion = requireView().findViewById<TextView>(R.id.txtQuestion)
-        val actual1 = requireView().findViewById<View>(R.id.actual1)
-        val actual2 = requireView().findViewById<View>(R.id.actual2)
-        val actual3 = requireView().findViewById<View>(R.id.actual3)
-        val actual4 = requireView().findViewById<View>(R.id.actual4)
-        val actual5 = requireView().findViewById<View>(R.id.actual5)
-        val actual6 = requireView().findViewById<View>(R.id.actual6)
-        val actual7 = requireView().findViewById<View>(R.id.actual7)
-        val actual8 = requireView().findViewById<View>(R.id.actual8)
-        val actual9 = requireView().findViewById<View>(R.id.actual9)
-        val actual10 = requireView().findViewById<View>(R.id.actual10)
-
         val selected: Drawable? =
             ResourcesCompat.getDrawable(resources, R.drawable.answer_button_selected, null)
         val unselected: Drawable? =
@@ -141,177 +123,12 @@ class QuestionsFragment : Fragment() {
                     binding.txtTimer.text = "0"
                     animationIncorrect(binding.animationWin)
                     disabled()
-                    incorrect(binding.animationWin, sharedViewModel.questions, getObject().default)
+                    incorrect(binding.animationWin, sharedViewModel.questions, binding.defaultButton)
                     sharedViewModel.questionsRemoveLast()
                 }, 100)
             }
         }.start()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        var questions : MutableList<Question> = this.arguments?.getParcelableArrayList<Question>("QUESTIONS") as MutableList<Question>
-//        category = questions[0].category
-        //setbackground for each category
-//        val backgroundLayout = requireView().findViewById<LinearLayout>(R.id.backgroundLayout)
-//        val txtTitle = requireView().findViewById<TextView>(R.id.txtTitle)
-//        when (category){
-//            "action" -> {
-//                backgroundLayout.setBackgroundColor(
-//                    ContextCompat.getColor(
-//                        requireContext(),
-//                        R.color.action
-//                    )
-//                )
-//                txtTitle.setText(R.string.category_action)
-//            }
-//            "comedy" -> {
-//                backgroundLayout.setBackgroundColor(
-//                    ContextCompat.getColor(
-//                        requireContext(),
-//                        R.color.comedy
-//                    )
-//                )
-//                txtTitle.setText(R.string.category_comedy)
-//            }
-//            "science Fiction" -> {
-//                backgroundLayout.setBackgroundColor(
-//                    ContextCompat.getColor(
-//                        requireContext(),
-//                        R.color.sci_fi
-//                    )
-//                )
-//                txtTitle.setText(R.string.category_scifi)
-//            }
-//            "horror" -> {
-//                backgroundLayout.setBackgroundColor(
-//                    ContextCompat.getColor(
-//                        requireContext(),
-//                        R.color.horror
-//                    )
-//                )
-//                txtTitle.setText(R.string.category_horror)
-//            }
-//            "animation" -> {
-//                backgroundLayout.setBackgroundColor(
-//                    ContextCompat.getColor(
-//                        requireContext(),
-//                        R.color.animation
-//                    )
-//                )
-//                txtTitle.setText(R.string.category_animation)
-//            }
-//            "drama" -> {
-//                backgroundLayout.setBackgroundColor(
-//                    ContextCompat.getColor(
-//                        requireContext(),
-//                        R.color.drama
-//                    )
-//                )
-//                txtTitle.setText(R.string.category_drama)
-//            }
-//        }
-
-
-
-        //difficulty = questions[0].difficulty
-
-//        var shuffle : MutableList<Question> = questions.shuffled().toMutableList()
-//        randomQuestion(shuffle)
-//        val timer = requireView().findViewById<TextView>(R.id.txtTimer)
-//        val animation = requireView().findViewById<LottieAnimationView>(R.id.animationWin)
-//
-//        //Answer 1
-//        getObject().answer1.setOnClickListener() {
-//
-//            if (getObject().answer1.text.equals(shuffle.last().correct_answer)){
-//                correct(animation, shuffle, getObject().answer1)
-//            }
-//            else{
-//                incorrect(animation, shuffle, getObject().answer1)
-//            }
-//            disabled()
-//            shuffle.removeAt(shuffle.size-1)
-//        }
-//
-//        //Answer 2
-//        getObject().answer2.setOnClickListener() {
-//
-//            if (getObject().answer2.text.equals(shuffle.last().correct_answer)){
-//                correct(animation, shuffle, getObject().answer2)
-//            }
-//            else{
-//                incorrect(animation, shuffle, getObject().answer2)
-//            }
-//            disabled()
-//            shuffle.removeAt(shuffle.size-1)
-//        }
-//
-//        //Answer 3
-//        getObject().answer3.setOnClickListener() {
-//
-//            if (getObject().answer3.text.equals(shuffle.last().correct_answer)){
-//                correct(animation, shuffle, getObject().answer3)
-//            }
-//            else{
-//                incorrect(animation, shuffle, getObject().answer3)
-//            }
-//            disabled()
-//            shuffle.removeAt(shuffle.size-1)
-//        }
-//
-//        //Answer 4
-//        getObject().answer4.setOnClickListener() {
-//
-//            if (getObject().answer4.text.equals(shuffle.last().correct_answer)){
-//                correct(animation, shuffle, getObject().answer4)
-//            }
-//            else{
-//                incorrect(animation, shuffle, getObject().answer4)
-//            }
-//            disabled()
-//            shuffle.removeAt(shuffle.size-1)
-//        }
-//
-//        contador_timer = object : CountDownTimer( 15000, 1000) {
-//
-//            override fun onTick(millisUntilFinished: Long) {
-//                var contador = millisUntilFinished / 1000
-//                contador++
-//                timer.text = contador.toString()
-//            }
-//
-//            override fun onFinish() {
-//                Handler().postDelayed({
-//                    timer.text = "0"
-//                    animationIncorrect(animation)
-//                    disabled()
-//                    incorrect(animation, shuffle, getObject().default)
-//                    shuffle.removeAt(shuffle.size-1)
-//                }, 100)
-//            }
-//        }.start()
     }
 
     private fun answersButtonsClickListeners(){
@@ -524,16 +341,14 @@ class QuestionsFragment : Fragment() {
         }
         else{
             sharedViewModel.questionDone()
-            object : CountDownTimer( 500, 1000) {
+            object : CountDownTimer( 600, 1000) {
                 override fun onTick(millisUntilFinished: Long) {}
 
                 override fun onFinish() {
-                    Handler().postDelayed({
-                        contador_timer.start()
-                        enabled()
-                        colorBtnRestart()
-                        randomQuestion(shuffle)
-                    }, 100)
+                    contador_timer.start()
+                    enabled()
+                    colorBtnRestart()
+                    randomQuestion(shuffle)
                 }
             }.start()
         }
@@ -688,7 +503,7 @@ class QuestionsFragment : Fragment() {
         }.start()
     }
 
-    fun endGame(){
+    private fun endGame(){
         progressCircles()
 
         val animation = requireView().findViewById<LottieAnimationView>(R.id.animationWin)
