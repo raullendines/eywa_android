@@ -1,6 +1,5 @@
 package com.example.eywa_android.Quiz
 
-import android.app.Fragment
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.eywa_android.ClassObject.Question
@@ -20,6 +19,10 @@ class QuestionsActivity : AppCompatActivity() {
         fun getQuestionsListFun(questions: MutableList<Question>)
     }
 
+    interface pauseFragment{
+        fun onPauseFragment()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +36,6 @@ class QuestionsActivity : AppCompatActivity() {
         callFun(myFragment as getQuestionsList, questions)
     }
 
-    override fun onAttachFragment(fragment: Fragment?) {
-        super.onAttachFragment(fragment)
-
-    }
 
     fun callFun(someObject : getQuestionsList, questions : MutableList<Question>){
         someObject.getQuestionsListFun(questions)
@@ -44,6 +43,17 @@ class QuestionsActivity : AppCompatActivity() {
 
     fun finishActivity(){
         finish()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        var myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragmentquiz")
+        var myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
+        callQuizFragment(myFragment as pauseFragment)
+    }
+
+    fun callQuizFragment(fragment : pauseFragment){
+        fragment.onPauseFragment()
     }
 }
 

@@ -12,10 +12,8 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
@@ -28,31 +26,22 @@ import kotlin.collections.ArrayList
 private const val SCORE = "SCORE"
 
 
-class QuestionsFragment : Fragment() {
+class QuestionsFragment : Fragment(), QuestionsActivity.pauseFragment {
 
 
     private var _binding : FragmentQuestionsBinding? = null
     private val binding get() = _binding!!
 
+
     private val sharedViewModel : QuizSharedViewModel by activityViewModels()
 
-
-
-
-
-
     private lateinit var contador_timer: CountDownTimer
-    var currentPosition = 0
-    //var sharedViewModel.countQuestions = 0
-    var correctAnswers = 0
-    var incorrectAnswers = 0
+    private lateinit var optional_timer : CountDownTimer
+    private var hasBeenPaused = false
+    private var bothTimers = false
     var correcto = true
     var correct_answer = true
-    var possibleAnswers = ArrayList<String>()
-    var correct = 0
     var maxAnswers = 9
-    var category : String? = null
-    var difficulty : String? = null
 
     private fun getObject() = object {
         val selected: Drawable? =
@@ -94,40 +83,72 @@ class QuestionsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        //init of the questions list
-        var questions : MutableList<Question> = this.arguments?.getParcelableArrayList<Question>("QUESTIONS") as MutableList<Question>
-        sharedViewModel.initQuestions(questions)
+        //We get the question list from the sharedViewModel
+        //The questions are already initialized and mixed
 
         //Change the header color and the title of the diferent categories
         changeHeaderBackground(sharedViewModel.category)
 
         //Loading the first question
-        randomQuestion(sharedViewModel.questions)
+        if (!hasBeenPaused){
+            randomQuestion(sharedViewModel.questions)
+        }
+
 
         //Buttons Click Listeners
         answersButtonsClickListeners()
 
+        if (!hasBeenPaused){
+            contador_timer = object : CountDownTimer( 15000, 1000) {
+
+                override fun onTick(millisUntilFinished: Long) {
+                    sharedViewModel.timeLeft = millisUntilFinished / 1000
+                    sharedViewModel.timeLeft++
+                    binding.txtTimer.text = sharedViewModel.timeLeft.toString()
+                }
+
+                //If the user didn't reponded before the 15sec countdown, the answer is set on incorrect
+                override fun onFinish() {
+                    Handler().postDelayed({
+                        binding.txtTimer.text = "0"
+                        animationIncorrect(binding.animationWin)
+                        disabled()
+                        incorrect(binding.animationWin, sharedViewModel.questions, binding.defaultButton)
+                        sharedViewModel.questionsRemoveLast()
+                    }, 100)
+                }
+            }.start()
+
+
+        } else{
+            optional_timer = object : CountDownTimer( sharedViewModel.timeLeft * 1000, 1000) {
+
+                override fun onTick(millisUntilFinished: Long) {
+                    sharedViewModel.timeLeft = millisUntilFinished / 1000
+                    sharedViewModel.timeLeft++
+                    binding.txtTimer.text = sharedViewModel.timeLeft.toString()
+                }
+
+                //If the user didn't reponded before the 15sec countdown, the answer is set on incorrect
+                override fun onFinish() {
+                    Handler().postDelayed({
+                        binding.txtTimer.text = "0"
+                        animationIncorrect(binding.animationWin)
+                        disabled()
+                        incorrect(binding.animationWin, sharedViewModel.questions, binding.defaultButton)
+                        sharedViewModel.questionsRemoveLast()
+                    }, 100)
+                }
+            }.start()
+
+            bothTimers = true
+
+        }
+
+        hasBeenPaused = false
 
         //We set the timer of 15 seconds
-        contador_timer = object : CountDownTimer( 15000, 1000) {
 
-            override fun onTick(millisUntilFinished: Long) {
-                var contador = millisUntilFinished / 1000
-                contador++
-                binding.txtTimer.text = contador.toString()
-            }
-
-            //If the user didn't reponded before the 15sec countdown, the answer is set on incorrect
-            override fun onFinish() {
-                Handler().postDelayed({
-                    binding.txtTimer.text = "0"
-                    animationIncorrect(binding.animationWin)
-                    disabled()
-                    incorrect(binding.animationWin, sharedViewModel.questions, binding.defaultButton)
-                    sharedViewModel.questionsRemoveLast()
-                }, 100)
-            }
-        }.start()
 
     }
 
@@ -175,14 +196,37 @@ class QuestionsFragment : Fragment() {
     }
 
 
+    override fun onPauseFragment() {
+        hasBeenPaused = true
+        if(sharedViewModel.timeLeft > 1){
+            stopTimer()
+        }
+    }
 
-//    override fun onActionModeFinished(mode: ActionMode?) {
+    override fun onStop() {
+        super.onStop()
+        hasBeenPaused = true
+        if (sharedViewModel.timeLeft > 1){
+            stopTimer()
+        }
+    }
+
+
+
+    //    override fun onActionModeFinished(mode: ActionMode?) {
 //        super.onActionModeFinished(mode)
 //        contador_timer.cancel()
 //    }
 
     fun stopTimer(){
         contador_timer.cancel()
+    }
+
+    fun stopBothTimers(){
+        contador_timer.cancel()
+        if(bothTimers){
+            optional_timer.cancel()
+        }
     }
 
     fun progress(){
@@ -234,7 +278,6 @@ class QuestionsFragment : Fragment() {
 
     fun randomQuestion(questions: MutableList<Question>){
         val randomQuestion = questions.last()
-        currentPosition = randomQuestion.id.toInt()
 
         val possibleAnswers = ArrayList<String>()
 
@@ -259,7 +302,6 @@ class QuestionsFragment : Fragment() {
         for ((index, value) in possibleAnswers.withIndex()) {
             if (value.equals(questions.last().correct_answer)){
                 sharedViewModel.changeCurrentQuestionCorrectAnswer(index)
-                correct = index
             }
         }
 
@@ -291,6 +333,7 @@ class QuestionsFragment : Fragment() {
         anim_timer.start()
 
     }
+
 
     private fun animate(v : View){
 
@@ -460,7 +503,8 @@ class QuestionsFragment : Fragment() {
         correcto = true
         correct_answer = true
         animationCorrect(animation)
-        stopTimer()
+        //stopTimer()
+        stopBothTimers()
         colorBtn(correcto, myButton, shuffle)
         sharedViewModel.questionCorrect()
         //correctAnswers+= 1
@@ -481,7 +525,8 @@ class QuestionsFragment : Fragment() {
 
     // INCORRECT ANSWER
     fun incorrect(animation: LottieAnimationView, shuffle: MutableList<Question>, myButton: Button) {
-        stopTimer()
+        //stopTimer()
+        stopBothTimers()
         animationIncorrect(animation)
         correcto = false
         correct_answer = false
@@ -507,7 +552,8 @@ class QuestionsFragment : Fragment() {
         progressCircles()
 
         val animation = requireView().findViewById<LottieAnimationView>(R.id.animationWin)
-        stopTimer()
+        stopBothTimers()
+        //stopTimer()
         animation.setAnimation(R.raw.animation_finish)
         animation.visibility = View.VISIBLE
         animation.playAnimation()

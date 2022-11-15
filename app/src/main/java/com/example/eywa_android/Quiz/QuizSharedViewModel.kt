@@ -17,10 +17,13 @@ class QuizSharedViewModel : ViewModel() {
     lateinit var currentPossibleAnswers : ArrayList<String>
     var currentQuestionCorrectAnswer : Int = 0
 
+    var timeLeft : Long = 15
+
 
 
     fun initQuestions(newQuestions : MutableList<Question>){
         questions = newQuestions
+        questions.shuffle()
         category = questions[0].category
         difficulty = questions[0].difficulty
     }
