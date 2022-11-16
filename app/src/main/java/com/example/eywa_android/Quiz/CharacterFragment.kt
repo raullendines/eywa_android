@@ -118,29 +118,18 @@ class CharacterFragment : Fragment() {
             count++
         } while(count<characterList.size && !founded)
 
-//        for (character in characterList){
-//            if(character.category == category && character.difficulty == "E" && difficulty == "1"
-//                && character.num_correct == correctAnswers){
-//                characterToShow = character
-//            }
-//        }
-
-        val txtViewScore = requireView().findViewById<TextView>(R.id.txtViewScore)
-        val imageCharacter = requireView().findViewById<ImageView>(R.id.imageCharacter)
-        val txtNameCharacter = requireView().findViewById<TextView>(R.id.txtNameCharacter)
-        val txtFilmCharacter = requireView().findViewById<TextView>(R.id.txtFilmCharacter)
-        val txtDescriptionCharacter = requireView().findViewById<TextView>(R.id.txtDescriptionCharacter)
 
         if(characterToShow != null){
             val score = sharedViewModel.correctAnswers.toString()
             val scoreText = "$score/10"
-            txtViewScore.setText(scoreText)
+            binding.txtViewScore.setText(scoreText)
             val imagePath = requireContext().filesDir.path.toString() + "/img/" + characterToShow!!.image + ".jpeg"
             val bitmap = BitmapFactory.decodeFile(imagePath)
-            imageCharacter.setImageBitmap(bitmap)
-            txtNameCharacter.setText(characterToShow!!.name)
-            txtFilmCharacter.setText(characterToShow!!.film)
-            //FALTA IDIOMA
+            binding.imageCharacter.setImageBitmap(bitmap)
+            binding.txtNameCharacter.setText(characterToShow!!.name)
+            binding.txtFilmCharacter.setText(characterToShow!!.film)
+
+            //We search the current lang of the app
             var locale : Locale? = null
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
                 locale = resources.configuration.locales.get(0);
@@ -151,19 +140,15 @@ class CharacterFragment : Fragment() {
             var localeLang = locale!!.language
 
             when(localeLang){
-                "ca" ->  txtDescriptionCharacter.setText(characterToShow!!.description_cat)
-                "es" ->  txtDescriptionCharacter.setText(characterToShow!!.description_esp)
-                "en" ->  txtDescriptionCharacter.setText(characterToShow!!.description_eng)
+                "ca" ->  binding.txtDescriptionCharacter.setText(characterToShow!!.description_cat)
+                "es" ->  binding.txtDescriptionCharacter.setText(characterToShow!!.description_esp)
+                "en" ->  binding.txtDescriptionCharacter.setText(characterToShow!!.description_eng)
             }
         } else {
             Toast.makeText(requireContext(), "PROBLEMAS", Toast.LENGTH_LONG).show()
         }
 
-
-
-
-        val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
-        btnPlay.setOnClickListener(){
+        binding.btnPlay.setOnClickListener(){
             val myActivity = this.activity as QuestionsActivity
             myActivity.finishActivity()
         }

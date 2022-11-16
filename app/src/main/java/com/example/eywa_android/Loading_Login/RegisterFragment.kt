@@ -18,8 +18,8 @@ import com.example.eywa_android.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment() {
 
-        private var _binding : FragmentRegisterBinding? = null
-        private val binding get() = _binding!!
+    private var _binding : FragmentRegisterBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

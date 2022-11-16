@@ -18,6 +18,7 @@ import com.example.eywa_android.*
 import com.example.eywa_android.ClassObject.Question
 import com.example.eywa_android.Management.FilesManager
 import com.example.eywa_android.Quiz.QuestionsActivity
+import com.example.eywa_android.databinding.FragmentDifficultyBinding
 import java.util.*
 
 private const val CATEGORY = "categorySelected"
@@ -29,6 +30,11 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
 
     private val sharedViewModel : HomeSharedViewModel by activityViewModels()
 
+
+    private var _binding : FragmentDifficultyBinding? = null
+    private val binding get() = _binding!!
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,7 +45,9 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_difficulty, container, false)
+        _binding = FragmentDifficultyBinding.inflate(inflater, container, false)
+
+        return binding.root
 
     }
 
@@ -48,10 +56,10 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
         super.onStart()
 
         val difficultyButtons = arrayOf(
-            requireView().findViewById<Button>(R.id.btnEasy),
-            requireView().findViewById<Button>(R.id.btnMedium),
-            requireView().findViewById<Button>(R.id.btnHard),
-            requireView().findViewById<Button>(R.id.btnLegend)
+            binding.btnEasy,
+            binding.btnMedium,
+            binding.btnHard,
+            binding.btnLegend
         )
 
 
@@ -80,12 +88,9 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
             }
         }
 
-        val buttonCategory = requireView().findViewById<Button>(R.id.categoryButton)
+
         //category = arguments?.getString(QuestionsActivity.Questions.CATEGORY)
-        setCategoryColor(buttonCategory, sharedViewModel.category.value.toString())
-
-
-
+        setCategoryColor(binding.categoryButton, sharedViewModel.category.value.toString())
 
         for(index in 0..3){
             difficultyButtons[index].setOnClickListener(){
@@ -93,13 +98,12 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
             }
         }
 
-        val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
-        btnPlay.setOnClickListener(){
+        binding.btnPlay.setOnClickListener(){
 
             if(sharedViewModel.category.value.toString() != "Drama"){
                 val intentQuestion = Intent(this.activity, QuestionsActivity::class.java)
 
-                var Questions : MutableList<Question> = mutableListOf<Question>()
+                var Questions : MutableList<Question> = mutableListOf()
 
                 var locale : Locale? = null
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
@@ -108,7 +112,7 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
                     //noinspection deprecation
                     locale = resources.configuration.locale
                 }
-                var localeLang = locale!!.language
+                val localeLang = locale!!.language
 
 
 
@@ -157,32 +161,26 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
                 Toast.makeText(requireContext(), "Drama questions not supported", Toast.LENGTH_LONG).show()
             }
 
-
-
         }
     }
 
 
     override fun changeLang() {
         val difficultyButtons = arrayOf(
-            requireView().findViewById<Button>(R.id.btnEasy),
-            requireView().findViewById<Button>(R.id.btnMedium),
-            requireView().findViewById<Button>(R.id.btnHard),
-            requireView().findViewById<Button>(R.id.btnLegend)
+            binding.btnEasy,
+            binding.btnMedium,
+            binding.btnHard,
+            binding.btnLegend
         )
 
-        val txtViewDifficulty = requireView().findViewById<TextView>(R.id.txtViewDifficulty)
-        val playButton = requireView().findViewById<Button>(R.id.btnPlay)
-
-
-        txtViewDifficulty.setText(R.string.difficulty)
+        binding.txtViewDifficulty.setText(R.string.difficulty)
         difficultyButtons[0].setText(R.string.easy)
         difficultyButtons[1].setText(R.string.medium)
         difficultyButtons[2].setText(R.string.hard)
         difficultyButtons[3].setText(R.string.legend)
 
 
-        playButton.setText(R.string.btnPlay)
+        binding.btnPlay.setText(R.string.btnPlay)
 
     }
 

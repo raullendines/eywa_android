@@ -22,8 +22,8 @@ import com.example.eywa_android.databinding.FragmentLoginBinding
 class LoginFragment : Fragment() {
 
 
-        private var _binding : FragmentLoginBinding? = null
-        private val binding get() = _binding!!
+    private var _binding : FragmentLoginBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -199,7 +199,7 @@ class QuestionsFragment : Fragment(), QuestionsActivity.pauseFragment {
     override fun onPauseFragment() {
         hasBeenPaused = true
         if(sharedViewModel.timeLeft > 1){
-            stopTimer()
+            stopBothTimers()
         }
     }
 
@@ -207,7 +207,7 @@ class QuestionsFragment : Fragment(), QuestionsActivity.pauseFragment {
         super.onStop()
         hasBeenPaused = true
         if (sharedViewModel.timeLeft > 1){
-            stopTimer()
+            stopBothTimers()
         }
     }
 
@@ -217,10 +217,6 @@ class QuestionsFragment : Fragment(), QuestionsActivity.pauseFragment {
 //        super.onActionModeFinished(mode)
 //        contador_timer.cancel()
 //    }
-
-    fun stopTimer(){
-        contador_timer.cancel()
-    }
 
     fun stopBothTimers(){
         contador_timer.cancel()
