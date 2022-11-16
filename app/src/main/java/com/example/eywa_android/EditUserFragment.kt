@@ -1,59 +1,119 @@
 package com.example.eywa_android
 
+import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
+import android.transition.Transition
+import android.transition.TransitionManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.eywa_android.Adapters.ProfileImageAdapter
+import com.example.eywa_android.Management.FilesManager
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.eywa_android.databinding.FragmentEditUserBinding
+import com.google.android.material.card.MaterialCardView
+import com.google.android.material.transition.MaterialContainerTransform
 
-/**
- * A simple [Fragment] subclass.
- * Use the [EditUserFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class EditUserFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private var _binding : FragmentEditUserBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentEditUserBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_user, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EditUserFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EditUserFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onStart() {
+        super.onStart()
+
+        val charactersList = FilesManager.getCharacters(requireContext())
+        val imagesList = mutableListOf<String>()
+        for (character in charactersList){
+            imagesList.add(character.image)
+        }
+        val imageSelectorAdapter = ProfileImageAdapter(requireContext(), imagesList)
+
+        binding.listProfilePics.layoutManager = GridLayoutManager(requireContext(), 5)
+
+        binding.listProfilePics.adapter = imageSelectorAdapter
+
+        imageSelectorAdapter.setOnClickListener(){
+
+            val path = imagesList[binding.listProfilePics.getChildAdapterPosition(it)]
+            val imagePath = requireContext().filesDir.path.toString() + "/img/" + path + ".jpeg"
+            val bitmap = BitmapFactory.decodeFile(imagePath)
+            binding.imageProfile.setImageBitmap(bitmap)
+            hideImageSelector()
+        }
+
+        binding.imageProfile.setOnClickListener(){
+
+            displayImageSelector()
+
+        }
+
+    }
+
+    private fun displayImageSelector(){
+        val transition = MaterialContainerTransform()
+        val myInterpolator = FastOutSlowInInterpolator()
+        transition.scrimColor = Color.TRANSPARENT
+
+        transition.setInterpolator(myInterpolator)
+
+        transition.setDuration(0)
+
+        transition.startView = binding.imageProfile
+        transition.endView = binding.endCard
+        transition.addTarget(binding.imageProfile)
+
+        TransitionManager.beginDelayedTransition(binding.root, transition as? Transition)
+
+        binding.endCard.visibility = View.VISIBLE
+
+        binding.backgroundOpacity.visibility = View.VISIBLE
+        binding.backgroundOpacity.isClickable = true
+        binding.backgroundOpacity.visibility = View.VISIBLE
+        binding.backgroundOpacity.setOnClickListener(){
+            hideImageSelector()
+        }
+
+    }
+
+    private fun hideImageSelector(){
+        val imagepic = binding.imageProfile
+        val transition : MaterialContainerTransform = MaterialContainerTransform()
+        val myInterpolator : FastOutSlowInInterpolator = FastOutSlowInInterpolator()
+        transition.scrimColor = Color.TRANSPARENT
+
+        transition.setInterpolator(myInterpolator)
+        transition.startView = binding.endCard
+        transition.endView = binding.imageProfile
+        transition.addTarget(binding.endCard)
+
+        TransitionManager.beginDelayedTransition(binding.root, transition as? Transition)
+
+        binding.endCard.visibility = View.INVISIBLE
+
+        binding.imageProfile.visibility = View.VISIBLE
+        binding.backgroundOpacity.isClickable = false
+        binding.backgroundOpacity.visibility = View.INVISIBLE
     }
 }

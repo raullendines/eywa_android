@@ -122,15 +122,6 @@ class CategoryFragment : Fragment(), HomeActivity.mainPage {
 
     private fun buttonStyle(button : LinearLayout, text : TextView){
 
-        val categoryText = arrayOf(
-            binding.textAction,
-            binding.textComedy,
-            binding.textScienceFiction,
-            binding.textHorror,
-            binding.textAnimation,
-            binding.textDrama
-        )
-
         when (button.id){
             resources.getIdentifier("buttonAction", "id", requireActivity().packageName) -> {
                 button.backgroundTintList = requireContext().getColorStateList(R.color.action)

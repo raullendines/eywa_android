@@ -13,6 +13,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import androidx.navigation.findNavController
+import com.example.eywa_android.ClassObject.QuizMatch
+import com.example.eywa_android.ClassObject.User
 import com.example.eywa_android.R
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.transition.MaterialContainerTransform
@@ -42,6 +45,7 @@ class HomeActivity : AppCompatActivity() {
 
         userLayout.setOnClickListener(){
             hideUserMenu(btnUser)
+            findNavController(R.id.nav_host_fragment_container_main).navigate(R.id.action_homeFragment_to_userFragment)
         }
         settingsLayout.setOnClickListener(){
             hideUserMenu(btnUser)

@@ -121,7 +121,7 @@ class RegisterFragment : Fragment() {
                 if (binding.editPassword.text.toString().equals(binding.repeatPassword.text.toString())){
                     var salt : String = Bcrypt.gensalt()
                     var hashedPassword : String = Bcrypt.hashpw(binding.editPassword.text.toString(), salt)
-                    var newUser : User = User(binding.LblUsernameRegister.text.toString(),hashedPassword,"foto.png","male",18)
+                    var newUser : User = User(binding.LblUsernameRegister.text.toString(),hashedPassword,"foto.png","male",18, mutableListOf())
                     users.add(users.size-1, newUser)
                     FilesManager.saveUser(requireContext(), users)
                     Toast.makeText(this.activity, "User registered", Toast.LENGTH_SHORT).show()

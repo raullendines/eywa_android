@@ -15,9 +15,8 @@
         android:gravity="center"
         android:text="@string/category_title"
         android:textColor="@color/white"
-        android:textSize="80sp"
+        android:textSize="70sp"
         android:textStyle="bold"
-
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,23 +40,21 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_weight="1"
+                android:layout_marginStart="25dp"
                 android:src="@drawable/gun" />
 
             <TextView
                 android:id="@+id/textAction"
-                android:layout_width="0dp"
+                android:layout_width="320dp"
                 android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:gravity="fill"
+                android:gravity="center"
                 android:text="@string/category_action"
                 android:textColor="@color/purple_eywa"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:paddingStart="150dp"/>
+                />
 
 
         </LinearLayout>
@@ -78,24 +75,21 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_weight="1"
+                android:layout_marginStart="25dp"
+
                 android:src="@drawable/comedy" />
 
             <TextView
                 android:id="@+id/textComedy"
-                android:layout_width="0dp"
+                android:layout_width="320dp"
                 android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:gravity="fill"
+                android:gravity="center"
                 android:text="@string/category_comedy"
                 android:textColor="@color/purple_eywa"
                 android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_marginRight="25dp"
-                />
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -116,23 +110,21 @@
             app:layout_constraintTop_toBottomOf="@+id/buttonAction">
 
             <ImageView
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_weight="1"
+                android:layout_marginStart="25dp"
                 android:src="@drawable/ufo" />
 
             <TextView
                 android:id="@+id/textScienceFiction"
-                android:layout_width="0dp"
+                android:layout_width="320dp"
                 android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:gravity="fill"
+                android:gravity="center"
                 android:text="@string/category_scifi"
                 android:textColor="@color/purple_eywa"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:layout_marginRight="25dp"/>
+                />
 
 
         </LinearLayout>
@@ -147,30 +139,26 @@
             android:layout_marginEnd="100dp"
             android:background="@drawable/rounded_corners_white"
             android:backgroundTint="@color/white"
-
             android:clickable="true"
             android:focusable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonComedy">
 
             <ImageView
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_weight="1"
+                android:layout_marginStart="25dp"
                 android:src="@drawable/horror" />
 
             <TextView
                 android:id="@+id/textHorror"
-                android:layout_width="0dp"
+                android:layout_width="320dp"
                 android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:gravity="fill"
+                android:gravity="center"
                 android:text="@string/category_horror"
                 android:textColor="@color/purple_eywa"
                 android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_marginRight="25dp"/>
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -191,23 +179,20 @@
             app:layout_constraintTop_toBottomOf="@+id/buttonScienceFiction">
 
             <ImageView
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_weight="1"
                 android:src="@drawable/disneyland" />
 
             <TextView
                 android:id="@+id/textAnimation"
-                android:layout_width="0dp"
+                android:layout_width="320dp"
                 android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:gravity="fill"
+                android:gravity="center"
                 android:text="@string/category_animation"
                 android:textColor="@color/purple_eywa"
                 android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_marginEnd="25dp"/>
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -228,23 +213,20 @@
             app:layout_constraintTop_toBottomOf="@+id/buttonHorror">
 
             <ImageView
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_weight="1"
-                android:src="@drawable/drama" />
+                android:src="@drawable/drama"
+                android:layout_marginStart="25dp"/>
 
             <TextView
                 android:id="@+id/textDrama"
-                android:layout_width="0dp"
+                android:layout_width="320dp"
                 android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:gravity="fill"
+                android:gravity="center"
                 android:text="@string/category_drama"
                 android:textColor="@color/purple_eywa"
                 android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_marginEnd="25dp"/>
+                android:textStyle="bold" />
 
 
         </LinearLayout>
