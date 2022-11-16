@@ -8,9 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -90,7 +88,7 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
 
 
         //category = arguments?.getString(QuestionsActivity.Questions.CATEGORY)
-        setCategoryColor(binding.categoryButton, sharedViewModel.category.value.toString())
+        setCategoryColor(sharedViewModel.category.value.toString())
 
         for(index in 0..3){
             difficultyButtons[index].setOnClickListener(){
@@ -184,42 +182,48 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
 
     }
 
-    private fun setCategoryColor(buttonCategory: Button, category: String){
+    private fun setCategoryColor(category: String){
         when (category){
             "Action" -> {
-                buttonCategory.backgroundTintList =
+                binding.buttonCategory.backgroundTintList =
                     requireContext().getColorStateList(R.color.action)
-                buttonCategory.setText(R.string.category_action)
+                binding.textCategory.setText(R.string.category_action)
+                binding.imageCategory.setImageResource(R.drawable.gun)
             }
             "Comedy" -> {
-                buttonCategory.backgroundTintList =
+                binding.buttonCategory.backgroundTintList =
                     requireContext().getColorStateList(R.color.comedy)
-                buttonCategory.setText(R.string.category_comedy)
+                binding.textCategory.setText(R.string.category_comedy)
+                binding.imageCategory.setImageResource(R.drawable.comedy)
             }
             "Science Fiction" -> {
-                buttonCategory.backgroundTintList =
+                binding.buttonCategory.backgroundTintList =
                     requireContext().getColorStateList(R.color.sci_fi)
-                buttonCategory.setText(R.string.category_scifi)
+                binding.textCategory.setText(R.string.category_scifi)
+                binding.imageCategory.setImageResource(R.drawable.ufo)
             }
             "Horror" -> {
-                buttonCategory.backgroundTintList =
+                binding.buttonCategory.backgroundTintList =
                     requireContext().getColorStateList(R.color.horror)
-                buttonCategory.setText(R.string.category_horror)
+                binding.textCategory.setText(R.string.category_horror)
+                binding.imageCategory.setImageResource(R.drawable.horror)
             }
             "Animation" -> {
-                buttonCategory.backgroundTintList =
+                binding.buttonCategory.backgroundTintList =
                     requireContext().getColorStateList(R.color.animation)
-                buttonCategory.setText(R.string.category_animation)
+                binding.textCategory.setText(R.string.category_animation)
+                binding.imageCategory.setImageResource(R.drawable.disneyland)
             }
             "Drama" -> {
-                buttonCategory.backgroundTintList =
+                binding.buttonCategory.backgroundTintList =
                     requireContext().getColorStateList(R.color.drama)
-                buttonCategory.setText(R.string.category_drama)
+                binding.textCategory.setText(R.string.category_drama)
+                binding.imageCategory.setImageResource(R.drawable.drama)
             }
         }
-        buttonCategory.setTextColor(Color.parseColor("#FFFFFF"))
+        binding.textCategory.setTextColor(Color.parseColor("#FFFFFF"))
 
-        buttonCategory.setOnClickListener(){
+        binding.buttonCategory.setOnClickListener(){
             findNavController().popBackStack()
         }
     }

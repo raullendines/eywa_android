@@ -19,6 +19,44 @@
         android:layout_marginTop="20dp"
         />
 
+
+    <LinearLayout
+        android:id="@+id/buttonCategory"
+        android:tag="Action"
+        android:layout_width="500dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_corners_white"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+       >
+
+        <ImageView
+            android:id="@+id/imageCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_weight="1"
+            android:src="@drawable/gun" />
+
+        <TextView
+            android:id="@+id/textCategory"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:text="@string/category_action"
+            android:textColor="@color/purple_eywa"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="25dp"/>
+
+
+    </LinearLayout>
+
+    <!--
     <Button
         android:id="@+id/categoryButton"
         android:layout_width="400dp"
@@ -31,6 +69,8 @@
         android:layout_marginTop="50dp"
         android:clickable="false"
         />
+
+        !-->
 
     <LinearLayout
         android:layout_marginTop="50dp"

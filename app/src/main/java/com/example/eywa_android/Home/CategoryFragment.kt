@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
@@ -52,21 +53,30 @@ class CategoryFragment : Fragment(), HomeActivity.mainPage {
             binding.buttonDrama
         )
 
+        val categoryText = arrayOf(
+            binding.textAction,
+            binding.textComedy,
+            binding.textScienceFiction,
+            binding.textHorror,
+            binding.textAnimation,
+            binding.textDrama
+        )
+
 
         sharedViewModel.category.observe(viewLifecycleOwner) { category ->
             when(category){
-                "Action" -> buttonStyle(categoryButtons[0])
-                "Comedy" -> buttonStyle(categoryButtons[1])
-                "Science Fiction" -> buttonStyle(categoryButtons[2])
-                "Horror" -> buttonStyle(categoryButtons[3])
-                "Animation" -> buttonStyle(categoryButtons[4])
-                "Drama" -> buttonStyle(categoryButtons[5])
+                "Action" -> buttonStyle(categoryButtons[0], categoryText[0])
+                "Comedy" -> buttonStyle(categoryButtons[1], categoryText[1])
+                "Science Fiction" -> buttonStyle(categoryButtons[2], categoryText[2])
+                "Horror" -> buttonStyle(categoryButtons[3], categoryText[3])
+                "Animation" -> buttonStyle(categoryButtons[4], categoryText[4])
+                "Drama" -> buttonStyle(categoryButtons[5], categoryText[5])
             }
         }
 
         for (button in categoryButtons){
             button.setOnClickListener(){
-                uncheckButton(categoryButtons[buttonSelected])
+                uncheckButton(categoryButtons[buttonSelected], categoryText[buttonSelected])
                 buttonPressed(button)
                 //buttonStyle(button)
             }
@@ -80,65 +90,80 @@ class CategoryFragment : Fragment(), HomeActivity.mainPage {
 
     override fun changeLang() {
 
-        val categoryButtons = arrayOf(
-            binding.buttonAction,
-            binding.buttonComedy,
-            binding.buttonScienceFiction,
-            binding.buttonHorror,
-            binding.buttonAnimation,
-            binding.buttonDrama
+        val categoryText = arrayOf(
+            binding.textAction,
+            binding.textComedy,
+            binding.textScienceFiction,
+            binding.textHorror,
+            binding.textAnimation,
+            binding.textDrama
         )
 
         binding.txtCategories.setText(R.string.category_title)
-        categoryButtons[0].setText(R.string.category_action)
-        categoryButtons[1].setText(R.string.category_comedy)
-        categoryButtons[2].setText(R.string.category_scifi)
-        categoryButtons[3].setText(R.string.category_horror)
-        categoryButtons[4].setText(R.string.category_animation)
-        categoryButtons[5].setText(R.string.category_drama)
+        categoryText[0].setText(R.string.category_action)
+        categoryText[1].setText(R.string.category_comedy)
+        categoryText[2].setText(R.string.category_scifi)
+        categoryText[3].setText(R.string.category_horror)
+        categoryText[4].setText(R.string.category_animation)
+        categoryText[5].setText(R.string.category_drama)
 
         binding.btnPlay.setText(R.string.btnPlay)
 
     }
 
-    private fun uncheckButton(button : Button){
+    private fun uncheckButton(button : LinearLayout, text : TextView){
         button.backgroundTintList = requireContext().getColorStateList(R.color.white)
-        button.setTextColor(requireContext().getColor(R.color.purple_eywa))
+        text.setTextColor(requireContext().getColor(R.color.purple_eywa))
     }
 
-    private fun buttonPressed(button: Button){
+    private fun buttonPressed(button: LinearLayout){
         sharedViewModel.changeCategory(button.tag.toString())
     }
 
-    private fun buttonStyle(button : Button){
+    private fun buttonStyle(button : LinearLayout, text : TextView){
+
+        val categoryText = arrayOf(
+            binding.textAction,
+            binding.textComedy,
+            binding.textScienceFiction,
+            binding.textHorror,
+            binding.textAnimation,
+            binding.textDrama
+        )
 
         when (button.id){
             resources.getIdentifier("buttonAction", "id", requireActivity().packageName) -> {
                 button.backgroundTintList = requireContext().getColorStateList(R.color.action)
                 buttonSelected = 0
+                //categoryText[0].setTextColor(Color.parseColor("#FFFFFF"))
             }
             resources.getIdentifier("buttonComedy", "id", requireActivity().packageName) -> {
                 button.backgroundTintList = requireContext().getColorStateList(R.color.comedy)
                 buttonSelected = 1
+                //categoryText[1].setTextColor(Color.parseColor("#FFFFFF"))
             }
             resources.getIdentifier("buttonScienceFiction", "id", requireActivity().packageName) -> {
                 button.backgroundTintList = requireContext().getColorStateList(R.color.sci_fi)
                 buttonSelected = 2
+                //categoryText[2].setTextColor(Color.parseColor("#FFFFFF"))
             }
             resources.getIdentifier("buttonHorror", "id", requireActivity().packageName) -> {
                 button.backgroundTintList = requireContext().getColorStateList(R.color.horror)
                 buttonSelected = 3
+                //categoryText[3].setTextColor(Color.parseColor("#FFFFFF"))
             }
             resources.getIdentifier("buttonAnimation", "id", requireActivity().packageName) -> {
                 button.backgroundTintList = requireContext().getColorStateList(R.color.animation)
                 buttonSelected = 4
+                //categoryText[4].setTextColor(Color.parseColor("#FFFFFF"))
             }
             resources.getIdentifier("buttonDrama", "id", requireActivity().packageName) -> {
                 button.backgroundTintList = requireContext().getColorStateList(R.color.drama)
                 buttonSelected = 5
+                //categoryText[5].setTextColor(Color.parseColor("#FFFFFF"))
             }
         }
-        button.setTextColor(Color.parseColor("#FFFFFF"))
+        text.setTextColor(Color.parseColor("#FFFFFF"))
 
     }
 
