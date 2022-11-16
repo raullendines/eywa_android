@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/root">
 
-    <FrameLayout
+    <LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -81,17 +81,227 @@
 
             </LinearLayout>
 
+    </LinearLayout>
 
-        <fragment
-            android:id="@+id/nav_host_fragment_container_main"
-            android:tag="myfragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+        <LinearLayout
+            android:layout_width="1000dp"
+            android:layout_height="700dp"
+            android:orientation="vertical"
             android:layout_marginTop="100dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/my_main_nav"
-            />
+            >
+
+
+                <LinearLayout
+                    android:layout_width="500dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/rounded_corners_white"
+                    android:backgroundTint="@color/sci_fi"
+                    android:clickable="true"
+                    android:focusable="true"
+                    >
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:src="@drawable/ufo"
+                        android:layout_marginLeft="25dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:text="SCIENCE FICTION"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="25sp"
+                        android:gravity="center"/>
+
+
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="500dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/rounded_corners_white"
+                android:backgroundTint="@color/action"
+                android:clickable="true"
+                android:focusable="true"
+                >
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/gun"
+                    android:layout_marginLeft="25dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:text="ACTION"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:gravity="center"/>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="500dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/rounded_corners_white"
+                android:backgroundTint="@color/animation"
+                android:clickable="true"
+                android:focusable="true"
+                >
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/disneyland"
+                    android:layout_marginLeft="25dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:text="ANIMATION"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:gravity="center"/>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="500dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/rounded_corners_white"
+                android:backgroundTint="@color/drama"
+                android:clickable="true"
+                android:focusable="true"
+                >
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/drama"
+                    android:layout_marginLeft="25dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:text="DRAMA"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:gravity="center"/>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="500dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/rounded_corners_white"
+                android:backgroundTint="@color/comedy"
+                android:clickable="true"
+                android:focusable="true"
+                >
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/comedy"
+                    android:layout_marginLeft="25dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:text="COMEDY"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:gravity="center"/>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="500dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/rounded_corners_white"
+                android:backgroundTint="@color/horror"
+                android:clickable="true"
+                android:focusable="true"
+                >
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/horror"
+                    android:layout_marginLeft="25dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:text="HORROR"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:gravity="center"/>
+
+
+
+            </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+        <!--
+
+
+                <fragment
+                    android:id="@+id/nav_host_fragment_container_main"
+                    android:tag="myfragment"
+                    android:name="androidx.navigation.fragment.NavHostFragment"
+                    android:layout_marginTop="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:defaultNavHost="true"
+                    app:navGraph="@navigation/my_main_nav"
+                    />
+
+        !-->
 
 
 
