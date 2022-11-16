@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:tag="homeFragment"
-        android:name="com.example.eywa_android.HomeFragment"
+        android:name="com.example.eywa_android.Home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.example.eywa_android.CategoryFragment"
+        android:name="com.example.eywa_android.Home.CategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category" >
         <action
@@ -34,6 +34,6 @@
     </fragment>
     <fragment
         android:id="@+id/difficultyFragment"
-        android:name="com.example.eywa_android.DifficultyFragment"
+        android:name="com.example.eywa_android.Home.DifficultyFragment"
         android:label="DifficultyFragment" />
 </navigation>
