@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import com.example.eywa_android.R
+import kotlinx.android.synthetic.main.fragment_home.*
 
 //import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -35,8 +36,8 @@ class HomeFragment : Fragment(), HomeActivity.mainPage {
 
     override fun onStart() {
         super.onStart()
-        val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
-        btnPlay.setOnClickListener(){
+
+        layoutPlay.setOnClickListener(){
             findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
         }
     }
@@ -44,10 +45,7 @@ class HomeFragment : Fragment(), HomeActivity.mainPage {
     override fun changeLang() {
 
         val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
-        val txtIntro = requireView().findViewById<TextView>(R.id.txtIntro)
         btnPlay.setText(R.string.btnPlay)
-        txtIntro.setText(R.string.intro)
-
     }
 
 }

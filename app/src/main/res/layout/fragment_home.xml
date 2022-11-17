@@ -3,45 +3,115 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".Home.HomeFragment">
 
-    <LinearLayout
-        android:layout_width="850dp"
-        android:layout_height="350dp"
-        android:background="@drawable/rounded_corners_white"
-        android:layout_gravity="center"
-        android:layout_marginTop="70dp"
-        >
 
-        <TextView
-            android:id="@+id/txtIntro"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/intro"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="50dp"
-            android:paddingBottom="50dp"
-            android:gravity="left"
-            />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/layoutPlay"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:background="@drawable/rounded_corners_white"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="QUIZ"
+                android:textSize="30dp"
+                android:textColor="@color/purple_700"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingTop="15dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:src="@drawable/quiz_play"
+                android:paddingVertical="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/rounded_corners_yellow">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="PLAY"
+                    android:textColor="@color/purple_700"
+                    android:textStyle="bold"
+                    android:textSize="30dp"
+                    android:gravity="center|right"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:src="@drawable/play_button"/>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnPlay"
-        android:layout_width="300dp"
-        android:layout_height="75dp"
-        android:background="@drawable/rounded_corners_white"
-        android:backgroundTint="@color/amarillo_eywa"
-        android:layout_gravity="center"
-        android:layout_marginTop="65dp"
-        android:text="@string/btnPlay"
-        android:textStyle="bold"
-        android:textColor="@color/purple_eywa"
-        android:textSize="@dimen/button_text"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/layoutLeaderboard"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            android:background="@drawable/rounded_corners_white"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="335dp"
+                android:src="@drawable/leaderboard"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/rounded_corners_yellow">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="LEADERBOARD"
+                    android:textColor="@color/purple_700"
+                    android:textStyle="bold"
+                    android:textSize="30dp"
+                    android:gravity="center|right"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:src="@drawable/leaderboard_button"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
