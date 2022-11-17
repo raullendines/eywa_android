@@ -34,5 +34,7 @@
     <string name="register_have">¿Tienes una cuenta?</string>
     <string name="register_login">Login!</string>
     <string name="register_btn">registrate</string>
+    <string name="press_anywhere_to_continue">PRESIONA EN CUALQUIER LUGAR PARA CONTINUAR</string>
+    <string name="eywa_team">EYWA TEAM</string>
 
 </resources>

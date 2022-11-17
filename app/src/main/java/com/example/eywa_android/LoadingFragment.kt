@@ -39,9 +39,8 @@ class LoadingFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         txtPressAnywhereToContinue.isVisible = false
-        val animation_in : Animation = AnimationUtils.loadAnimation(this.context,R.anim.fade_in)
-        val animation_out : Animation = AnimationUtils.loadAnimation(this.context,R.anim.fade_out)
-        var pressed : Boolean = false
+        val animation_in_and_out : Animation = AnimationUtils.loadAnimation(this.context,R.anim.fade_in_and_out)
+
         val timer = object: CountDownTimer(5000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
 
@@ -49,33 +48,16 @@ class LoadingFragment : Fragment() {
 
             override fun onFinish() {
                 txtPressAnywhereToContinue.isVisible = true
-                txtPressAnywhereToContinue.startAnimation(animation_in)
-                while(!pressed)
-                {
-
-
-                val timer = object: CountDownTimer(3000, 1000) {
-                    override fun onTick(millisUntilFinished: Long) {
-
-                    }
-
-                    override fun onFinish() {
-                        txtPressAnywhereToContinue.startAnimation(animation_out)
-                    }
-                }
-                timer.start()
-                }
                 TxtLoading.isVisible = false
                 loadingAnimation.isVisible = false
+                txtPressAnywhereToContinue.startAnimation(animation_in_and_out)
             }
         }
         timer.start()
 
 
         loadingLayout.setOnClickListener(){
-            pressed = false
             findNavController().navigate(R.id.action_loadingFragment_to_loginFragment)
-
         }
     }
 }
