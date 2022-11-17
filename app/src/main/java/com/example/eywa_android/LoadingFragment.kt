@@ -40,7 +40,7 @@ class LoadingFragment : Fragment() {
         super.onStart()
         txtPressAnywhereToContinue.isVisible = false
         val animation_in_and_out : Animation = AnimationUtils.loadAnimation(this.context,R.anim.fade_in_and_out)
-
+        var canPress : Boolean = false
         val timer = object: CountDownTimer(5000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
 
@@ -51,13 +51,17 @@ class LoadingFragment : Fragment() {
                 TxtLoading.isVisible = false
                 loadingAnimation.isVisible = false
                 txtPressAnywhereToContinue.startAnimation(animation_in_and_out)
+                canPress = true
             }
         }
         timer.start()
 
 
         loadingLayout.setOnClickListener(){
-            findNavController().navigate(R.id.action_loadingFragment_to_loginFragment)
+            if(canPress){
+                findNavController().navigate(R.id.action_loadingFragment_to_loginFragment)
+            }
+
         }
     }
 }
