@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_userFragment_to_editUserFragment"
             app:destination="@id/editUserFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_achievementFragment"
+            app:destination="@id/achievementFragment" />
     </fragment>
     <fragment
         android:id="@+id/editUserFragment"
@@ -56,4 +59,9 @@
             android:id="@+id/action_editUserFragment_to_userFragment"
             app:destination="@id/userFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/achievementFragment"
+        android:name="com.example.eywa_android.AchievementFragment"
+        android:label="fragment_achievement"
+        tools:layout="@layout/fragment_achievement" />
 </navigation>

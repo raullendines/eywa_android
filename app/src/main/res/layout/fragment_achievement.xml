@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".AchievementFragment">
+
+
+
+
+    <FrameLayout
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        >
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="500dp"
+            android:layout_height="500dp"
+            android:transitionName="achievement_card"
+            android:background="@color/white"
+            app:cardCornerRadius="25dp"
+            android:layout_gravity="center"
+            android:theme="@style/Theme.Eywa_android">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/white"
+                >
+
+                <ImageView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/imageAchievement"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/trophy"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="TITLE"
+                    android:textColor="@color/purple_eywa"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="40sp"
+                    />
+                <TextView
+                    android:id="@+id/textDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:text="lorem ipsum aetrohnaeotinhboeno"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp"
+                    android:textColor="@color/purple_eywa"
+                    />
+
+
+
+            </LinearLayout>
+
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="380dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:gravity="center"
+            android:text="Players with this achievement"
+            android:textColor="@color/purple_eywa"
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:gravity="center"
+            android:text="22"
+            android:textColor="@color/purple_eywa"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+</FrameLayout>
