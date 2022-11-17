@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eywa_android.Adapters.CategoryPercentageAdapter
+import com.example.eywa_android.Adapters.MatchHistoryAdapter
 import com.example.eywa_android.ClassObject.QuizMatch
 import com.example.eywa_android.ClassObject.User
 import com.example.eywa_android.Home.HomeSharedViewModel
@@ -52,6 +54,29 @@ class UserFragment : Fragment() {
 
         initUser()
 
+        setMatchHistoryGrid()
+
+        setPercetageGrid()
+
+
+
+        binding.buttonEditData.setOnClickListener(){
+            //Navigation to the other fragment
+            findNavController().navigate(R.id.action_userFragment_to_editUserFragment)
+        }
+
+        binding.buttonGoBack.setOnClickListener(){
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun setMatchHistoryGrid(){
+        val matchHistoryAdapter = MatchHistoryAdapter(requireContext(), sharedViewModel.displayUser!!.quizMatchHistory)
+        binding.listMatchHistory.layoutManager = LinearLayoutManager(requireContext())
+        binding.listMatchHistory.adapter = matchHistoryAdapter
+    }
+
+    private fun setPercetageGrid(){
         var percentageAdapter = getPercentages()
 
         val categoryPercentageAdapter = CategoryPercentageAdapter(requireContext(), percentageAdapter)
@@ -59,12 +84,8 @@ class UserFragment : Fragment() {
         binding.listCategories.layoutManager = GridLayoutManager(requireContext(), 3)
 
         binding.listCategories.adapter = categoryPercentageAdapter
-
-        binding.buttonEditData.setOnClickListener(){
-            //Navigation to the other fragment
-            findNavController().navigate(R.id.action_userFragment_to_editUserFragment)
-        }
     }
+
     private fun initUser(){
         //TODO Finish initialitzation
         binding.textUsername.text = sharedViewModel.displayUser!!.username

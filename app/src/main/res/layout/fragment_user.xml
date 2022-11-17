@@ -6,8 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <Button
-        android:id="@+id/textAction"
+        android:id="@+id/buttonGoBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -26,28 +28,38 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <ImageView
-            android:id="@+id/imageUser"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageContainer"
             android:layout_width="120dp"
             android:layout_height="120dp"
+            app:cardCornerRadius="60dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="25dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:scaleType="fitCenter"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageUser"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="fitCenter"
+                tools:src="@tools:sample/avatars" />
+
+
+        </androidx.cardview.widget.CardView>
+
 
         <TextView
             android:id="@+id/textUsername"
-            android:layout_width="150dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:text="USERNAME"
-            android:textColor="@color/black"
-            android:textSize="25sp"
+            android:textColor="@color/purple_eywa"
+            android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imageUser"
+            app:layout_constraintStart_toEndOf="@+id/imageContainer"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -55,60 +67,70 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
             android:text="RANKING:"
-            android:textColor="@color/black"
+            android:textColor="@color/purple_eywa"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imageUser"
+            app:layout_constraintStart_toEndOf="@+id/imageContainer"
             app:layout_constraintTop_toBottomOf="@+id/textUsername" />
 
         <TextView
             android:id="@+id/textRankingNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="1dp"
             android:text="#6"
-            android:textColor="@color/grey"
+            android:textColor="@color/purple_eywa"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/textRanking"
             app:layout_constraintTop_toBottomOf="@+id/textUsername" />
+
+        <TextView
+            android:id="@+id/textRegisterDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Data Registre"
+            android:textColor="@color/purple_eywa"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imageContainer"
+            app:layout_constraintTop_toBottomOf="@+id/textRanking" />
 
         <TextView
             android:id="@+id/textRegisterDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:text="Data Registre"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imageUser"
-            app:layout_constraintTop_toBottomOf="@+id/textRanking" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
             android:text="TextView"
-            android:textColor="@color/black"
+            android:textColor="@color/purple_eywa"
             android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/imageUser"
-            app:layout_constraintTop_toBottomOf="@+id/textRegisterDate"
+            app:layout_constraintStart_toEndOf="@+id/imageContainer"
+            app:layout_constraintTop_toBottomOf="@+id/textRegisterDateLabel"
             tools:text="10/10/22" />
 
-        <Button
-            android:id="@+id/buttonEditData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:cardCornerRadius="25dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:text="Button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/horror">
+
+            <ImageButton
+                android:id="@+id/buttonEditData"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/ic_edit"
+                android:backgroundTint="@color/black"
+                android:layout_gravity="center"
+                app:tint="@color/white"
+                />
+        </androidx.cardview.widget.CardView>
+
+
 
         <TextView
             android:id="@+id/textBestScoreHeader"
@@ -121,7 +143,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageUser" />
+            app:layout_constraintTop_toBottomOf="@+id/imageContainer" />
 
         <TextView
             android:id="@+id/textBestScore"
@@ -131,7 +153,7 @@
             android:layout_marginTop="5dp"
             android:background="@color/light_grey"
             android:text="70000 pts"
-            android:textColor="@color/black"
+            android:textColor="@color/purple_eywa"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textBestScoreHeader" />
@@ -168,10 +190,53 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="100dp"
         android:background="@drawable/rounded_corners_white"
+        android:backgroundTint="@color/white"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:cardCornerRadius="10dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/light_grey"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9"
+                    android:text="@string/category_title"
+                    android:gravity="center"
+                    android:textColor="@color/purple_eywa"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="@string/difficulty"
+                    android:gravity="center"
+                    android:textColor="@color/purple_eywa"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="@string/score"
+                    android:gravity="center"
+                    android:textColor="@color/purple_eywa"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listMatchHistory"
@@ -195,6 +260,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/rounded_corners_white"
             android:clickable="false"
-            android:padding="5dp" />
+            android:padding="5dp"
+            />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

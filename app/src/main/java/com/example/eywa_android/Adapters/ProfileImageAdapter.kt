@@ -1,6 +1,7 @@
 package com.example.eywa_android.Adapters
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
@@ -44,7 +45,13 @@ class ProfileImageAdapter(private val context: Context,
     fun bindImage(holder: ImageViewHolder, image: String){
         val imagePath = context.filesDir.toString() + "/img/" + image + ".jpeg"
         val bitmap = BitmapFactory.decodeFile(imagePath)
-        holder.imageProfile.setImageBitmap(bitmap)
+        if (bitmap != null) {
+            val resize = Bitmap.createScaledBitmap(bitmap, 160, 160, true)
+            holder.imageProfile.setImageBitmap(resize)
+        } else {
+            holder.imageProfile.setImageBitmap(bitmap)
+        }
+
     }
 
     override fun getItemCount() = imageList.size

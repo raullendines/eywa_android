@@ -1,3 +1,3 @@
 package com.example.eywa_android.ClassObject
 
-class User (val username : String, val password : String, val image : String, val gender : String, val age : Int, val quizMatchHistory : MutableList<QuizMatch>)
+class User (var username : String, var password : String, var image : String, val gender : String, val age : Int, val quizMatchHistory : MutableList<QuizMatch>)

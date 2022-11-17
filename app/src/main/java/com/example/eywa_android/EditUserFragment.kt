@@ -11,10 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.fragment.app.activityViewModels
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.eywa_android.Adapters.ProfileImageAdapter
+import com.example.eywa_android.ClassObject.User
+import com.example.eywa_android.Home.HomeSharedViewModel
+import com.example.eywa_android.Management.Bcrypt
 import com.example.eywa_android.Management.FilesManager
 
 import com.example.eywa_android.databinding.FragmentEditUserBinding
@@ -25,6 +31,8 @@ class EditUserFragment : Fragment() {
 
     private var _binding : FragmentEditUserBinding? = null
     private val binding get() = _binding!!
+
+    private val sharedViewModel : HomeSharedViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +51,10 @@ class EditUserFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        initUser()
+
+        var path = sharedViewModel.displayUser!!.image
+
         val charactersList = FilesManager.getCharacters(requireContext())
         val imagesList = mutableListOf<String>()
         for (character in charactersList){
@@ -56,7 +68,7 @@ class EditUserFragment : Fragment() {
 
         imageSelectorAdapter.setOnClickListener(){
 
-            val path = imagesList[binding.listProfilePics.getChildAdapterPosition(it)]
+            path = imagesList[binding.listProfilePics.getChildAdapterPosition(it)]
             val imagePath = requireContext().filesDir.path.toString() + "/img/" + path + ".jpeg"
             val bitmap = BitmapFactory.decodeFile(imagePath)
             binding.imageProfile.setImageBitmap(bitmap)
@@ -67,6 +79,48 @@ class EditUserFragment : Fragment() {
 
             displayImageSelector()
 
+        }
+
+        binding.btnSubmit.setOnClickListener(){
+            saveUserData(path = path)
+        }
+
+    }
+
+    private fun initUser(){
+        binding.editUser.setText(sharedViewModel.displayUser!!.username)
+        binding.editPassword.setText(sharedViewModel.displayUser!!.password)
+        val imagePath = requireContext().filesDir.path.toString() + "/img/" + sharedViewModel.displayUser!!.image + ".jpeg"
+        val bitmap = BitmapFactory.decodeFile(imagePath)
+        binding.imageProfile.setImageBitmap(bitmap)
+    }
+
+    private fun saveUserData(path : String){
+        //TODO change password
+
+        val users = FilesManager.getUsers(requireContext())
+        var userIndex = users.indexOf(sharedViewModel.displayUser!!)
+
+        var index = 0
+        var found = false
+        do {
+            if (users[index].username == binding.editUser.text.toString()){
+                found = true
+                Toast.makeText(requireContext(), "This username is already set", Toast.LENGTH_LONG).show()
+            }
+            index++
+
+        } while (index in 0 until users.size && !found)
+        if (!found){
+            var salt : String = Bcrypt.gensalt()
+            var hashedPassword : String = Bcrypt.hashpw(binding.editPassword.text.toString(), salt)
+            var newUser : User = User(binding.editUser.text.toString(),hashedPassword,sharedViewModel.displayUser!!.image,
+                sharedViewModel.displayUser!!.gender,sharedViewModel.displayUser!!.age,
+                sharedViewModel.displayUser!!.quizMatchHistory)
+            users[userIndex] = newUser
+            FilesManager.saveUser(requireContext(), users)
+            Toast.makeText(requireContext(), "Saved", Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.action_editUserFragment_to_userFragment)
         }
 
     }

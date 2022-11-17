@@ -63,6 +63,7 @@
                 android:textColor="@color/grey"
                 />
             <EditText
+                android:id="@+id/editUser"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="Username"
@@ -86,6 +87,7 @@
                 />
 
             <EditText
+                android:id="@+id/editPassword"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="Password"
@@ -164,7 +166,6 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/grid_background"
                 android:numColumns="5"
-                android:padding="5dp"
                 android:layout_margin="5dp"/>
 
 
