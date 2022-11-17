@@ -18,6 +18,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_rankingFragment"
+            app:destination="@id/rankingFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
@@ -36,4 +39,9 @@
         android:id="@+id/difficultyFragment"
         android:name="com.example.eywa_android.DifficultyFragment"
         android:label="DifficultyFragment" />
+    <fragment
+        android:id="@+id/rankingFragment"
+        android:name="com.example.eywa_android.RankingFragment"
+        android:label="fragment_ranking"
+        tools:layout="@layout/fragment_ranking" />
 </navigation>

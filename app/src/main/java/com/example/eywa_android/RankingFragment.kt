@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_ranking.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -57,10 +59,20 @@ class RankingFragment : Fragment() {
         )
 
         val top3 = mutableListOf<UserRanking>()
+        val top4_to_end = mutableListOf<UserRanking>()
+
+
+        val usersRankingAdapter = UserRankingAdapter(requireContext(), top4_to_end)
+        leaderboard_4_to_end.hasFixedSize()
+        leaderboard_4_to_end.layoutManager = LinearLayoutManager(requireContext())
+        leaderboard_4_to_end.adapter = usersRankingAdapter
 
         for (user : UserRanking in ranking){
             if (user.rank == 1 || user.rank == 2 || user.rank == 3) {
                 top3.add(user)
+            }
+            else{
+                top4_to_end.add(user)
             }
         }
 

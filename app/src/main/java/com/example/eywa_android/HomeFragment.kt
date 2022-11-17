@@ -39,7 +39,7 @@ class HomeFragment : Fragment(), Home.mainPage {
         super.onStart()
         val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
         btnPlay.setOnClickListener(){
-            findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_rankingFragment)
         }
     }
 
