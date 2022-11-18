@@ -102,8 +102,12 @@ class QuestionsFragment : Fragment(), QuestionsActivity.pauseFragment {
             contador_timer = object : CountDownTimer( 15000, 1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
+                    //adding the time to a variable to set the points of the game
+                    sharedViewModel.addTime()
+                    //controling the time in case the app stops
                     sharedViewModel.timeLeft = millisUntilFinished / 1000
                     sharedViewModel.timeLeft++
+                    //setting the UI timer
                     binding.txtTimer.text = sharedViewModel.timeLeft.toString()
                 }
 
@@ -124,6 +128,8 @@ class QuestionsFragment : Fragment(), QuestionsActivity.pauseFragment {
             optional_timer = object : CountDownTimer( sharedViewModel.timeLeft * 1000, 1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
+                    //adding the time to a variable to set the points of the game
+                    sharedViewModel.addTime()
                     sharedViewModel.timeLeft = millisUntilFinished / 1000
                     sharedViewModel.timeLeft++
                     binding.txtTimer.text = sharedViewModel.timeLeft.toString()

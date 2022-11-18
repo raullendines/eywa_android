@@ -81,14 +81,16 @@ class LoginFragment : Fragment() {
 
     fun loginFun(users : MutableList<User>){
 
-        var userExists : Boolean = userExist(binding.textUsername.text.toString(),binding.textPassword.text.toString(),users)
+        var userExists = userExist(binding.textUsername.text.toString(),binding.textPassword.text.toString(),users)
         //Omplir amb les dades per contrastar amb el JSON
         if (binding.textUsername.text.isEmpty() || binding.textPassword.text.isEmpty()){
             Toast.makeText(this.activity, "Please fill all camps", Toast.LENGTH_SHORT).show()
         }
         else {
-            if (userExists){
+            if (userExists != -1){
                 val intentHome = Intent(activity, HomeActivity::class.java)
+                val userToSend = users[userExists]
+                intentHome.putExtra("USER", userToSend)
                 startActivity(intentHome)
             }
             else {
@@ -97,20 +99,23 @@ class LoginFragment : Fragment() {
         }
     }
 
-    fun userExist(user : String, password : String, users : MutableList<User>): Boolean {
+    fun userExist(user : String, password : String, users : MutableList<User>): Int {
 
         var existUser = false
         var index = 0
+        var returnIndex = -1
 
         do {
             var hashedPasswordEquals = Bcrypt.checkpw(password, users[index].password)
             if (users[index].username == user && hashedPasswordEquals)
             {
                 existUser = true
+                returnIndex = index
             }
             index++
         }while(!existUser && index < users.size)
-        return existUser
+
+        return returnIndex
     }
 
 

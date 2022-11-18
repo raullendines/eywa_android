@@ -68,17 +68,20 @@ class UserFragment : Fragment() {
         }
         */
 
-        initiateTestUser()
+        //initiateTestUser()
 
         initUser()
 
-        setAchievementGrid()
+        //setAchievementGrid()
 
-        setMatchHistoryGrid()
+        if (!sharedViewModel.displayUser!!.quizMatchHistory.isNullOrEmpty()){
+
+            setMatchHistoryGrid()
+
+            binding.textNoGames.visibility = View.INVISIBLE
+        }
 
         setPercetageGrid()
-
-
 
         binding.buttonEditData.setOnClickListener(){
             //Navigation to the other fragment
@@ -89,6 +92,8 @@ class UserFragment : Fragment() {
             findNavController().popBackStack()
         }
     }
+
+
 
     @SuppressLint("ResourceAsColor")
     private fun setAchievementGrid(){
@@ -101,18 +106,19 @@ class UserFragment : Fragment() {
             QuizAchievement(4, "Score more than 25000pts on animation category", lorem,true),
             QuizAchievement(5, "Score more than 25000pts on comedy category",lorem,true),
             QuizAchievement(6, "Score more than 25000pts on horror category", lorem,true),
-            QuizAchievement(7, "Score more than 25000pts on drama category", lorem,true),
-            QuizAchievement(8, "Be monkey", lorem,true),
-            QuizAchievement(9, "Be God", lorem,true),
-            QuizAchievement(10, "Only for admin", lorem,true),
+            QuizAchievement(7, "Score more than 25000pts on drama category", lorem,false),
+            QuizAchievement(8, "Be monkey", lorem,false),
+            QuizAchievement(9, "Be God", lorem,false),
+            QuizAchievement(10, "Only for admin", lorem,false),
         )
 
         val achievementAdapter = AchievementAdapter(requireContext(), testAchievement)
         binding.listAchievements.layoutManager = GridLayoutManager(requireContext(), 4)
         binding.listAchievements.adapter = achievementAdapter
 
+        /*
         achievementAdapter.setOnClickListener(){
-            testAchievement[binding.listAchievements.getChildAdapterPosition(it)]
+            //testAchievement[binding.listAchievements.getChildAdapterPosition(it)]
 
             exitTransition = MaterialElevationScale(false).apply {
                 duration = resources.getInteger(com.google.android.material.R.integer.material_motion_duration_long_1).toLong()
@@ -134,14 +140,18 @@ class UserFragment : Fragment() {
             )
 
 
+
+
         }
+
+         */
 
 
 
     }
 
     private fun setMatchHistoryGrid(){
-        val matchHistoryAdapter = MatchHistoryAdapter(requireContext(), sharedViewModel.displayUser!!.quizMatchHistory)
+        val matchHistoryAdapter = MatchHistoryAdapter(requireContext(), sharedViewModel.displayUser!!.quizMatchHistory!!)
         binding.listMatchHistory.layoutManager = LinearLayoutManager(requireContext())
         binding.listMatchHistory.adapter = matchHistoryAdapter
     }
@@ -219,23 +229,31 @@ class UserFragment : Fragment() {
             0,
             0
         )
-        //Iterate over the user match history
 
-        for (match in sharedViewModel.displayUser!!.quizMatchHistory){
-            when(match.category){
-                "action" -> percentages[0]++
-                "science fiction" -> percentages[1]++
-                "animation" -> percentages[2]++
-                "comedy" -> percentages[3]++
-                "horror" -> percentages[4]++
-                "drama" -> percentages[5]++
+        if (sharedViewModel.displayUser!!.quizMatchHistory.isNullOrEmpty()){
+            for (index in 0 until percentages.size){
+                returningList.add("0%")
+            }
+        } else{
+            //Iterate over the user match history
+
+            for (match in sharedViewModel.displayUser!!.quizMatchHistory!!){
+                when(match.category){
+                    "action" -> percentages[0]++
+                    "science fiction" -> percentages[1]++
+                    "animation" -> percentages[2]++
+                    "comedy" -> percentages[3]++
+                    "horror" -> percentages[4]++
+                    "drama" -> percentages[5]++
+                }
+            }
+
+            for (index in 0 until percentages.size){
+                percentages[index] = percentages[index] * 100 / sharedViewModel.displayUser!!.quizMatchHistory!!.size
+                returningList.add(percentages[index].toString() + "%")
             }
         }
 
-        for (index in 0 until percentages.size){
-            percentages[index] = percentages[index] * 100 / sharedViewModel.displayUser!!.quizMatchHistory.size
-            returningList.add(percentages[index].toString() + "%")
-        }
 
         return returningList
     }

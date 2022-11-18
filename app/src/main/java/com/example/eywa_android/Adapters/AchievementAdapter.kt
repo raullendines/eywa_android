@@ -3,11 +3,13 @@ package com.example.eywa_android.Adapters
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eywa_android.ClassObject.QuizAchievement
@@ -27,13 +29,11 @@ class AchievementAdapter(private val context: Context,
 
         var imageAchievement : ImageView
         val textTitle : TextView
-        val textDescription : TextView
         val cardId : CardView
 
         init {
             imageAchievement = view.findViewById(R.id.imageAchievement)
             textTitle = view.findViewById(R.id.textTitle)
-            textDescription = view.findViewById(R.id.textDescription)
             cardId = view.findViewById(R.id.startCard)
         }
     }
@@ -53,10 +53,11 @@ class AchievementAdapter(private val context: Context,
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun bindAchievement(holder: ImageViewHolder, image : Int, title : String, description : String){
         holder.imageAchievement.setImageResource(image)
         holder.textTitle.text = title
-        holder.textDescription.text = description
+        holder.cardId.tooltipText = description
 
     }
 

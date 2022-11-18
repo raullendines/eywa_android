@@ -11,6 +11,7 @@ class QuizSharedViewModel : ViewModel() {
     var correctAnswers : Int = 0
     var incorrectAnswers : Int = 0
     var countQuestion : Int = 0
+    var timeUsed = 0
 
 
 
@@ -50,6 +51,10 @@ class QuizSharedViewModel : ViewModel() {
 
     fun changeCurrentQuestionCorrectAnswer(i : Int){
         currentQuestionCorrectAnswer = i
+    }
+
+    fun addTime(){
+        timeUsed++
     }
 
 }

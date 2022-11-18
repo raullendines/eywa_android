@@ -99,12 +99,23 @@ class EditUserFragment : Fragment() {
         //TODO change password
 
         val users = FilesManager.getUsers(requireContext())
-        var userIndex = users.indexOf(sharedViewModel.displayUser!!)
+        var testIndex = 0
+        var userIndex = -1
+        var found = false
+        do{
+            if (sharedViewModel.displayUser!!.username == users[testIndex].username){
+                found = true
+                userIndex = testIndex
+            }
+            testIndex++
+        } while (!found && testIndex in 0 until users.size)
+
+
 
         var index = 0
-        var found = false
+        found = false
         do {
-            if (users[index].username == binding.editUser.text.toString()){
+            if (index != userIndex && users[index].username == binding.editUser.text.toString()){
                 found = true
                 Toast.makeText(requireContext(), "This username is already set", Toast.LENGTH_LONG).show()
             }
@@ -112,14 +123,18 @@ class EditUserFragment : Fragment() {
 
         } while (index in 0 until users.size && !found)
         if (!found){
-            var salt : String = Bcrypt.gensalt()
-            var hashedPassword : String = Bcrypt.hashpw(binding.editPassword.text.toString(), salt)
-            var newUser : User = User(binding.editUser.text.toString(),hashedPassword,sharedViewModel.displayUser!!.image,
+            //var salt : String = Bcrypt.gensalt()
+            //var hashedPassword : String = Bcrypt.hashpw(binding.editPassword.text.toString(), salt)
+            var newUser : User = User(binding.editUser.text.toString(),
+                sharedViewModel.displayUser!!.password,
+                //hashedPassword,
+                path,
                 sharedViewModel.displayUser!!.gender,sharedViewModel.displayUser!!.age,
-                sharedViewModel.displayUser!!.quizMatchHistory)
+                null)
             users[userIndex] = newUser
             FilesManager.saveUser(requireContext(), users)
             Toast.makeText(requireContext(), "Saved", Toast.LENGTH_LONG).show()
+            sharedViewModel.setUserToDisplay(newUser)
             findNavController().navigate(R.id.action_editUserFragment_to_userFragment)
         }
 

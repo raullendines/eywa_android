@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -24,6 +25,8 @@ import java.util.*
 
 class HomeActivity : AppCompatActivity() {
 
+    private val sharedViewModel : HomeSharedViewModel by viewModels()
+
     interface mainPage {
         fun changeLang()
     }
@@ -32,6 +35,10 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        val intent = getIntent()
+        val user = intent.getSerializableExtra("USER") as User
+        sharedViewModel.setUserToDisplay(user)
 
         //MATERIAL CARD USER MENU
 

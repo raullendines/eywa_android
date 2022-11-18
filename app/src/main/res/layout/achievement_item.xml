@@ -8,9 +8,10 @@
         android:transitionName="achievement_card"
         android:transitionGroup="true"
         android:layout_width="100dp"
-        android:layout_height="200dp"
-        app:cardCornerRadius="25dp"
-        android:theme="@style/Theme.Eywa_android">
+        android:layout_height="180dp"
+        app:cardCornerRadius="15dp"
+        android:theme="@style/Theme.Eywa_android"
+        android:layout_margin="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,29 +23,21 @@
             <ImageView
                 android:id="@+id/imageAchievement"
                 android:layout_width="match_parent"
-                android:layout_height="125dp"
+                android:layout_height="100dp"
                 android:src="@drawable/trophy"
                 />
 
             <TextView
                 android:id="@+id/textTitle"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="70dp"
                 android:text="TITLE"
                 android:textColor="@color/purple_eywa"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:textSize="20sp"
+                android:textSize="12sp"
                 />
-            <TextView
-                android:id="@+id/textDescription"
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:text="lorem ipsum aetrohnaeotinhboeno"
-                android:gravity="center"
-                android:textSize="10sp"
-                android:textColor="@color/purple_eywa"
-                />
+
 
         </LinearLayout>
 

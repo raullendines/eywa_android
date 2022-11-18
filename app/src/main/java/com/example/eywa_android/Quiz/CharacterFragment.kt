@@ -13,13 +13,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.eywa_android.ClassObject.Characters
+import com.example.eywa_android.ClassObject.QuizMatch
 import com.example.eywa_android.Management.FilesManager
 import com.example.eywa_android.R
 import com.example.eywa_android.databinding.FragmentCharacterBinding
 import com.example.eywa_android.databinding.FragmentQuestionsBinding
 import java.util.*
 
-private const val SCORE = "SCORE"
 class CharacterFragment : Fragment() {
 
 
@@ -41,6 +41,15 @@ class CharacterFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentCharacterBinding.inflate(inflater, container, false)
+
+
+        val diffPoints = sharedViewModel.correctAnswers * sharedViewModel.difficulty.toInt()
+        val quizScore : Int = (diffPoints * 100) / sharedViewModel.timeUsed
+
+        val match = QuizMatch(sharedViewModel.category, sharedViewModel.timeUsed,
+        sharedViewModel.difficulty.toInt(), quizScore.toString())
+
+
 
         characterList = FilesManager.getCharacters(requireContext())
         val characterToShow = findCharacter(characterList)
