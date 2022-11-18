@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_ranking.*
+import kotlinx.android.synthetic.main.fragment_ranking.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,8 +25,9 @@ class RankingFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +59,9 @@ class RankingFragment : Fragment() {
             UserRanking("Pau",2000,14, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
             UserRanking("Pau",1000,15, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY")
         )
+
+
+
 
         val top3 = mutableListOf<UserRanking>()
         val top4_to_end = mutableListOf<UserRanking>()
@@ -91,6 +96,23 @@ class RankingFragment : Fragment() {
                 txtScoreRank3.text = user.score.toString()
             }
         }
+
+        val categories = mutableListOf<Category>(
+            Category(R.drawable.logo_eywa,"ALL"),
+            Category(R.drawable.logo_eywa,"SCI-FI"),
+            Category(R.drawable.logo_eywa,"ACTION"),
+            Category(R.drawable.logo_eywa,"COMEDY"),
+            Category(R.drawable.logo_eywa,"DRAMA"),
+            Category(R.drawable.logo_eywa,"ANIMATION"),
+            Category(R.drawable.logo_eywa,"HORROR")
+        )
+//        val usersRankingAdapter = UserRankingAdapter(requireContext(), top4_to_end)
+//        leaderboard_4_to_end.hasFixedSize()
+//        leaderboard_4_to_end.layoutManager = LinearLayoutManager(requireContext())
+//        leaderboard_4_to_end.adapter = usersRankingAdapter
+        val categoryAdapter = CategoryAdapter(requireContext(),categories)
+        spinnerCategories.adapter = categoryAdapter
+
     }
 
 }
