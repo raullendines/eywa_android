@@ -41,21 +41,21 @@ class RankingFragment : Fragment() {
         super.onStart()
 
         val ranking = mutableListOf<UserRanking>(
-            UserRanking("Pau",15000,1, R.drawable.logo_eywa),
-            UserRanking("Pau",14000,2, R.drawable.logo_eywa),
-            UserRanking("Pau",13000,3, R.drawable.logo_eywa),
-            UserRanking("Pau",12000,4, R.drawable.logo_eywa),
-            UserRanking("Pau",11000,5, R.drawable.logo_eywa),
-            UserRanking("Pau",10000,6, R.drawable.logo_eywa),
-            UserRanking("Pau",9000,7, R.drawable.logo_eywa),
-            UserRanking("Pau",8000,8, R.drawable.logo_eywa),
-            UserRanking("Pau",7000,9, R.drawable.logo_eywa),
-            UserRanking("Pau",6000,10, R.drawable.logo_eywa),
-            UserRanking("Pau",5000,11, R.drawable.logo_eywa),
-            UserRanking("Pau",4000,12, R.drawable.logo_eywa),
-            UserRanking("Pau",3000,13, R.drawable.logo_eywa),
-            UserRanking("Pau",2000,14, R.drawable.logo_eywa),
-            UserRanking("Pau",1000,15, R.drawable.logo_eywa)
+            UserRanking("Pau",15000,1, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Pau",14000,2, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Pau",13000,3, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Pau",12000,4, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Pau",11000,5, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Marcelinho",10000,6, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Pau",9000,7, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Pau",8000,8, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Pau",7000,9, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Pau",6000,10, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Pau",5000,11, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Pau",4000,12, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Pau",3000,13, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Pau",2000,14, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+            UserRanking("Pau",1000,15, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY")
         )
 
         val top3 = mutableListOf<UserRanking>()
@@ -78,15 +78,15 @@ class RankingFragment : Fragment() {
 
         for (user : UserRanking in top3){
             if (user.rank == 1){
-                imgRank1.setImageResource(user.image)
+                imgRank1.setImageResource(user.userImage)
                 txtUsernameRank1.text = user.username
                 txtScoreRank1.text = user.score.toString()
             }else if(user.rank == 2){
-                imgRank2.setImageResource(user.image)
+                imgRank2.setImageResource(user.userImage)
                 txtUsernameRank2.text = user.username
                 txtScoreRank2.text = user.score.toString()
             }else {
-                imgRank3.setImageResource(user.image)
+                imgRank3.setImageResource(user.userImage)
                 txtUsernameRank3.text = user.username
                 txtScoreRank3.text = user.score.toString()
             }

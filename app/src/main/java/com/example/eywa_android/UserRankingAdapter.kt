@@ -23,6 +23,9 @@ class UserRankingAdapter (private val context: Context,
         var txtRank: TextView
         var imgUsername: ImageView
         var txtUsername: TextView
+        var imgCategory: ImageView
+        var txtCategory: TextView
+        var txtDifficulty : TextView
         var txtScore: TextView
 
         init
@@ -30,6 +33,9 @@ class UserRankingAdapter (private val context: Context,
             txtRank = view.findViewById(R.id.txtRank)
             imgUsername = view.findViewById(R.id.imgUsername)
             txtUsername = view.findViewById(R.id.txtUsername)
+            imgCategory = view.findViewById(R.id.imgCategory)
+            txtCategory= view.findViewById(R.id.txtCategory)
+            txtDifficulty= view.findViewById(R.id.txtDifficulty)
             txtScore = view.findViewById(R.id.txtScore)
         }
     }
@@ -51,8 +57,11 @@ class UserRankingAdapter (private val context: Context,
     fun bindVideogame (holder: UserRankingViewHolder, user: UserRanking)
     {
         holder.txtRank?.text = user.rank.toString()
-        holder.imgUsername?.setImageResource(user.image)
-        holder.txtUsername?.text = user.username
+        holder.imgUsername?.setImageResource(user.userImage)
+        holder.txtUsername?.text = user.username.uppercase()
+        holder.imgCategory?.setImageResource(user.categoryImage)
+        holder.txtCategory?.text = user.category
+        holder.txtDifficulty?.text = user.difficulty
         holder.txtScore?.text = user.score.toString()
 
     }

@@ -1,47 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/fondo_eywa"
+    android:orientation="vertical"
+    app:layoutDescription="@xml/fragment_ranking_scene"
     tools:context=".RankingFragment">
 
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="200px"-->
-<!--            android:gravity="center"-->
-<!--            android:textSize="56dp"-->
-<!--            android:text="LEADERBOARD"-->
-<!--            android:textColor="@color/white"-->
-<!--            />-->
-<!--    </LinearLayout>-->
-
     <LinearLayout
+        android:id="@+id/layoutCrown"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:gravity="center">
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="150px"
-            android:layout_height="150px"
-            android:src="@drawable/monarquia"
-            />
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/monarquia" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layoutTop"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:orientation="horizontal"
-        android:paddingBottom="20dp"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutCrown">
+
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,41 +43,41 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="170dp"
                 android:background="@drawable/circulo_plata"
-                android:layout_marginTop="15dp"
                 android:gravity="center">
+
                 <ImageView
                     android:id="@+id/imgRank2"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
-                    android:src="@drawable/logo_eywa"/>
+                    android:src="@drawable/logo_eywa" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/txtUsernameRank2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="USERNAME"
-                android:textStyle="bold"
-                android:textColor="@color/white"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="30dp"/>
+                android:text="USERNAME"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtScoreRank2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="4000"
-                android:textStyle="bold"
-                android:textColor="@color/white"
                 android:gravity="center"
-                android:textSize="30dp"/>
+                android:text="4000"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -94,36 +87,39 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="170dp"
                 android:background="@drawable/circulo_oro"
                 android:gravity="center">
+
                 <ImageView
                     android:id="@+id/imgRank1"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
-                    android:src="@drawable/logo_eywa"/>
+                    android:src="@drawable/logo_eywa" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/txtUsernameRank1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="USERNAME"
-                android:textStyle="bold"
-                android:textColor="@color/white"
                 android:gravity="center"
-                android:textSize="30dp"/>
+                android:text="USERNAME"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtScoreRank1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="5000"
-                android:textStyle="bold"
-                android:textColor="@color/white"
                 android:gravity="center"
-                android:textSize="30dp"/>
+                android:text="5000"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
 
@@ -133,56 +129,80 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="170dp"
                 android:background="@drawable/circulo_bronce"
-                android:layout_marginTop="30dp"
                 android:gravity="center">
+
                 <ImageView
                     android:id="@+id/imgRank3"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
-                    android:src="@drawable/logo_eywa"/>
+                    android:src="@drawable/logo_eywa" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/txtUsernameRank3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="USERNAME"
-                android:textStyle="bold"
-                android:textColor="@color/white"
                 android:gravity="center"
-                android:textSize="30dp"/>
+                android:text="USERNAME"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtScoreRank3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="3000"
-                android:textStyle="bold"
-                android:textColor="@color/white"
                 android:gravity="center"
-                android:textSize="30dp"/>
+                android:text="3000"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutTop"
+        >
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="50dp"
+            />
+
 
     </LinearLayout>
 
 
     <LinearLayout
+        android:id="@+id/linearLayout11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="100px">
+        android:layout_marginHorizontal="100px"
+        android:background="@drawable/rounded_corners_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutSpinner">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/leaderboard_4_to_end"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corners_white"/>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
 
-
-</LinearLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
