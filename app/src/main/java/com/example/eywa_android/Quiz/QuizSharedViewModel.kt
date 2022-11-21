@@ -2,6 +2,7 @@ package com.example.eywa_android.Quiz
 
 import androidx.lifecycle.ViewModel
 import com.example.eywa_android.ClassObject.Question
+import com.example.eywa_android.ClassObject.User
 
 class QuizSharedViewModel : ViewModel() {
 
@@ -19,6 +20,8 @@ class QuizSharedViewModel : ViewModel() {
     var currentQuestionCorrectAnswer : Int = 0
 
     var timeLeft : Long = 15
+
+    lateinit var user : User
 
 
 

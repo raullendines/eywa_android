@@ -3,6 +3,7 @@ package com.example.eywa_android.Home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.ClassObject.User
 
 class HomeSharedViewModel : ViewModel() {
@@ -24,6 +25,10 @@ class HomeSharedViewModel : ViewModel() {
 
     fun setUserToDisplay(newUser : User){
         displayUser = newUser
+    }
+
+    fun achievementListRefresh(newQuizAchievementList: MutableList<QuizAchievement>){
+        displayUser!!.quizAchievementList = newQuizAchievementList
     }
 
 

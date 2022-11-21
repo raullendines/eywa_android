@@ -72,7 +72,7 @@ class UserFragment : Fragment() {
 
         initUser()
 
-        //setAchievementGrid()
+        setAchievementGrid()
 
         if (!sharedViewModel.displayUser!!.quizMatchHistory.isNullOrEmpty()){
 
@@ -95,57 +95,13 @@ class UserFragment : Fragment() {
 
 
 
-    @SuppressLint("ResourceAsColor")
     private fun setAchievementGrid(){
-        val lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-        val testAchievement = mutableListOf(
-            QuizAchievement(1, "Play a game of each category", lorem,true),
-            QuizAchievement(2, "Score more than 25000pts on action category", lorem,true),
-            QuizAchievement(3, "Score more than 25000pts on scifi category", lorem,true),
-            QuizAchievement(4, "Score more than 25000pts on animation category", lorem,true),
-            QuizAchievement(5, "Score more than 25000pts on comedy category",lorem,true),
-            QuizAchievement(6, "Score more than 25000pts on horror category", lorem,true),
-            QuizAchievement(7, "Score more than 25000pts on drama category", lorem,false),
-            QuizAchievement(8, "Be monkey", lorem,false),
-            QuizAchievement(9, "Be God", lorem,false),
-            QuizAchievement(10, "Only for admin", lorem,false),
-        )
+        //sharedViewModel.achievementListRefresh(QuizAchievement.generateList())
 
-        val achievementAdapter = AchievementAdapter(requireContext(), testAchievement)
+        val achievementAdapter = AchievementAdapter(requireContext(), sharedViewModel.displayUser!!.quizAchievementList)
         binding.listAchievements.layoutManager = GridLayoutManager(requireContext(), 4)
         binding.listAchievements.adapter = achievementAdapter
-
-        /*
-        achievementAdapter.setOnClickListener(){
-            //testAchievement[binding.listAchievements.getChildAdapterPosition(it)]
-
-            exitTransition = MaterialElevationScale(false).apply {
-                duration = resources.getInteger(com.google.android.material.R.integer.material_motion_duration_long_1).toLong()
-            }
-            reenterTransition = MaterialElevationScale(true).apply {
-                duration = resources.getInteger(com.google.android.material.R.integer.material_motion_duration_long_1).toLong()
-            }
-            val detailTransitionName = "achievement_card"
-
-
-            val listView : View = binding.listAchievements.findViewHolderForAdapterPosition(binding.listAchievements.getChildAdapterPosition(it))!!.itemView
-
-            val extras = FragmentNavigatorExtras(it.startCard to "achievement_card")
-            findNavController().navigate(
-                R.id.action_userFragment_to_achievementFragment,
-                null,
-                null,
-                extras
-            )
-
-
-
-
-        }
-
-         */
-
 
 
     }
@@ -213,7 +169,7 @@ class UserFragment : Fragment() {
 
             )
 
-        val user = User("MariKong", "123", "kowalski", "none", 23, matchHistory)
+        val user = User("MariKong", "123", "kowalski", "none", 23, matchHistory, QuizAchievement.generateList())
 
         sharedViewModel.setUserToDisplay(user)
     }

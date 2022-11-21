@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.eywa_android.ClassObject.Characters
+import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.ClassObject.QuizMatch
 import com.example.eywa_android.Management.FilesManager
 import com.example.eywa_android.R
@@ -42,20 +43,38 @@ class CharacterFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentCharacterBinding.inflate(inflater, container, false)
 
+        val difficultyMultiplier : Int = when(sharedViewModel.difficulty){
+            "1" -> 10
+            "2" -> 15
+            "3" -> 20
+            "4" -> 25
+            else -> 10
+        }
 
-        val diffPoints = sharedViewModel.correctAnswers * sharedViewModel.difficulty.toInt()
-        val quizScore : Int = (diffPoints * 100) / sharedViewModel.timeUsed
+        val testUser = sharedViewModel.user
+
+        val diffPoints = (sharedViewModel.correctAnswers * difficultyMultiplier) / 10
+        val quizScore : Int = (diffPoints * 1000) / sharedViewModel.timeUsed
 
         val match = QuizMatch(sharedViewModel.category, sharedViewModel.timeUsed,
         sharedViewModel.difficulty.toInt(), quizScore.toString())
 
-
+        sharedViewModel.user.quizAchievementList = checkAchievement(sharedViewModel.user.quizAchievementList, match)
+        val userList = FilesManager.getUsers(requireContext())
+        var index : Int = -1
+        for (user in userList){
+            if (user.username == sharedViewModel.user.username){
+                index = userList.indexOf(user)
+            }
+        }
+        userList[index] = sharedViewModel.user
+        FilesManager.saveUser(requireContext(), userList)
 
         characterList = FilesManager.getCharacters(requireContext())
         val characterToShow = findCharacter(characterList)
 
         if(characterToShow != null){
-            var score = "$sharedViewModel.correctAnswers/10"
+            var score = quizScore.toString()
             binding.txtViewScore.setText(score)
             val imagePath = requireContext().filesDir.path.toString() + "/img/" + characterToShow!!.image + ".jpeg"
             val bitmap = BitmapFactory.decodeFile(imagePath)
@@ -158,9 +177,50 @@ class CharacterFragment : Fragment() {
         }
 
         binding.btnPlay.setOnClickListener(){
+            viewModelStore.clear()
             val myActivity = this.activity as QuestionsActivity
             myActivity.finishActivity()
         }
 
+    }
+
+    fun checkAchievement(list : MutableList<QuizAchievement>, match : QuizMatch) : MutableList<QuizAchievement>{
+        when(match.category){
+            "action" -> {
+                checkPointAchievement(100, match, list, 2)
+                checkPointAchievement(250, match, list, 8)
+            }
+            "science fiction" -> {
+                checkPointAchievement(100, match, list, 3)
+                checkPointAchievement(250, match, list, 9)
+            }
+            "animation" -> {
+                checkPointAchievement(100, match, list, 4)
+                checkPointAchievement(250, match, list, 10)
+            }
+            "comedy" -> {
+                checkPointAchievement(100, match, list, 5)
+                checkPointAchievement(250, match, list, 11)
+            }
+            "horror" -> {
+                checkPointAchievement(100, match, list, 6)
+                checkPointAchievement(250, match, list, 12)
+            }
+            "drama" -> {
+                checkPointAchievement(100, match, list, 7)
+                checkPointAchievement(250, match, list, 13)
+            }
+        }
+
+        return list
+    }
+
+    private fun checkPointAchievement(points : Int, match: QuizMatch, list: MutableList<QuizAchievement>, achievementId : Int) {
+
+        if (!list[achievementId].owned){
+            if (match.points.toInt() > points){
+                list[achievementId].owned = true
+            }
+        }
     }
 }

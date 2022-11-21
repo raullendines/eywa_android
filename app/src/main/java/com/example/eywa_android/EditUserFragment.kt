@@ -18,6 +18,7 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.eywa_android.Adapters.ProfileImageAdapter
+import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.ClassObject.User
 import com.example.eywa_android.Home.HomeSharedViewModel
 import com.example.eywa_android.Management.Bcrypt
@@ -130,12 +131,14 @@ class EditUserFragment : Fragment() {
                 //hashedPassword,
                 path,
                 sharedViewModel.displayUser!!.gender,sharedViewModel.displayUser!!.age,
-                null)
+                null,
+                sharedViewModel.displayUser!!.quizAchievementList)
             users[userIndex] = newUser
             FilesManager.saveUser(requireContext(), users)
             Toast.makeText(requireContext(), "Saved", Toast.LENGTH_LONG).show()
             sharedViewModel.setUserToDisplay(newUser)
-            findNavController().navigate(R.id.action_editUserFragment_to_userFragment)
+            findNavController().popBackStack()
+            //findNavController().navigate(R.id.action_editUserFragment_to_userFragment)
         }
 
     }

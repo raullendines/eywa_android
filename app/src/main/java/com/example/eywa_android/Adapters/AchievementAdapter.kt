@@ -48,17 +48,14 @@ class AchievementAdapter(private val context: Context,
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val image = achievementList[position].image
         val title = achievementList[position].title
-        val description = achievementList[position].description
-        bindAchievement(holder, image, title, description)
+        bindAchievement(holder, image, title)
 
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun bindAchievement(holder: ImageViewHolder, image : Int, title : String, description : String){
+    fun bindAchievement(holder: ImageViewHolder, image : Int, title : String){
         holder.imageAchievement.setImageResource(image)
         holder.textTitle.text = title
-        holder.cardId.tooltipText = description
-
     }
 
     override fun getItemCount() = achievementList.size

@@ -9,11 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.eywa_android.*
 import com.example.eywa_android.ClassObject.Question
+import com.example.eywa_android.ClassObject.User
 import com.example.eywa_android.Management.FilesManager
 import com.example.eywa_android.Quiz.QuestionsActivity
 import com.example.eywa_android.databinding.FragmentDifficultyBinding
@@ -152,7 +155,11 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
                     }
                 }
 
+                val myActivity = this.activity as HomeActivity
+
+
                 intentQuestion.putParcelableArrayListExtra(QuestionsActivity.Questions.QUESTIONS, questionsReturn as ArrayList<Question>)
+                intentQuestion.putExtra(QuestionsActivity.Questions.USER, sharedViewModel.displayUser!!)
 
                 startActivity(intentQuestion)
             } else{

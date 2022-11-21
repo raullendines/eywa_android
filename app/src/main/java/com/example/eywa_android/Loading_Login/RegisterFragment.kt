@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.Management.Bcrypt
 import com.example.eywa_android.Management.FilesManager
 import com.example.eywa_android.R
@@ -121,7 +122,7 @@ class RegisterFragment : Fragment() {
                 if (binding.editPassword.text.toString().equals(binding.repeatPassword.text.toString())){
                     var salt : String = Bcrypt.gensalt()
                     var hashedPassword : String = Bcrypt.hashpw(binding.editPassword.text.toString(), salt)
-                    var newUser : User = User(binding.LblUsernameRegister.text.toString(),hashedPassword,"foto.png","male",18, mutableListOf())
+                    var newUser : User = User(binding.LblUsernameRegister.text.toString(),hashedPassword,"foto.png","male",18, mutableListOf(), QuizAchievement.generateList())
                     users.add(users.size-1, newUser)
                     FilesManager.saveUser(requireContext(), users)
                     Toast.makeText(this.activity, "User registered", Toast.LENGTH_SHORT).show()

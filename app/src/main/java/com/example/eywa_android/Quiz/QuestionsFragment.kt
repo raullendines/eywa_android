@@ -619,7 +619,7 @@ class QuestionsFragment : Fragment(), QuestionsActivity.pauseFragment {
                 )
                 binding.txtTitle.setText(R.string.category_comedy)
             }
-            "science Fiction" -> {
+            "science fiction" -> {
                 binding.backgroundLayout.setBackgroundColor(
                     ContextCompat.getColor(
                         requireContext(),
