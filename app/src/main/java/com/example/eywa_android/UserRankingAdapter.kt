@@ -13,7 +13,6 @@ class UserRankingAdapter (private val context: Context,
                           private val ranking: MutableList<UserRanking>) :
     RecyclerView.Adapter<UserRankingAdapter.UserRankingViewHolder>(),
     View.OnClickListener
-
 {
     private val layout = R.layout.layout_ranking
     private var clickListener: View.OnClickListener? = null
