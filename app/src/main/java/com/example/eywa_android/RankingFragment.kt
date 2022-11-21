@@ -125,6 +125,11 @@ class RankingFragment : Fragment() {
                 when(category.categoryName){
                     "ALL" -> {
                         top3_filtered = top3
+                        top4ToEndFiltered = top4_to_end
+                        for(position in ranking.indices){
+                            ranking[position].rank = position + 1
+                        }
+
                         for (user : UserRanking in top3){
                             if (user.rank == 1){
                                 imgRank1.setImageResource(user.userImage)
@@ -140,7 +145,7 @@ class RankingFragment : Fragment() {
                                 txtScoreRank3.text = user.score.toString()
                             }
                         }
-                        top4ToEndFiltered = top4_to_end
+
                         val usersRankingAdapter = UserRankingAdapter(requireContext(), top4ToEndFiltered)
                         leaderboard_4_to_end.hasFixedSize()
                         leaderboard_4_to_end.layoutManager = LinearLayoutManager(requireContext())
@@ -192,19 +197,36 @@ class RankingFragment : Fragment() {
             }
         }
 
+        imgRank1.setImageResource(R.drawable.logo_eywa)
+        txtUsernameRank1.text = ""
+        txtScoreRank1.text = ""
+
+        imgRank2.setImageResource(R.drawable.logo_eywa)
+        txtUsernameRank2.text = ""
+        txtScoreRank2.text = ""
+
+        imgRank3.setImageResource(R.drawable.logo_eywa)
+        txtUsernameRank3.text = ""
+        txtScoreRank3.text = ""
+
+
         for (position in top3_filtered.indices){
-            if (position == 0){
-                imgRank1.setImageResource(top3_filtered[position].userImage)
-                txtUsernameRank1.text = top3_filtered[position].username
-                txtScoreRank1.text = top3_filtered[position].score.toString()
-            }else if(position == 1){
-                imgRank2.setImageResource(top3_filtered[position].userImage)
-                txtUsernameRank2.text = top3_filtered[position].username
-                txtScoreRank2.text = top3_filtered[position].score.toString()
-            }else {
-                imgRank3.setImageResource(top3_filtered[position].userImage)
-                txtUsernameRank3.text = top3_filtered[position].username
-                txtScoreRank3.text = top3_filtered[position].score.toString()
+            when(position){
+                0 -> {
+                    imgRank1.setImageResource(top3_filtered[position].userImage)
+                    txtUsernameRank1.text = top3_filtered[position].username
+                    txtScoreRank1.text = top3_filtered[position].score.toString()
+                }
+                1 -> {
+                    imgRank2.setImageResource(top3_filtered[position].userImage)
+                    txtUsernameRank2.text = top3_filtered[position].username
+                    txtScoreRank2.text = top3_filtered[position].score.toString()
+                }
+                2 -> {
+                    imgRank3.setImageResource(top3_filtered[position].userImage)
+                    txtUsernameRank3.text = top3_filtered[position].username
+                    txtScoreRank3.text = top3_filtered[position].score.toString()
+                }
             }
         }
 
