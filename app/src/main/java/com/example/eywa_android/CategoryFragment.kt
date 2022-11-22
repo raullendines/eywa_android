@@ -1,22 +1,17 @@
 package com.example.eywa_android
 
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.ScaleAnimation
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
 
-class CategoryFragment : Fragment(), Home.mainPage{
+class CategoryFragment : Fragment(), HomeActivity.mainPage{
 
     private var categoryToReturn: String = "Action"
     private var buttonSelected = 0

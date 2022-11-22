@@ -1,31 +1,22 @@
 package com.example.eywa_android
 
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.core.os.ConfigurationCompat
-import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentResultListener
-import androidx.navigation.fragment.findNavController
-import java.nio.file.Files
 import java.util.*
-import java.util.function.Predicate
 
 private const val CATEGORY = "categorySelected"
 private const val DIFFICULTY = "difficulty"
 
-class DifficultyFragment : Fragment(), Home.mainPage{
+class DifficultyFragment : Fragment(), HomeActivity.mainPage{
 
     private var category: String? = "Action"
     private var difficultySelected: Int = 0

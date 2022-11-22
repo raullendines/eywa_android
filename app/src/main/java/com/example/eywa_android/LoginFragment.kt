@@ -85,7 +85,7 @@ class LoginFragment : Fragment() {
         }
         else {
             if (userExists){
-                val intentHome = Intent(activity, Home::class.java)
+                val intentHome = Intent(activity, HomeActivity::class.java)
                 startActivity(intentHome)
             }
             else {

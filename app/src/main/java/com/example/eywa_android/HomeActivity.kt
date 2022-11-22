@@ -1,7 +1,6 @@
 package com.example.eywa_android
 
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.transition.Transition
 import android.transition.TransitionManager
@@ -10,18 +9,15 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import androidx.navigation.findNavController
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.transition.MaterialContainerTransform
-import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 
 
-class Home : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     interface mainPage {
         fun changeLang()
@@ -230,7 +226,7 @@ class Home : AppCompatActivity() {
 
         val myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
         val myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
-        changeFragmentLang(myFragment as Home.mainPage)
+        changeFragmentLang(myFragment as HomeActivity.mainPage)
 
 
     }

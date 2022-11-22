@@ -1,21 +1,18 @@
 package com.example.eywa_android
 
 import android.os.Bundle
-import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.view.animation.ScaleAnimation
 import android.widget.Button
-import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_home.*
+
 //import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment(), Home.mainPage {
+class HomeFragment : Fragment(), HomeActivity.mainPage {
 
 
 
@@ -37,16 +34,17 @@ class HomeFragment : Fragment(), Home.mainPage {
 
     override fun onStart() {
         super.onStart()
-        val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
-        btnPlay.setOnClickListener(){
+        layoutPlay.setOnClickListener(){
+            findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
+        }
+        layoutLeaderboard.setOnClickListener(){
             findNavController().navigate(R.id.action_homeFragment_to_rankingFragment)
         }
     }
 
     override fun changeLang() {
+        //TODO
 
-        val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
-        btnPlay.setText(R.string.btnPlay)
 
     }
 

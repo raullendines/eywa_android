@@ -18,7 +18,7 @@
             android:exported="true"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Home"
+            android:name=".HomeActivity"
             android:exported="true"
             android:screenOrientation="landscape" />
         <activity
