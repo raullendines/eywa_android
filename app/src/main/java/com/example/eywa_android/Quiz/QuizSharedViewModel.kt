@@ -23,7 +23,12 @@ class QuizSharedViewModel : ViewModel() {
 
     lateinit var user : User
 
+    var hasAchievementUnlocked = false
 
+
+    fun achievementUnlocked(){
+        hasAchievementUnlocked = true
+    }
 
     fun initQuestions(newQuestions : MutableList<Question>){
         questions = newQuestions

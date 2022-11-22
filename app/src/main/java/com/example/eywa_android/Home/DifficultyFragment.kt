@@ -1,7 +1,10 @@
 package com.example.eywa_android.Home
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,9 +12,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultRegistry
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.eywa_android.*
@@ -20,7 +27,9 @@ import com.example.eywa_android.ClassObject.User
 import com.example.eywa_android.Management.FilesManager
 import com.example.eywa_android.Quiz.QuestionsActivity
 import com.example.eywa_android.databinding.FragmentDifficultyBinding
+import java.io.Serializable
 import java.util.*
+import kotlin.collections.ArrayList
 
 private const val CATEGORY = "categorySelected"
 private const val DIFFICULTY = "difficulty"
@@ -35,11 +44,34 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
     private var _binding : FragmentDifficultyBinding? = null
     private val binding get() = _binding!!
 
+//    class ReturnUser : ActivityResultContract<User, Uri?>() {
+//        override fun createIntent(context: Context, questions: ArrayList<Question>, user: User) =
+//
+//            Intent().apply {
+//                putParcelableArrayListExtra(QuestionsActivity.Questions.QUESTIONS, questions)
+//                putExtra(QuestionsActivity.Questions.USER, user)
+//            }
+//
+//        override fun parseResult(resultCode: Int, result: Intent?) : Uri? {
+//            if (resultCode != Activity.RESULT_OK) {
+//                return null
+//            }
+//            return result?.getParcelableExtra(QuestionsActivity.Questions.USER)
+//        }
+//
+//
+//    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val intent = result.data
+                val newUser = intent!!.getSerializableExtra(QuestionsActivity.Questions.USER) as User
+                sharedViewModel.setUserToDisplay(newUser)
+                // Handle the Intent
+            }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -145,7 +177,7 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
                 if (questionsReturn.size != 10){
 
                     val noQ = Question("100000", "No hay suficientes preguntas",
-                        category!!, difficulty!!,
+                        category, difficulty,
                         "This is the correct one",
                         arrayOf("Not this one", "Not this one", "Not this one")
                     )
@@ -161,7 +193,9 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
                 intentQuestion.putParcelableArrayListExtra(QuestionsActivity.Questions.QUESTIONS, questionsReturn as ArrayList<Question>)
                 intentQuestion.putExtra(QuestionsActivity.Questions.USER, sharedViewModel.displayUser!!)
 
-                startActivity(intentQuestion)
+                startForResult.launch(intentQuestion)
+
+                //startActivity(intentQuestion)
             } else{
                 Toast.makeText(requireContext(), "Drama questions not supported", Toast.LENGTH_LONG).show()
             }

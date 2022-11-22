@@ -24,6 +24,7 @@ import java.util.*
 class HomeActivity : AppCompatActivity() {
 
     private val sharedViewModel : HomeSharedViewModel by viewModels()
+    private var userLoaded = false
 
     interface mainPage {
         fun changeLang()
@@ -34,9 +35,12 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val intent = getIntent()
-        val user = intent.getSerializableExtra("USER") as User
-        sharedViewModel.setUserToDisplay(user)
+        if (!userLoaded){
+            val intent = getIntent()
+            val user = intent.getSerializableExtra("USER") as User
+            sharedViewModel.setUserToDisplay(user)
+        }
+        userLoaded = true
 
         //MATERIAL CARD USER MENU
 
