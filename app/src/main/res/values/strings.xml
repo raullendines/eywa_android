@@ -39,11 +39,11 @@
     <string name="register_login">Login!</string>
     <string name="register_btn">register</string>
 
-    
 
     <string name="press_anywhere_to_continue">PRESS ANYWHERE TO CONTINUE</string>
     <string name="eywa_team">EYWA TEAM</string>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
