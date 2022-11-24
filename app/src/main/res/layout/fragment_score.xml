@@ -53,16 +53,17 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/imgCorrectAnswers"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_marginStart="20dp"
-                            android:src="@drawable/logo_eywa"/>
+                            android:src="@drawable/circle_ok"/>
 
                         <TextView
+                            android:id="@+id/txtNumberCorrects"
                             android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
                             android:text="9"
                             android:textSize="50dp"
@@ -77,16 +78,17 @@
                         android:background="@drawable/rounded_corners_yellow">
 
                         <ImageView
+                            android:id="@+id/imgIncorrectAnswers"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_marginStart="20dp"
-                            android:src="@drawable/logo_eywa"/>
+                            android:src="@drawable/circle_bad"/>
 
                         <TextView
+                            android:id="@+id/txtNumberIncorrects"
                             android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
                             android:text="9"
                             android:textSize="50dp"
@@ -99,7 +101,28 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/circle_todo"
-                    android:layout_margin="10dp">
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtScoreTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="SCORE"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="30dp"
+                        android:paddingTop="40dp"
+                        android:textAlignment="center"/>
+
+                    <TextView
+                        android:id="@+id/txtNumberScore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="4000"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="50dp"
+                        android:textAlignment="center"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -115,18 +138,18 @@
                         android:layout_marginVertical="20dp">
 
                         <ImageView
+                            android:id="@+id/imgClockTime"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_marginStart="20dp"
-                            android:src="@drawable/logo_eywa"/>
+                            android:src="@drawable/timer_icon"/>
 
                         <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="10dp"
-                            android:text="9"
+                            android:id="@+id/txtNumberSeconds"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:text="45'"
                             android:textSize="50dp"
                             android:gravity="center"/>
 
@@ -139,6 +162,7 @@
                         android:background="@drawable/rounded_corners_yellow">
 
                         <ImageView
+                            android:id="@+id/imgCategoryScore"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
@@ -146,12 +170,11 @@
                             android:src="@drawable/logo_eywa"/>
 
                         <TextView
-                            android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="10dp"
-                            android:text="9"
-                            android:textSize="50dp"
+                            android:id="@+id/txtDifficultyScore"
+                            android:layout_width="70dp"
+                            android:layout_height="match_parent"
+                            android:text="EASY"
+                            android:textSize="25dp"
                             android:gravity="center"/>
 
                     </LinearLayout>
@@ -194,6 +217,7 @@
         android:background="@drawable/rounded_corners_white">
 
         <ListView
+            android:id="@+id/listUsersScore"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
@@ -201,6 +225,32 @@
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_corners_yellow"
+            android:text="LEADERBOARD"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_marginRight="50dp"/>
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_corners_yellow"
+            android:text="@string/play_again"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+
+
+    </LinearLayout>
 
 
 </LinearLayout>
