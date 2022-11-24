@@ -1,7 +1,10 @@
 <resources>
 
     <string name="app_name">EYWA</string>
-    <string name="intro">(Sujeto a cambios) Esta aplicación esta pensada para construir una buena cultura cinefila de los socios de Citizen Kane. Mediante juegos interactivos podrás aprender y encontrar recomendaciones de películas de culto.</string>
+    <string name="intro">Bienvenido a EYWA, somos una empresa dedicada a crear productos con un propósito educativo y divulgativo. Por este motivo, hemos decidido colaborar con Citizen Kane para daros a los clientes una experiencia única e interactiva con el mundo del cine y, para ello hemos creado un juego interactivo. El propósito de este juego es poner a prueba tus conocimientos de cine y que aprendas más sobre este gran mundo. Te deseamos que disfrutes del juego.
+										                                                            EYWA
+</string>
+
     <string name="category_language">ESP</string>
     <string name="category_title">CATEGORÍAS</string>
     <string name="category_action">Acción</string>
@@ -25,12 +28,14 @@
     <string name="login_title">Login</string>
     <string name="password">Contraseña</string>
     <string name="login_new">¿Nuevo aqui?</string>
-    <string name="login_create">¡Crea una cuenta!</string>
+    <string name="login_create">!Crea una cuenta!</string>
     <string name="login_btn">Login</string>
     <string name="register_title">Registro</string>
     <string name="password_repeat">Confirmar contraseña</string>
     <string name="register_have">¿Tienes una cuenta?</string>
     <string name="register_login">Login!</string>
     <string name="register_btn">registrate</string>
+    <string name="press_anywhere_to_continue">PRESIONA EN CUALQUIER LUGAR PARA CONTINUAR</string>
+    <string name="eywa_team">EYWA TEAM</string>
 
 </resources>

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:tag="homeFragment"
-        android:name="com.example.eywa_android.Home.HomeFragment"
+        android:name="com.example.eywa_android.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -25,10 +25,14 @@
             app:exitAnim="@anim/slide_out_bottom"
             app:popEnterAnim="@anim/slide_in_bottom"
             app:popExitAnim="@anim/slide_out_top"/>
+		<action
+            android:id="@+id/action_homeFragment_to_rankingFragment"
+            app:destination="@id/rankingFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.example.eywa_android.Home.CategoryFragment"
+        android:name="com.example.eywa_android.CategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category" >
         <action
@@ -71,4 +75,11 @@
         android:name="com.example.eywa_android.EditUserFragment"
         android:label="fragment_edit_user"
         tools:layout="@layout/fragment_edit_user" />
+
+    <fragment
+        android:id="@+id/rankingFragment"
+        android:name="com.example.eywa_android.RankingFragment"
+        android:label="fragment_ranking"
+        tools:layout="@layout/fragment_ranking" />
+
 </navigation>

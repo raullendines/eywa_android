@@ -1,4 +1,4 @@
-package com.example.eywa_android.Loading_Login
+package com.example.eywa_android
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,19 +11,9 @@ import android.widget.*
 import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
-import com.example.eywa_android.Management.Bcrypt
-import com.example.eywa_android.Management.FilesManager
-import com.example.eywa_android.Home.HomeActivity
-import com.example.eywa_android.R
-import com.example.eywa_android.ClassObject.User
-import com.example.eywa_android.databinding.FragmentLoginBinding
 
 
 class LoginFragment : Fragment() {
-
-
-    private var _binding : FragmentLoginBinding? = null
-    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,41 +28,47 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
-
-        return binding.root
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_login, container, false)
 
     }
 
     override fun onStart() {
         super.onStart()
+        var img_on = requireView().findViewById<ImageView>(R.id.btnShow)
+        var img_off = requireView().findViewById<ImageView>(R.id.btnHide)
+        var password = requireView().findViewById<EditText>(R.id.textPassword)
+        var btnLogin = requireView().findViewById<Button>(R.id.btnLogin)
+        var btnRegister = requireView().findViewById<TextView>(R.id.btnRegisterLogin)
 
         var users = FilesManager.getUsers(this.requireContext())
 
-        binding.btnRegisterLogin.setOnClickListener(){
+        btnRegister.setOnClickListener(){
             //change fragments
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
-        binding.btnLogin.setOnClickListener(){
+        btnLogin.setOnClickListener(){
            loginFun(users)
         }
 
         //Turn on password
-        binding.btnShow.setOnClickListener {
-            if (binding.btnShow.isVisible){
-                binding.btnShow.visibility = View.INVISIBLE
-                binding.btnHide.visibility = View.VISIBLE
-                binding.textPassword.setInputType(InputType.TYPE_CLASS_TEXT)
+        img_on.setOnClickListener {
+            if (img_on.isVisible){
+                img_on.visibility = View.INVISIBLE
+                img_off.visibility = View.VISIBLE
+                password.setInputType(InputType.TYPE_CLASS_TEXT);
+                println("on")
             }
         }
 
         //Turn off password
-        binding.btnHide.setOnClickListener {
-            if (binding.btnHide.isVisible){
-                binding.btnShow.visibility =View.VISIBLE
-                binding.btnHide.visibility =View.INVISIBLE
-                binding.textPassword.setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+        img_off.setOnClickListener {
+            if (img_off.isVisible){
+                img_on.visibility =View.VISIBLE
+                img_off.visibility =View.INVISIBLE
+                password.setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+                println("off")
             }
         }
 
@@ -82,8 +78,9 @@ class LoginFragment : Fragment() {
     fun loginFun(users : MutableList<User>){
 
         var userExists = userExist(binding.textUsername.text.toString(),binding.textPassword.text.toString(),users)
+
         //Omplir amb les dades per contrastar amb el JSON
-        if (binding.textUsername.text.isEmpty() || binding.textPassword.text.isEmpty()){
+        if (username.text.isEmpty() || password.text.isEmpty()){
             Toast.makeText(this.activity, "Please fill all camps", Toast.LENGTH_SHORT).show()
         }
         else {
@@ -106,7 +103,7 @@ class LoginFragment : Fragment() {
         var returnIndex = -1
 
         do {
-            var hashedPasswordEquals = Bcrypt.checkpw(password, users[index].password)
+            var hashedPasswordEquals = Bcrypt.checkpw(password,users[index].password)
             if (users[index].username == user && hashedPasswordEquals)
             {
                 existUser = true

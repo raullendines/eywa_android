@@ -1,4 +1,4 @@
-package com.example.eywa_android.ClassObject
+package com.example.eywa_android
 
 import android.os.Parcel
 import android.os.Parcelable

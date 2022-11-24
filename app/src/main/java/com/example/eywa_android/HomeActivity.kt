@@ -1,7 +1,6 @@
-package com.example.eywa_android.Home
+package com.example.eywa_android
 
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.transition.Transition
 import android.transition.TransitionManager
@@ -61,7 +60,6 @@ class HomeActivity : AppCompatActivity() {
             hideUserMenu(btnUser)
         }
         lougoutLayout.setOnClickListener(){
-            finish()
             hideUserMenu(btnUser)
         }
 
@@ -80,6 +78,9 @@ class HomeActivity : AppCompatActivity() {
         val espanyolLayout = findViewById<LinearLayout>(R.id.espanyolLayout)
         val englishLayout = findViewById<LinearLayout>(R.id.englishLayout)
 
+        var myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
+        var myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
+
         catalanLayout.setOnClickListener(){
             buttonChangeLang("ca")
         }
@@ -91,6 +92,7 @@ class HomeActivity : AppCompatActivity() {
         englishLayout.setOnClickListener(){
             buttonChangeLang("en")
         }
+
 
         //SET LANGUAGE BUTTON AND TEXT
         setLangTextImage()
@@ -137,6 +139,7 @@ class HomeActivity : AppCompatActivity() {
                 textLang.setText("ENG")
             }
         }
+
     }
 
     private fun displayLangMenu(selectLang : LinearLayout){
@@ -285,7 +288,7 @@ class HomeActivity : AppCompatActivity() {
 
         val myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
         val myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
-        changeFragmentLang(myFragment as mainPage)
+        changeFragmentLang(myFragment as HomeActivity.mainPage)
 
 
     }

@@ -55,7 +55,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/logo_eywa"
-                android:scaleType="centerCrop"
                 />
         </LinearLayout>
 

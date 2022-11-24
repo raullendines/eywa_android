@@ -3,15 +3,15 @@
 <item>
     <shape android:shape="oval">
         <solid android:background="@drawable/logo_eywa"/>
-        <stroke android:width="1dp" android:color="#000000" />
+        <stroke android:width="3dp" android:color="#B1BCBE" />
         <corners android:radius="5000dp"/>
         <padding android:left="0dp" android:top="0dp" android:right="0dp" android:bottom="0dp" />
     </shape>
 </item>
 <item
     android:drawable="@drawable/logo_eywa"
-    android:width="30dp"
-    android:height="30dp"
-    android:gravity="center"
-    />
+    android:width="50dp"
+    android:height="50dp"
+    android:right="10dp"
+    android:gravity="center"/>
 </layer-list>

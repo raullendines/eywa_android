@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">EYWA</string>
-    <string name="intro">(Susceptible to change) This application is designed to build a good cinephile culture of Citizen Kane partners. Through interactive games you can learn and find recommendations for cult movies.</string>
+
     <string name="category_language">ENG</string>
     <string name="category_title">CATEGORIES</string>
+
+    <string name="intro">Welcome to EYWA, we are a company dedicated to creating products with an educational and informative purpose. For this reason, we have decided to collaborate with Citizen Kane to give customers a unique and interactive experience with the world of cinema and, for this, we have created an interactive game. The purpose of this game is to test your knowledge of cinema and learn more about this great world. We wish you enjoy the game.</string>
+
     <string name="category_action">Action</string>
     <string name="category_scifi">Science fiction</string>
     <string name="category_comedy">Comedy</string>
@@ -17,8 +20,8 @@
     <string name="difficulty">DIFFICULTY</string>
     <string name="easy">EASY</string>
     <string name="medium">MEDIUM</string>
-    <string name="hard">HARD</string>
-    <string name="legend">LEGEND</string>
+    <string name="hard">hard</string>
+    <string name="legend">legend</string>
 
     <string name="loading">Loading</string>
 
@@ -34,6 +37,12 @@
     <string name="register_have">You have an account?</string>
     <string name="register_login">Login!</string>
     <string name="register_btn">register</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="press_anywhere_to_continue">PRESS ANYWHERE TO CONTINUE</string>
+    <string name="eywa_team">EYWA TEAM</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

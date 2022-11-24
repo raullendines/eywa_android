@@ -23,9 +23,7 @@
     <color name="green">#01B225</color>
     <color name="blue">#0361A3</color>
     <color name="red">#EB080E</color>
-    <color name="green_easy">#7ED957</color>
-    <color name="orange_medium">#FF914D</color>
-    <color name="yellow_legend">#F2FD19</color>
+    <color name="transparent">#00FFFFFF</color>
 
 
 </resources>

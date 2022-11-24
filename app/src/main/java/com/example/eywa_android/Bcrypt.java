@@ -1,4 +1,4 @@
-package com.example.eywa_android.Management;
+package com.example.eywa_android;
 
 
 import java.io.UnsupportedEncodingException;
