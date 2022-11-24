@@ -4,12 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.1" />
-        <entry key="..\:/Users/PauFeo/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_character.xml" value="0.13634488448844884" />
-        <entry key="..\:/Users/PauFeo/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_home.xml" value="0.16336633663366337" />
-        <entry key="..\:/Users/PauFeo/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_ranking.xml" value="0.1" />
-        <entry key="..\:/Users/PauFeo/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_score.xml" value="0.16336633663366337" />
-        <entry key="..\:/Users/PauFeo/Documents/GitHub/eywa_android/app/src/main/res/layout/layout_ranking.xml" value="0.16336633663366337" />
-        <entry key="..\:/Users/PauFeo/Documents/GitHub/eywa_android/app/src/main/res/layout/spinner_category.xml" value="0.16336633663366337" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/drawable/circle_bad.xml" value="0.298" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/drawable/circle_current.xml" value="0.298" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/drawable/circle_ok.xml" value="0.298" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/drawable/circle_todo.xml" value="0.298" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.2295" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.2295" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/drawable/rounded_corners_white.xml" value="0.3055" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/drawable/rounded_corners_yellow.xml" value="0.3055" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/achievement_item.xml" value="0.18333333333333332" />
@@ -30,7 +30,7 @@
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_loading.xml" value="0.13411458333333334" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_login.xml" value="0.5" />
-        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_questions.xml" value="0.12447916666666667" />
+        <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_questions.xml" value="0.18" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_register.xml" value="0.1" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_splash.xml" value="0.13411458333333334" />
         <entry key="..\:/Users/cep.CEPNET0/Documents/GitHub/eywa_android/app/src/main/res/layout/fragment_start_quiz.xml" value="0.1234375" />
