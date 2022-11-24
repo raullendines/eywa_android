@@ -26,7 +26,7 @@ import kotlin.collections.ArrayList
 private const val SCORE = "SCORE"
 
 
-class QuestionsFragment : Fragment(), QuestionsActivity.pauseFragment {
+class QuestionsFragment : Fragment() {
 
 
     private var _binding : FragmentQuestionsBinding? = null
@@ -202,12 +202,12 @@ class QuestionsFragment : Fragment(), QuestionsActivity.pauseFragment {
     }
 
 
-    override fun onPauseFragment() {
-        hasBeenPaused = true
-        if(sharedViewModel.timeLeft > 1){
-            stopBothTimers()
-        }
-    }
+//    override fun onPauseFragment() {
+//        hasBeenPaused = true
+//        if(sharedViewModel.timeLeft > 1){
+//            stopBothTimers()
+//        }
+//    }
 
     override fun onStop() {
         super.onStop()

@@ -16,7 +16,8 @@ import com.example.eywa_android.ClassObject.Characters
 import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.ClassObject.QuizMatch
 import com.example.eywa_android.Home.HomeActivity
-import com.example.eywa_android.Management.FilesManager
+import com.example.eywa_android.Utility.FilesManager
+
 import com.example.eywa_android.databinding.FragmentCharacterBinding
 import java.util.*
 

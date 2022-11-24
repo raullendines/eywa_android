@@ -1,4 +1,4 @@
-package com.example.eywa_android
+package com.example.eywa_android.Loading_Login
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,9 +11,19 @@ import android.widget.*
 import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import com.example.eywa_android.Home.HomeActivity
+import com.example.eywa_android.R
+import com.example.eywa_android.ClassObject.User
+import com.example.eywa_android.Utility.Bcrypt
+import com.example.eywa_android.Utility.FilesManager
+import com.example.eywa_android.databinding.FragmentDifficultyBinding
+import com.example.eywa_android.databinding.FragmentLoginBinding
 
 
 class LoginFragment : Fragment() {
+
+    private var _binding : FragmentLoginBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +38,10 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+
+        return binding.root
+
 
     }
 
@@ -80,7 +92,7 @@ class LoginFragment : Fragment() {
         var userExists = userExist(binding.textUsername.text.toString(),binding.textPassword.text.toString(),users)
 
         //Omplir amb les dades per contrastar amb el JSON
-        if (username.text.isEmpty() || password.text.isEmpty()){
+        if (binding.textUsername.text.isEmpty() || binding.textPassword.text.isEmpty()){
             Toast.makeText(this.activity, "Please fill all camps", Toast.LENGTH_SHORT).show()
         }
         else {

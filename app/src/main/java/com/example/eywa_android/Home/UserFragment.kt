@@ -1,19 +1,12 @@
-package com.example.eywa_android
+package com.example.eywa_android.Home
 
-import android.annotation.SuppressLint
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
-import androidx.core.view.doOnPreDraw
-import androidx.core.view.marginBottom
-import androidx.core.view.marginEnd
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,11 +16,8 @@ import com.example.eywa_android.Adapters.MatchHistoryAdapter
 import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.ClassObject.QuizMatch
 import com.example.eywa_android.ClassObject.User
-import com.example.eywa_android.Home.HomeSharedViewModel
+import com.example.eywa_android.R
 import com.example.eywa_android.databinding.FragmentUserBinding
-import com.google.android.material.transition.MaterialContainerTransform
-import com.google.android.material.transition.MaterialElevationScale
-import kotlinx.android.synthetic.main.achievement_item.view.*
 
 
 class UserFragment : Fragment() {

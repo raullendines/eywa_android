@@ -1,6 +1,9 @@
-package com.example.eywa_android
+package com.example.eywa_android.Utility
 
 import android.content.Context
+import com.example.eywa_android.ClassObject.Characters
+import com.example.eywa_android.ClassObject.Question
+import com.example.eywa_android.ClassObject.User
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.FileReader

@@ -1,18 +1,17 @@
-package com.example.eywa_android
+package com.example.eywa_android.Home
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.transition.Transition
 import android.transition.TransitionManager
 import android.view.View
 import android.widget.*
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.navigation.findNavController
-import com.example.eywa_android.ClassObject.QuizMatch
 import com.example.eywa_android.ClassObject.User
 import com.example.eywa_android.R
 import com.google.android.material.card.MaterialCardView
@@ -106,8 +105,12 @@ class HomeActivity : AppCompatActivity() {
 
         when (myFragment){
             is HomeFragment ->  findNavController(R.id.nav_host_fragment_container_main).navigate(R.id.action_homeFragment_to_userFragment)
-            is CategoryFragment -> findNavController(R.id.nav_host_fragment_container_main).navigate(R.id.action_categoryFragment_to_userFragment)
-            is DifficultyFragment -> findNavController(R.id.nav_host_fragment_container_main).navigate(R.id.action_difficultyFragment_to_userFragment)
+            is CategoryFragment -> findNavController(R.id.nav_host_fragment_container_main).navigate(
+                R.id.action_categoryFragment_to_userFragment
+            )
+            is DifficultyFragment -> findNavController(R.id.nav_host_fragment_container_main).navigate(
+                R.id.action_difficultyFragment_to_userFragment
+            )
         }
     }
 
@@ -288,7 +291,7 @@ class HomeActivity : AppCompatActivity() {
 
         val myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
         val myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
-        changeFragmentLang(myFragment as HomeActivity.mainPage)
+        changeFragmentLang(myFragment as mainPage)
 
 
     }

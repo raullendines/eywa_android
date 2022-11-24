@@ -1,4 +1,4 @@
-package com.example.eywa_android
+package com.example.eywa_android.ClassObject
 
 import android.media.Image
 

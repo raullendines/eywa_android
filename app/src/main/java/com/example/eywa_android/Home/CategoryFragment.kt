@@ -1,4 +1,4 @@
-package com.example.eywa_android
+package com.example.eywa_android.Home
 
 import android.graphics.Color
 import android.os.Bundle
@@ -10,12 +10,21 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.eywa_android.Quiz.QuestionsActivity
+import com.example.eywa_android.R
+import com.example.eywa_android.databinding.FragmentCategoryBinding
 
-class CategoryFragment : Fragment(), HomeActivity.mainPage{
+class CategoryFragment : Fragment(), HomeActivity.mainPage {
 
     private var categoryToReturn: String = "Action"
     private var buttonSelected = 0
+
+    private var _binding : FragmentCategoryBinding? = null
+    private val binding get() = _binding!!
+
+    private val sharedViewModel : HomeSharedViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,19 +37,21 @@ class CategoryFragment : Fragment(), HomeActivity.mainPage{
     ): View? {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_category, container, false)
+        _binding = FragmentCategoryBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
     override fun onStart() {
         super.onStart()
         buttonSelected = 0
         val categoryButtons = arrayOf(
-            requireView().findViewById<Button>(R.id.buttonAction),
-            requireView().findViewById<Button>(R.id.buttonComedy),
-            requireView().findViewById<Button>(R.id.buttonScienceFiction),
-            requireView().findViewById<Button>(R.id.buttonHorror),
-            requireView().findViewById<Button>(R.id.buttonAnimation),
-            requireView().findViewById<Button>(R.id.buttonDrama)
+            binding.buttonAction,
+            binding.buttonComedy,
+            binding.buttonScienceFiction,
+            binding.buttonHorror,
+            binding.buttonAnimation,
+            binding.buttonDrama
         )
 
         val categoryText = arrayOf(
@@ -75,10 +86,7 @@ class CategoryFragment : Fragment(), HomeActivity.mainPage{
 
         val btnPlay = requireView().findViewById<Button>(R.id.btnPlay)
         btnPlay.setOnClickListener(){
-
-            val bundle = bundleOf(QuestionsActivity.Questions.CATEGORY to categoryToReturn)
-            findNavController().navigate(R.id.action_categoryFragment_to_difficultyFragment, bundle)
-
+            findNavController().navigate(R.id.action_categoryFragment_to_difficultyFragment)
         }
 
     }
@@ -104,7 +112,7 @@ class CategoryFragment : Fragment(), HomeActivity.mainPage{
         categoryText[5].setText(R.string.category_drama)
 
 
-        playButton.setText(R.string.btnPlay)
+        binding.btnPlay.setText(R.string.btnPlay)
 
     }
 

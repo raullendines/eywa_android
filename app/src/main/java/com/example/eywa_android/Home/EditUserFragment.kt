@@ -1,4 +1,4 @@
-package com.example.eywa_android
+package com.example.eywa_android.Home
 
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -9,23 +9,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.activityViewModels
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.eywa_android.Adapters.ProfileImageAdapter
-import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.ClassObject.User
-import com.example.eywa_android.Home.HomeSharedViewModel
-import com.example.eywa_android.Management.Bcrypt
-import com.example.eywa_android.Management.FilesManager
+import com.example.eywa_android.Utility.FilesManager
+import com.example.eywa_android.Utility.Bcrypt
 
 import com.example.eywa_android.databinding.FragmentEditUserBinding
-import com.google.android.material.card.MaterialCardView
 import com.google.android.material.transition.MaterialContainerTransform
 
 class EditUserFragment : Fragment() {

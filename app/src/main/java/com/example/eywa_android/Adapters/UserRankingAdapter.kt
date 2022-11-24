@@ -1,4 +1,4 @@
-package com.example.eywa_android
+package com.example.eywa_android.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.layout_ranking.view.*
+import com.example.eywa_android.ClassObject.UserRanking
+import com.example.eywa_android.R
 
 class UserRankingAdapter (private val context: Context,
                           private val ranking: MutableList<UserRanking>) :

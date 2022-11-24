@@ -1,4 +1,4 @@
-package com.example.eywa_android
+package com.example.eywa_android.Loading_Login
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -8,11 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.TextView
 import androidx.activity.addCallback
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import com.example.eywa_android.R
 import kotlinx.android.synthetic.main.fragment_loading.*
 
 
@@ -39,7 +38,9 @@ class LoadingFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         txtPressAnywhereToContinue.isVisible = false
-        val animation_in_and_out : Animation = AnimationUtils.loadAnimation(this.context,R.anim.fade_in_and_out)
+        val animation_in_and_out : Animation = AnimationUtils.loadAnimation(this.context,
+            R.anim.fade_in_and_out
+        )
         var canPress : Boolean = false
         val timer = object: CountDownTimer(5000, 1000) {
             override fun onTick(millisUntilFinished: Long) {

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:tag="homeFragment"
-        android:name="com.example.eywa_android.HomeFragment"
+        android:name="com.example.eywa_android.Home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.example.eywa_android.CategoryFragment"
+        android:name="com.example.eywa_android.Home.CategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category" >
         <action
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.example.eywa_android.UserFragment"
+        android:name="com.example.eywa_android.Home.UserFragment"
         android:label="UserFragment" >
         <action
             android:id="@+id/action_userFragment_to_editUserFragment"
@@ -72,13 +72,13 @@
     </fragment>
     <fragment
         android:id="@+id/editUserFragment"
-        android:name="com.example.eywa_android.EditUserFragment"
+        android:name="com.example.eywa_android.Home.EditUserFragment"
         android:label="fragment_edit_user"
         tools:layout="@layout/fragment_edit_user" />
 
     <fragment
         android:id="@+id/rankingFragment"
-        android:name="com.example.eywa_android.RankingFragment"
+        android:name="com.example.eywa_android.Home.RankingFragment"
         android:label="fragment_ranking"
         tools:layout="@layout/fragment_ranking" />
 

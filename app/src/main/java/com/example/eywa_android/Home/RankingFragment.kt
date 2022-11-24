@@ -1,4 +1,4 @@
-package com.example.eywa_android
+package com.example.eywa_android.Home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,11 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.eywa_android.Adapters.CategoryAdapter
+import com.example.eywa_android.Adapters.UserRankingAdapter
+import com.example.eywa_android.ClassObject.Category
+import com.example.eywa_android.ClassObject.UserRanking
+import com.example.eywa_android.R
 import kotlinx.android.synthetic.main.fragment_ranking.*
 import kotlinx.android.synthetic.main.fragment_ranking.view.*
 
@@ -180,7 +184,7 @@ class RankingFragment : Fragment() {
 
     }
 
-    private fun filterCategory(categoryName: String,filteredList : MutableList<UserRanking>, top3_filtered : MutableList<UserRanking>, top4ToEndFiltered : MutableList<UserRanking>,category : Category,ranking: MutableList<UserRanking>) {
+    private fun filterCategory(categoryName: String, filteredList : MutableList<UserRanking>, top3_filtered : MutableList<UserRanking>, top4ToEndFiltered : MutableList<UserRanking>, category : Category, ranking: MutableList<UserRanking>) {
         for (user : UserRanking in ranking){
             if (user.category.equals(category.categoryName)){
                 filteredList.add(user)

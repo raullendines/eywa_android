@@ -1,4 +1,4 @@
-package com.example.eywa_android
+package com.example.eywa_android.Quiz
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -7,17 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.eywa_android.ClassObject.Question
+import com.example.eywa_android.Quiz.QuestionsActivity
+import com.example.eywa_android.R
 
 private const val QUESTIONS = "QUESTIONS"
-class StartQuizFragment : Fragment(), QuestionsActivity.getQuestionsList {
+class StartQuizFragment : Fragment(){
 
 
     private var myQuestions : MutableList<Question> = mutableListOf()
 
-    override fun getQuestionsListFun(questions : MutableList<Question>) {
-        myQuestions = questions
-    }
+    private val sharedViewModel : QuizSharedViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,7 @@ class StartQuizFragment : Fragment(), QuestionsActivity.getQuestionsList {
 
     override fun onStart() {
         super.onStart()
-        val bundle = bundleOf(QUESTIONS to myQuestions)
+
         val timer = object: CountDownTimer(3000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
 
@@ -42,7 +44,7 @@ class StartQuizFragment : Fragment(), QuestionsActivity.getQuestionsList {
 
             override fun onFinish() {
 
-                findNavController().navigate(R.id.action_startQuizFragment_to_questionsFragment, bundle)
+                findNavController().navigate(R.id.action_startQuizFragment_to_questionsFragment)
             }
         }
         timer.start()

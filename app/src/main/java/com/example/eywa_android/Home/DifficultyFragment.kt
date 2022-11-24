@@ -1,10 +1,8 @@
 package com.example.eywa_android.Home
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,21 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultRegistry
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.eywa_android.*
 import com.example.eywa_android.ClassObject.Question
 import com.example.eywa_android.ClassObject.User
-import com.example.eywa_android.Management.FilesManager
 import com.example.eywa_android.Quiz.QuestionsActivity
+import com.example.eywa_android.Utility.FilesManager
 import com.example.eywa_android.databinding.FragmentDifficultyBinding
-import java.io.Serializable
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -103,11 +96,11 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
             when (difficulty) {
                 0 -> {
                     difficultySelected = 0
-                    difficultyButtons[0].backgroundTintList = requireContext().getColorStateList(R.color.green_easy)
+                    difficultyButtons[0].backgroundTintList = requireContext().getColorStateList(R.color.green)
                 }
                 1 -> {
                     difficultySelected = 1
-                    difficultyButtons[1].backgroundTintList = requireContext().getColorStateList(R.color.orange_medium)
+                    difficultyButtons[1].backgroundTintList = requireContext().getColorStateList(R.color.orange)
                 }
                 2 -> {
                     difficultySelected = 2
@@ -115,7 +108,7 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
                 }
                 3 -> {
                     difficultySelected = 3
-                    difficultyButtons[3].backgroundTintList = requireContext().getColorStateList(R.color.yellow_legend)
+                    difficultyButtons[3].backgroundTintList = requireContext().getColorStateList(R.color.amarillo_eywa)
                 }
 
             }

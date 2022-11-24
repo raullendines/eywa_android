@@ -10,10 +10,10 @@ import android.widget.*
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.eywa_android.ClassObject.QuizAchievement
-import com.example.eywa_android.Management.Bcrypt
-import com.example.eywa_android.Management.FilesManager
 import com.example.eywa_android.R
 import com.example.eywa_android.ClassObject.User
+import com.example.eywa_android.Utility.Bcrypt
+import com.example.eywa_android.Utility.FilesManager
 import com.example.eywa_android.databinding.FragmentRegisterBinding
 
 
