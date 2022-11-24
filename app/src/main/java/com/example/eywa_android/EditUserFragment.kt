@@ -90,7 +90,6 @@ class EditUserFragment : Fragment() {
 
     private fun initUser(){
         binding.editUser.setText(sharedViewModel.displayUser!!.username)
-        binding.editPassword.setText(sharedViewModel.displayUser!!.password)
         val imagePath = requireContext().filesDir.path.toString() + "/img/" + sharedViewModel.displayUser!!.image + ".jpeg"
         val bitmap = BitmapFactory.decodeFile(imagePath)
         binding.imageProfile.setImageBitmap(bitmap)
@@ -124,11 +123,15 @@ class EditUserFragment : Fragment() {
 
         } while (index in 0 until users.size && !found)
         if (!found){
-            //var salt : String = Bcrypt.gensalt()
-            //var hashedPassword : String = Bcrypt.hashpw(binding.editPassword.text.toString(), salt)
+            var newPassword = sharedViewModel.displayUser!!.password
+            if (!binding.editPassword.text.isNullOrEmpty()){
+                var salt : String = Bcrypt.gensalt()
+                newPassword = Bcrypt.hashpw(binding.editPassword.text.toString(), salt)
+            }
+
             var newUser : User = User(binding.editUser.text.toString(),
-                sharedViewModel.displayUser!!.password,
-                //hashedPassword,
+                //sharedViewModel.displayUser!!.password,
+                newPassword,
                 path,
                 sharedViewModel.displayUser!!.gender,sharedViewModel.displayUser!!.age,
                 null,

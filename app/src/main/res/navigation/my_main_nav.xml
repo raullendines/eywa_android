@@ -20,7 +20,11 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_homeFragment_to_userFragment"
-            app:destination="@id/userFragment" />
+            app:destination="@id/userFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_bottom"
+            app:popEnterAnim="@anim/slide_in_bottom"
+            app:popExitAnim="@anim/slide_out_top"/>
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
@@ -34,11 +38,26 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_categoryFragment_to_userFragment"
+            app:destination="@id/userFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_bottom"
+            app:popEnterAnim="@anim/slide_in_bottom"
+            app:popExitAnim="@anim/slide_out_top"/>
     </fragment>
     <fragment
         android:id="@+id/difficultyFragment"
         android:name="com.example.eywa_android.Home.DifficultyFragment"
-        android:label="DifficultyFragment" />
+        android:label="DifficultyFragment" >
+        <action
+            android:id="@+id/action_difficultyFragment_to_userFragment"
+            app:destination="@id/userFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_bottom"
+            app:popEnterAnim="@anim/slide_in_bottom"
+            app:popExitAnim="@anim/slide_out_top"/>
+    </fragment>
     <fragment
         android:id="@+id/userFragment"
         android:name="com.example.eywa_android.UserFragment"
@@ -46,22 +65,10 @@
         <action
             android:id="@+id/action_userFragment_to_editUserFragment"
             app:destination="@id/editUserFragment" />
-        <action
-            android:id="@+id/action_userFragment_to_achievementFragment"
-            app:destination="@id/achievementFragment" />
     </fragment>
     <fragment
         android:id="@+id/editUserFragment"
         android:name="com.example.eywa_android.EditUserFragment"
         android:label="fragment_edit_user"
-        tools:layout="@layout/fragment_edit_user" >
-        <action
-            android:id="@+id/action_editUserFragment_to_userFragment"
-            app:destination="@id/userFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/achievementFragment"
-        android:name="com.example.eywa_android.AchievementFragment"
-        android:label="fragment_achievement"
-        tools:layout="@layout/fragment_achievement" />
+        tools:layout="@layout/fragment_edit_user" />
 </navigation>

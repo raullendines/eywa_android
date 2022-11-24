@@ -54,7 +54,8 @@ class HomeActivity : AppCompatActivity() {
 
         userLayout.setOnClickListener(){
             hideUserMenu(btnUser)
-            findNavController(R.id.nav_host_fragment_container_main).navigate(R.id.action_homeFragment_to_userFragment)
+            navigateToUserMenu()
+
         }
         settingsLayout.setOnClickListener(){
             hideUserMenu(btnUser)
@@ -94,6 +95,18 @@ class HomeActivity : AppCompatActivity() {
         //SET LANGUAGE BUTTON AND TEXT
         setLangTextImage()
 
+    }
+
+    private fun navigateToUserMenu(){
+
+        val myFragmentManager = this.supportFragmentManager.findFragmentByTag("myfragment")
+        val myFragment = myFragmentManager!!.childFragmentManager.fragments[0]
+
+        when (myFragment){
+            is HomeFragment ->  findNavController(R.id.nav_host_fragment_container_main).navigate(R.id.action_homeFragment_to_userFragment)
+            is CategoryFragment -> findNavController(R.id.nav_host_fragment_container_main).navigate(R.id.action_categoryFragment_to_userFragment)
+            is DifficultyFragment -> findNavController(R.id.nav_host_fragment_container_main).navigate(R.id.action_difficultyFragment_to_userFragment)
+        }
     }
 
     private fun setLangTextImage() {

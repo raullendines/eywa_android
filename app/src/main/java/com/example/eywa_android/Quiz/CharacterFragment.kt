@@ -10,20 +10,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.eywa_android.ClassObject.Characters
 import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.ClassObject.QuizMatch
 import com.example.eywa_android.Home.HomeActivity
-import com.example.eywa_android.Loading_Login.MainActivity
 import com.example.eywa_android.Management.FilesManager
-import com.example.eywa_android.R
 import com.example.eywa_android.databinding.FragmentCharacterBinding
-import com.example.eywa_android.databinding.FragmentQuestionsBinding
 import java.util.*
 
 class CharacterFragment : Fragment() {
@@ -86,12 +80,12 @@ class CharacterFragment : Fragment() {
             else -> 10
         }
 
+        if (sharedViewModel.timeUsed == 0){
+            sharedViewModel.addTime()
+        }
 
-
-//        val diffPoints = (sharedViewModel.correctAnswers * difficultyMultiplier) / 10
-//        val quizScore : Int = (diffPoints * 1000) / sharedViewModel.timeUsed
-
-        val quizScore = 10000
+        val diffPoints = (sharedViewModel.correctAnswers * difficultyMultiplier) / 10
+        val quizScore : Int = (diffPoints * 1000) / sharedViewModel.timeUsed
 
         val match = QuizMatch(sharedViewModel.category, sharedViewModel.timeUsed,
             sharedViewModel.difficulty.toInt(), quizScore.toString())
@@ -119,15 +113,15 @@ class CharacterFragment : Fragment() {
         if(characterToShow != null){
             var score = quizScore.toString()
             binding.txtViewScore.setText(quizScore.toString())
-            val imagePath = requireContext().filesDir.path.toString() + "/img/" + characterToShow!!.image + ".jpeg"
+            val imagePath = requireContext().filesDir.path.toString() + "/img/" + characterToShow.image + ".jpeg"
             val bitmap = BitmapFactory.decodeFile(imagePath)
             binding.imageCharacter.setImageBitmap(bitmap)
-            binding.txtNameCharacter.setText(characterToShow!!.name)
-            binding.txtFilmCharacter.setText(characterToShow!!.film)
+            binding.txtNameCharacter.setText(characterToShow.name)
+            binding.txtFilmCharacter.setText(characterToShow.film)
             //IDIOMA
             var locale : Locale? = null
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-                locale = resources.configuration.locales.get(0);
+                locale = resources.configuration.locales.get(0)
             } else{
                 //noinspection deprecation
                 locale = resources.configuration.locale
@@ -135,9 +129,9 @@ class CharacterFragment : Fragment() {
             var localeLang = locale!!.language
 
             when(localeLang){
-                "ca" ->  binding.txtDescriptionCharacter.setText(characterToShow!!.description_cat)
-                "es" ->  binding.txtDescriptionCharacter.setText(characterToShow!!.description_esp)
-                "en" ->  binding.txtDescriptionCharacter.setText(characterToShow!!.description_eng)
+                "ca" ->  binding.txtDescriptionCharacter.setText(characterToShow.description_cat)
+                "es" ->  binding.txtDescriptionCharacter.setText(characterToShow.description_esp)
+                "en" ->  binding.txtDescriptionCharacter.setText(characterToShow.description_eng)
             }
         } else {
             Toast.makeText(requireContext(), "PROBLEMAS", Toast.LENGTH_LONG).show()

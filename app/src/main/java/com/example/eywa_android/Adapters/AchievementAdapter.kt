@@ -16,11 +16,13 @@ import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.R
 
 class AchievementAdapter(private val context: Context,
-                         private val achievementList: MutableList<QuizAchievement>) :
+                         private val achievementListUnchanged: MutableList<QuizAchievement>) :
     RecyclerView.Adapter<AchievementAdapter.ImageViewHolder>(),
     View.OnClickListener{
 
     private val layout = R.layout.achievement_item
+
+    val achievementList = achievementListUnchanged
 
     private var clickListener : View.OnClickListener? = null
 
@@ -38,6 +40,9 @@ class AchievementAdapter(private val context: Context,
         }
     }
 
+    init {
+        achievementList.sortBy { !it.owned }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
@@ -46,9 +51,15 @@ class AchievementAdapter(private val context: Context,
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        val image = achievementList[position].image
+        val image = if (achievementList[position].owned){
+            R.drawable.trophy
+        } else {
+            R.drawable.trophy_black_white
+        }
         val title = achievementList[position].title
-        bindAchievement(holder, image, title)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            bindAchievement(holder, image, title)
+        }
 
     }
 

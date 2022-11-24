@@ -8,17 +8,11 @@ class QuizAchievement (id : Int, title : String, owned : Boolean) : Serializable
     val id : Int
     val title : String
     var owned : Boolean
-    var image : Int
 
     init {
         this.id= id
         this.title = title
         this.owned = owned
-        image = if (owned){
-            R.drawable.trophy
-        } else {
-            R.drawable.trophy_black_white
-        }
     }
 
     companion object {
