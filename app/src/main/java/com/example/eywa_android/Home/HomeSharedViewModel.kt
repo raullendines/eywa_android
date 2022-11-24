@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.eywa_android.ClassObject.QuizAchievement
+import com.example.eywa_android.ClassObject.QuizMatch
 import com.example.eywa_android.ClassObject.User
 
 class HomeSharedViewModel : ViewModel() {
@@ -14,6 +15,8 @@ class HomeSharedViewModel : ViewModel() {
     val difficulty : LiveData<Int> = _difficulty
 
     var displayUser : User? = null
+
+    var userMatches = mutableListOf<QuizMatch>()
 
     fun changeCategory(newCategory : String){
         _category.value = newCategory

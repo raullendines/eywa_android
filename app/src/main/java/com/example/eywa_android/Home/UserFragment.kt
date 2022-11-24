@@ -17,6 +17,7 @@ import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.ClassObject.QuizMatch
 import com.example.eywa_android.ClassObject.User
 import com.example.eywa_android.R
+import com.example.eywa_android.Utility.FilesManager
 import com.example.eywa_android.databinding.FragmentUserBinding
 
 
@@ -64,7 +65,9 @@ class UserFragment : Fragment() {
 
         setAchievementGrid()
 
-        if (!sharedViewModel.displayUser!!.quizMatchHistory.isNullOrEmpty()){
+        getMatchHistory()
+
+        if (sharedViewModel.userMatches.isNotEmpty()){
 
             setMatchHistoryGrid()
 
@@ -83,6 +86,17 @@ class UserFragment : Fragment() {
         }
     }
 
+    private fun getMatchHistory(){
+        val allMatches = FilesManager.getMatches(requireContext())
+        val usersMatches = mutableListOf<QuizMatch>()
+        for (matches in allMatches){
+            if (matches.userId == sharedViewModel.displayUser!!.id){
+                usersMatches.add(matches)
+            }
+        }
+        sharedViewModel.userMatches = usersMatches
+    }
+
 
 
     private fun setAchievementGrid(){
@@ -97,7 +111,7 @@ class UserFragment : Fragment() {
     }
 
     private fun setMatchHistoryGrid(){
-        val matchHistoryAdapter = MatchHistoryAdapter(requireContext(), sharedViewModel.displayUser!!.quizMatchHistory!!)
+        val matchHistoryAdapter = MatchHistoryAdapter(requireContext(), sharedViewModel.userMatches)
         binding.listMatchHistory.layoutManager = LinearLayoutManager(requireContext())
         binding.listMatchHistory.adapter = matchHistoryAdapter
     }
@@ -119,49 +133,46 @@ class UserFragment : Fragment() {
         val bitmap = BitmapFactory.decodeFile(path)
         binding.imageUser.setImageBitmap(bitmap)
 
-        binding.textRegisterDate.text = "16/11/2022"
-
+        binding.textRegisterDate.text = sharedViewModel.displayUser!!.dateOfRegister
 
     }
 
     private fun initiateTestUser(){
         //TODO Has to be deleted
 
-
-
-        val matchHistory = mutableListOf(
-            QuizMatch("science fiction", 15, 1, "25"),
-            QuizMatch("science fiction", 15, 1, "25"),
-            QuizMatch("science fiction", 15, 1, "25"),
-            QuizMatch("science fiction", 15, 1, "25"),
-            QuizMatch("science fiction", 15, 1, "25"),
-            QuizMatch("comedy", 15, 1, "25"),
-            QuizMatch("comedy", 15, 1, "25"),
-            QuizMatch("comedy", 15, 1, "25"),
-            QuizMatch("comedy", 15, 1, "25"),
-            QuizMatch("comedy", 15, 1, "25"),
-            QuizMatch("comedy", 15, 1, "25"),
-            QuizMatch("horror", 15, 1, "25"),
-            QuizMatch("horror", 15, 1, "25"),
-            QuizMatch("horror", 15, 1, "25"),
-            QuizMatch("horror", 15, 1, "25"),
-            QuizMatch("horror", 15, 1, "25"),
-            QuizMatch("animation", 15, 1, "25"),
-            QuizMatch("animation", 15, 1, "25"),
-            QuizMatch("animation", 15, 1, "25"),
-            QuizMatch("animation", 15, 1, "25"),
-            QuizMatch("animation", 15, 1, "25"),
-            QuizMatch("animation", 15, 1, "25"),
-            QuizMatch("drama", 15, 1, "25"),
-            QuizMatch("action", 15, 1, "25"),
-            QuizMatch("action", 15, 1, "25"),
-            QuizMatch("action", 15, 1, "25"),
-
-            )
-
-        val user = User("MariKong", "123", "kowalski", "none", 23, matchHistory, QuizAchievement.generateList())
-
-        sharedViewModel.setUserToDisplay(user)
+//        val matchHistory = mutableListOf(
+//            QuizMatch("science fiction", 15, 1, "25"),
+//            QuizMatch("science fiction", 15, 1, "25"),
+//            QuizMatch("science fiction", 15, 1, "25"),
+//            QuizMatch("science fiction", 15, 1, "25"),
+//            QuizMatch("science fiction", 15, 1, "25"),
+//            QuizMatch("comedy", 15, 1, "25"),
+//            QuizMatch("comedy", 15, 1, "25"),
+//            QuizMatch("comedy", 15, 1, "25"),
+//            QuizMatch("comedy", 15, 1, "25"),
+//            QuizMatch("comedy", 15, 1, "25"),
+//            QuizMatch("comedy", 15, 1, "25"),
+//            QuizMatch("horror", 15, 1, "25"),
+//            QuizMatch("horror", 15, 1, "25"),
+//            QuizMatch("horror", 15, 1, "25"),
+//            QuizMatch("horror", 15, 1, "25"),
+//            QuizMatch("horror", 15, 1, "25"),
+//            QuizMatch("animation", 15, 1, "25"),
+//            QuizMatch("animation", 15, 1, "25"),
+//            QuizMatch("animation", 15, 1, "25"),
+//            QuizMatch("animation", 15, 1, "25"),
+//            QuizMatch("animation", 15, 1, "25"),
+//            QuizMatch("animation", 15, 1, "25"),
+//            QuizMatch("drama", 15, 1, "25"),
+//            QuizMatch("action", 15, 1, "25"),
+//            QuizMatch("action", 15, 1, "25"),
+//            QuizMatch("action", 15, 1, "25"),
+//
+//            )
+//
+//        val user = User("MariKong", "123", "kowalski", "none", 23, matchHistory, QuizAchievement.generateList())
+//
+//        sharedViewModel.setUserToDisplay(user)
     }
 
     private fun getPercentages() : MutableList<String>{
@@ -176,14 +187,14 @@ class UserFragment : Fragment() {
             0
         )
 
-        if (sharedViewModel.displayUser!!.quizMatchHistory.isNullOrEmpty()){
+        if (sharedViewModel.userMatches.isEmpty()){
             for (index in 0 until percentages.size){
                 returningList.add("0%")
             }
         } else{
             //Iterate over the user match history
 
-            for (match in sharedViewModel.displayUser!!.quizMatchHistory!!){
+            for (match in sharedViewModel.userMatches){
                 when(match.category){
                     "action" -> percentages[0]++
                     "science fiction" -> percentages[1]++
@@ -195,7 +206,7 @@ class UserFragment : Fragment() {
             }
 
             for (index in 0 until percentages.size){
-                percentages[index] = percentages[index] * 100 / sharedViewModel.displayUser!!.quizMatchHistory!!.size
+                percentages[index] = percentages[index] * 100 / sharedViewModel.userMatches.size
                 returningList.add(percentages[index].toString() + "%")
             }
         }

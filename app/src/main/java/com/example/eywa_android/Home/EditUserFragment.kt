@@ -123,13 +123,14 @@ class EditUserFragment : Fragment() {
                 newPassword = Bcrypt.hashpw(binding.editPassword.text.toString(), salt)
             }
 
-            var newUser : User = User(binding.editUser.text.toString(),
+            var newUser : User = User(
+                id = sharedViewModel.displayUser!!.id,
+                username = binding.editUser.text.toString(),
                 //sharedViewModel.displayUser!!.password,
-                newPassword,
-                path,
-                sharedViewModel.displayUser!!.gender,sharedViewModel.displayUser!!.age,
-                null,
-                sharedViewModel.displayUser!!.quizAchievementList)
+                password = newPassword,
+                image = path,
+                quizAchievementList = sharedViewModel.displayUser!!.quizAchievementList,
+                sharedViewModel.displayUser!!.dateOfRegister)
             users[userIndex] = newUser
             FilesManager.saveUser(requireContext(), users)
             Toast.makeText(requireContext(), "Saved", Toast.LENGTH_LONG).show()

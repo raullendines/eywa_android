@@ -1,5 +1,6 @@
 package com.example.eywa_android.Loading_Login
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.InputType
 import androidx.fragment.app.Fragment
@@ -15,6 +16,8 @@ import com.example.eywa_android.ClassObject.User
 import com.example.eywa_android.Utility.Bcrypt
 import com.example.eywa_android.Utility.FilesManager
 import com.example.eywa_android.databinding.FragmentRegisterBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class RegisterFragment : Fragment() {
@@ -106,7 +109,14 @@ class RegisterFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     fun registerUser(users : MutableList<User>){
+
+        val newUserId = users.last().id + 1
+        val sdf = SimpleDateFormat("dd/M/yyyy")
+        val currentDate = sdf.format(Date())
+
+
 
         if(binding.LblUsernameRegister.text.isEmpty() || binding.editPassword.text.isEmpty() || binding.repeatPassword.text.isEmpty()){
             Toast.makeText(this.activity, "Please fill all camps", Toast.LENGTH_SHORT).show()
@@ -122,7 +132,14 @@ class RegisterFragment : Fragment() {
                 if (binding.editPassword.text.toString().equals(binding.repeatPassword.text.toString())){
                     var salt : String = Bcrypt.gensalt()
                     var hashedPassword : String = Bcrypt.hashpw(binding.editPassword.text.toString(), salt)
-                    var newUser : User = User(binding.LblUsernameRegister.text.toString(),hashedPassword,"foto.png","male",18, mutableListOf(), QuizAchievement.generateList())
+                    var newUser = User(
+                        id = newUserId,
+                        username = binding.LblUsernameRegister.text.toString(),
+                        password = hashedPassword,
+                        image = "avatar",
+                        quizAchievementList = QuizAchievement.generateList(),
+                        dateOfRegister = currentDate
+                        )
                     users.add(users.size-1, newUser)
                     FilesManager.saveUser(requireContext(), users)
                     Toast.makeText(this.activity, "User registered", Toast.LENGTH_SHORT).show()

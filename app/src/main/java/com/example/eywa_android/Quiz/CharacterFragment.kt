@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.activityViewModels
 import com.example.eywa_android.ClassObject.Characters
 import com.example.eywa_android.ClassObject.QuizAchievement
@@ -33,7 +34,9 @@ class CharacterFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
 
+        }
     }
 
     override fun onCreateView(
@@ -53,6 +56,8 @@ class CharacterFragment : Fragment() {
 
         return binding.root
     }
+
+
 
     private fun findCharacter(characterList : MutableList<Characters>) : Characters?{
         var characterToReturn : Characters? = null
@@ -88,8 +93,19 @@ class CharacterFragment : Fragment() {
         val diffPoints = (sharedViewModel.correctAnswers * difficultyMultiplier) / 10
         val quizScore : Int = (diffPoints * 1000) / sharedViewModel.timeUsed
 
-        val match = QuizMatch(sharedViewModel.category, sharedViewModel.timeUsed,
-            sharedViewModel.difficulty.toInt(), quizScore.toString())
+        val match = QuizMatch(
+            userId = sharedViewModel.user.id,
+            category = sharedViewModel.category,
+            time = sharedViewModel.timeUsed,
+            difficulty = sharedViewModel.difficulty.toInt(),
+            points = quizScore.toString())
+
+        //get match list
+        val quizMatches = FilesManager.getMatches(requireContext())
+        //add new match
+        quizMatches.add(match)
+        //save new match list
+        FilesManager.saveMatches(requireContext(), quizMatches)
 
         sharedViewModel.user.quizAchievementList = checkAchievement(sharedViewModel.user.quizAchievementList, match)
         val testUser = sharedViewModel.user
