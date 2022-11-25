@@ -117,6 +117,7 @@ class QuestionsFragment : Fragment() {
 
                 //If the user didn't reponded before the 15sec countdown, the answer is set on incorrect
                 override fun onFinish() {
+                    disabled()
                     Handler().postDelayed({
                         binding.txtTimer.text = "0"
                         animationIncorrect(binding.animationWin)
@@ -141,6 +142,7 @@ class QuestionsFragment : Fragment() {
 
                 //If the user didn't reponded before the 15sec countdown, the answer is set on incorrect
                 override fun onFinish() {
+                    disabled()
                     Handler().postDelayed({
                         binding.txtTimer.text = "0"
                         animationIncorrect(binding.animationWin)
@@ -165,6 +167,7 @@ class QuestionsFragment : Fragment() {
     private fun answersButtonsClickListeners(){
 
         binding.answer1.setOnClickListener(){
+            stopBothTimers()
             if (binding.answer1.text == sharedViewModel.questions.last().correct_answer){
                 correct(binding.animationWin, sharedViewModel.questions, binding.answer1)
             } else{
@@ -175,6 +178,7 @@ class QuestionsFragment : Fragment() {
         }
 
         binding.answer2.setOnClickListener(){
+            stopBothTimers()
             if (binding.answer2.text == sharedViewModel.questions.last().correct_answer){
                 correct(binding.animationWin, sharedViewModel.questions, binding.answer2)
             } else{
@@ -185,6 +189,7 @@ class QuestionsFragment : Fragment() {
         }
 
         binding.answer3.setOnClickListener(){
+            stopBothTimers()
             if (binding.answer3.text == sharedViewModel.questions.last().correct_answer){
                 correct(binding.animationWin, sharedViewModel.questions, binding.answer3)
             } else{
@@ -195,6 +200,7 @@ class QuestionsFragment : Fragment() {
         }
 
         binding.answer4.setOnClickListener(){
+            stopBothTimers()
             if (binding.answer4.text == sharedViewModel.questions.last().correct_answer){
                 correct(binding.animationWin, sharedViewModel.questions, binding.answer4)
             } else{
@@ -228,14 +234,14 @@ class QuestionsFragment : Fragment() {
 //        contador_timer.cancel()
 //    }
 
-    fun stopBothTimers(){
+    private fun stopBothTimers(){
         contador_timer.cancel()
         if(bothTimers){
             optional_timer.cancel()
         }
     }
 
-    fun progress(){
+    private fun progress(){
         //sharedViewModel.questionDone()
         when (sharedViewModel.countQuestion + 1) {
             1 ->  binding.actual1.background = getObject().current_circle
@@ -509,8 +515,6 @@ class QuestionsFragment : Fragment() {
         correcto = true
         correct_answer = true
         animationCorrect(animation)
-        //stopTimer()
-        stopBothTimers()
         colorBtn(correcto, myButton, shuffle)
         sharedViewModel.questionCorrect()
         //correctAnswers+= 1
@@ -531,8 +535,6 @@ class QuestionsFragment : Fragment() {
 
     // INCORRECT ANSWER
     fun incorrect(animation: LottieAnimationView, shuffle: MutableList<Question>, myButton: Button) {
-        //stopTimer()
-        stopBothTimers()
         animationIncorrect(animation)
         correcto = false
         correct_answer = false

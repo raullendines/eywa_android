@@ -40,6 +40,12 @@
 
     <string name="press_anywhere_to_continue">PRESS ANYWHERE TO CONTINUE</string>
     <string name="eywa_team">EYWA TEAM</string>
+    <string name="date_register">Date of Register</string>
+    <string name="best_score">BEST SCORE</string>
+    <string name="achievements">Achievements</string>
+    <string name="match_history">MATCH HISTORY</string>
+    <string name="category_performance">PERFORMANCE BY CATEGORY</string>
+    <string name="no_games">NO GAMES</string>
 
 
 </resources>

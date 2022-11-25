@@ -21,7 +21,7 @@ import com.example.eywa_android.Utility.FilesManager
 import com.example.eywa_android.databinding.FragmentUserBinding
 
 
-class UserFragment : Fragment() {
+class UserFragment : Fragment(), HomeActivity.mainPage {
 
     private var _binding : FragmentUserBinding? = null
     private val binding get() = _binding!!
@@ -111,7 +111,8 @@ class UserFragment : Fragment() {
     }
 
     private fun setMatchHistoryGrid(){
-        val matchHistoryAdapter = MatchHistoryAdapter(requireContext(), sharedViewModel.userMatches)
+        val myList = sharedViewModel.userMatches.reversed().toMutableList()
+        val matchHistoryAdapter = MatchHistoryAdapter(requireContext(), myList)
         binding.listMatchHistory.layoutManager = LinearLayoutManager(requireContext())
         binding.listMatchHistory.adapter = matchHistoryAdapter
     }
@@ -187,6 +188,15 @@ class UserFragment : Fragment() {
             0
         )
 
+        var games = mutableListOf(
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        )
+
         if (sharedViewModel.userMatches.isEmpty()){
             for (index in 0 until percentages.size){
                 returningList.add("0%")
@@ -196,22 +206,53 @@ class UserFragment : Fragment() {
 
             for (match in sharedViewModel.userMatches){
                 when(match.category){
-                    "action" -> percentages[0]++
-                    "science fiction" -> percentages[1]++
-                    "animation" -> percentages[2]++
-                    "comedy" -> percentages[3]++
-                    "horror" -> percentages[4]++
-                    "drama" -> percentages[5]++
+                    "action" -> {
+                        games[0]++
+                        percentages[0] += match.correctAnswers
+                    }
+                    "science fiction" -> {
+                        games[1]++
+                        percentages[1] += match.correctAnswers
+                    }
+                    "animation" -> {
+                        games[2]++
+                        percentages[2] += match.correctAnswers
+                    }
+                    "comedy" -> {
+                        games[3]++
+                        percentages[3] += match.correctAnswers
+                    }
+                    "horror" -> {
+                        games[4]++
+                        percentages[4] += match.correctAnswers
+                    }
+                    "drama" -> {
+                        games[5]++
+                        percentages[5] += match.correctAnswers
+                    }
                 }
             }
 
             for (index in 0 until percentages.size){
-                percentages[index] = percentages[index] * 100 / sharedViewModel.userMatches.size
-                returningList.add(percentages[index].toString() + "%")
+                var percentage = 0
+                if (games[index] != 0){
+                    percentage = percentages[index] * 100 / (games[index] * 10)
+                }
+                returningList.add("$percentage%")
+
             }
         }
 
 
         return returningList
+    }
+
+    override fun changeLang() {
+        binding.textRegisterDateLabel.text = getString(R.string.date_register)
+        binding.textBestScoreHeader.text = getString(R.string.best_score)
+        binding.textAchievements.text = getString(R.string.achievements)
+        binding.textMatchHistory.text = getString(R.string.match_history)
+        binding.textNoGames.text = getString(R.string.no_games)
+        binding.textPerformanceByCategory.text = getString(R.string.category_performance)
     }
 }

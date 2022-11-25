@@ -37,5 +37,11 @@
     <string name="register_btn">registrate</string>
     <string name="press_anywhere_to_continue">PRESIONA EN CUALQUIER LUGAR PARA CONTINUAR</string>
     <string name="eywa_team">EYWA TEAM</string>
+    <string name="date_register">Fecha de Registro</string>
+    <string name="best_score">MEJOR PUNTUACIÓN</string>
+    <string name="achievements">Logros</string>
+    <string name="match_history">HISTORIAL DE PARTIDAS</string>
+    <string name="category_performance">DESEMPEÑO POR CATEGORÍA</string>
+    <string name="no_games">NO HAY PARTIDAS</string>
 
 </resources>

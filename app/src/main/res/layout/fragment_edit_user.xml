@@ -49,7 +49,8 @@
                     android:src="@drawable/logo_eywa"
                     android:background="@color/white"
                     android:clickable="true"
-                    android:focusable="true" />
+                    android:focusable="true"
+                    android:scaleType="centerCrop"/>
 
 
             </androidx.cardview.widget.CardView>

@@ -141,6 +141,7 @@ class RegisterFragment : Fragment() {
                         dateOfRegister = currentDate
                         )
                     users.add(users.size-1, newUser)
+                    users.sortBy { it.id }
                     FilesManager.saveUser(requireContext(), users)
                     Toast.makeText(this.activity, "User registered", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_registerFragment_to_loginFragment)

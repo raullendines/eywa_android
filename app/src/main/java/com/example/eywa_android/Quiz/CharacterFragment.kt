@@ -98,7 +98,9 @@ class CharacterFragment : Fragment() {
             category = sharedViewModel.category,
             time = sharedViewModel.timeUsed,
             difficulty = sharedViewModel.difficulty.toInt(),
-            points = quizScore.toString())
+            points = quizScore.toString(),
+            correctAnswers = sharedViewModel.correctAnswers,
+            incorrectAnswers = sharedViewModel.incorrectAnswers)
 
         //get match list
         val quizMatches = FilesManager.getMatches(requireContext())

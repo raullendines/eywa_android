@@ -53,7 +53,7 @@
                 android:id="@+id/imageUser"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 tools:src="@tools:sample/avatars" />
 
 
@@ -66,7 +66,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="USERNAME"
             android:textColor="@color/purple_eywa"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -90,7 +89,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="1dp"
-            android:text="#6"
             android:textColor="@color/purple_eywa"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/textRanking"
@@ -101,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="Data Registre"
+            android:text="@string/date_register"
             android:textColor="@color/purple_eywa"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -113,7 +111,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="TextView"
             android:textColor="@color/purple_eywa"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/imageContainer"
@@ -149,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
-            android:text="BEST SCORE"
+            android:text="@string/best_score"
             android:textColor="@color/grey"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -175,7 +172,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="15dp"
-            android:text="Achievements"
+            android:text="@string/achievements"
             android:textColor="@color/grey"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -264,13 +261,26 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/purple_eywa"
                 android:layout_gravity="center"
-                android:text="NO GAMES"
+                android:text="@string/no_games"
                 android:textSize="25sp"
                 android:textStyle="bold"/>
         </FrameLayout>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textMatchHistory"
+        android:layout_width="430dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="100dp"
+        android:text="@string/match_history"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="24sp"/>
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/percentageCard"
         android:layout_width="450dp"
         android:layout_height="250dp"
         android:layout_marginTop="50dp"
@@ -289,4 +299,16 @@
             android:padding="5dp"
             />
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textPerformanceByCategory"
+        android:layout_width="430dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/percentageCard"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="100dp"
+        android:text="@string/category_performance"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="24sp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
