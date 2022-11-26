@@ -115,7 +115,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginTop="50dp"
-        android:text="@string/play_again"
+        android:text="NEXT"
         android:textStyle="bold"
         android:textColor="@color/purple_eywa"
         android:textSize="30sp"

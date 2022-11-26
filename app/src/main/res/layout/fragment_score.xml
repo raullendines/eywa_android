@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScoreFragment"
     android:background="@drawable/fondo_eywa"
     android:orientation="vertical">
 
@@ -48,7 +47,7 @@
                         android:layout_width="150dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/rounded_corners_yellow"
+                        android:background="@drawable/rounded_corners_purple"
                         android:layout_marginVertical="20dp"
                         android:orientation="horizontal">
 
@@ -57,16 +56,16 @@
                             android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_marginStart="20dp"
-                            android:src="@drawable/logo_eywa"/>
+                            android:src="@drawable/circle_ok"/>
 
                         <TextView
                             android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
                             android:text="9"
                             android:textSize="50dp"
-                            android:gravity="center"/>
+                            android:gravity="center"
+                            android:textStyle="bold"/>
 
                     </LinearLayout>
 
@@ -74,23 +73,23 @@
                         android:layout_width="150dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/rounded_corners_yellow">
+                        android:background="@drawable/rounded_corners_purple">
 
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_marginStart="20dp"
-                            android:src="@drawable/logo_eywa"/>
+                            android:src="@drawable/circle_bad"/>
 
                         <TextView
                             android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
                             android:text="9"
                             android:textSize="50dp"
-                            android:gravity="center"/>
+                            android:gravity="center"
+                            android:textStyle="bold"/>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -99,7 +98,29 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/circle_todo"
-                    android:layout_margin="10dp">
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="SCORE"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="30dp"
+                        />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="400"
+                        android:textSize="70dp"
+                        android:textColor="@color/black"
+                        android:gravity="center"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -111,7 +132,7 @@
                         android:layout_width="150dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/rounded_corners_yellow"
+                        android:background="@drawable/rounded_corners_purple"
                         android:layout_marginVertical="20dp">
 
                         <ImageView
@@ -119,12 +140,11 @@
                             android:layout_height="50dp"
                             android:layout_gravity="center"
                             android:layout_marginStart="20dp"
-                            android:src="@drawable/logo_eywa"/>
+                            android:src="@drawable/timer_icon"/>
 
                         <TextView
                             android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
                             android:text="9"
                             android:textSize="50dp"
@@ -136,7 +156,7 @@
                         android:layout_width="150dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
-                        android:background="@drawable/rounded_corners_yellow">
+                        android:background="@drawable/rounded_corners_purple">
 
                         <ImageView
                             android:layout_width="50dp"
@@ -147,8 +167,7 @@
 
                         <TextView
                             android:layout_width="60dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
                             android:text="9"
                             android:textSize="50dp"
@@ -168,7 +187,8 @@
             android:layout_height="250dp"
             android:layout_gravity="bottom"
             android:layout_marginLeft="80dp"
-            android:background="@drawable/rounded_corners_white">
+            android:background="@drawable/rounded_corners_white"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -182,6 +202,28 @@
                     android:gravity="center"
                     android:textSize="30dp"/>
             </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listAchievements"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                />
+
+
+<!--            <FrameLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent">-->
+<!--                -->
+<!--                -->
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="NO ACHIEVEMENTS UNLOCKED"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="50dp"/>-->
+<!--            </FrameLayout>-->
         </LinearLayout>
     </LinearLayout>
 
@@ -199,6 +241,37 @@
 
 
 
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnLeaderboard"
+            android:layout_width="250dp"
+            android:layout_height="75dp"
+            android:background="@drawable/rounded_corners_yellow"
+            android:layout_marginRight="50dp"
+            android:text="LEADERBOARD"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            />
+
+        <Button
+            android:id="@+id/btnPlayAgain"
+            android:layout_width="250dp"
+            android:layout_height="75dp"
+            android:background="@drawable/rounded_corners_yellow"
+            android:text="PLAY AGAIN"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            />
     </LinearLayout>
 
 

@@ -13,10 +13,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.eywa_android.ClassObject.Characters
 import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.ClassObject.QuizMatch
 import com.example.eywa_android.Home.HomeActivity
+import com.example.eywa_android.R
 import com.example.eywa_android.Utility.FilesManager
 
 import com.example.eywa_android.databinding.FragmentCharacterBinding
@@ -30,6 +32,8 @@ class CharacterFragment : Fragment() {
 
     private var characterList : MutableList<Characters> = mutableListOf()
     private val sharedViewModel : QuizSharedViewModel by activityViewModels()
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +82,7 @@ class CharacterFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        sharedViewModel.achievementList.clear()
         val difficultyMultiplier : Int = when(sharedViewModel.difficulty){
             "1" -> 10
             "2" -> 15
@@ -109,6 +114,7 @@ class CharacterFragment : Fragment() {
 
         sharedViewModel.user.quizAchievementList = checkAchievement(sharedViewModel.user.quizAchievementList, match)
         val testUser = sharedViewModel.user
+
 
         val newUser = sharedViewModel.user
 
@@ -155,16 +161,18 @@ class CharacterFragment : Fragment() {
         }
 
         binding.btnPlay.setOnClickListener(){
-            viewModelStore.clear()
-            val myActivity = this.activity as QuestionsActivity
-            if (sharedViewModel.hasAchievementUnlocked){
-                val returnNewUserIntent = Intent(this.activity, HomeActivity::class.java)
-                returnNewUserIntent.putExtra(QuestionsActivity.Questions.USER, sharedViewModel.user)
-                myActivity.setResult(RESULT_OK, returnNewUserIntent)
-            } else{
-                myActivity.setResult(RESULT_CANCELED)
-            }
-            myActivity.finishActivity()
+//            viewModelStore.clear()
+//            val myActivity = this.activity as QuestionsActivity
+//            if (sharedViewModel.hasAchievementUnlocked){
+//                val returnNewUserIntent = Intent(this.activity, HomeActivity::class.java)
+//                returnNewUserIntent.putExtra(QuestionsActivity.Questions.USER, sharedViewModel.user)
+//                myActivity.setResult(RESULT_OK, returnNewUserIntent)
+//            } else{
+//                myActivity.setResult(RESULT_CANCELED)
+//            }
+//            myActivity.finishActivity()
+
+            findNavController().navigate(R.id.action_characterFragment_to_scoreFragment)
         }
 
     }
@@ -205,6 +213,7 @@ class CharacterFragment : Fragment() {
 
         if (!list[achievementId].owned){
             if (match.points.toInt() > points){
+                sharedViewModel.achievementList.add(list[achievementId])
                 list[achievementId].owned = true
                 Toast.makeText(requireContext(), "Achievement $achievementId unlocked", Toast.LENGTH_SHORT).show()
                 sharedViewModel.achievementUnlocked()
