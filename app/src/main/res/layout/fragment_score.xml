@@ -59,6 +59,7 @@
                             android:src="@drawable/circle_ok"/>
 
                         <TextView
+                            android:id="@+id/txtNumCorrects"
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
@@ -83,6 +84,7 @@
                             android:src="@drawable/circle_bad"/>
 
                         <TextView
+                            android:id="@+id/txtNumIncorrects"
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
@@ -114,6 +116,7 @@
 
 
                     <TextView
+                        android:id="@+id/txtScoreScore"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
@@ -143,6 +146,7 @@
                             android:src="@drawable/timer_icon"/>
 
                         <TextView
+                            android:id="@+id/txtPlayTime"
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
@@ -159,6 +163,7 @@
                         android:background="@drawable/rounded_corners_purple">
 
                         <ImageView
+                            android:id="@+id/imgCategoryScore"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
@@ -166,6 +171,7 @@
                             android:src="@drawable/logo_eywa"/>
 
                         <TextView
+                            android:id="@+id/txtDifficultyScore"
                             android:layout_width="60dp"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"

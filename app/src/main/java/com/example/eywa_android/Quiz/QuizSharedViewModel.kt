@@ -10,6 +10,7 @@ class QuizSharedViewModel : ViewModel() {
     lateinit var questions : MutableList<Question>
     lateinit var difficulty : String
     lateinit var category : String
+    var points : Int = 0
     var correctAnswers : Int = 0
     var incorrectAnswers : Int = 0
     var countQuestion : Int = 0

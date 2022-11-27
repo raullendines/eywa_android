@@ -1,13 +1,14 @@
 package com.example.eywa_android.ClassObject
 
 import android.media.Image
+import androidx.annotation.DrawableRes
 
 class UserRanking(
-    val username : String,
-    val score : Int,
+    var username : String,
+    var score : Int,
     var rank : Int,
-    val userImage : Int,
-    val categoryImage: Int,
-    val category : String,
-    val difficulty : String
+    var userImage : Int,
+    var categoryImage: Int,
+    var category : String,
+    var difficulty : String
     )

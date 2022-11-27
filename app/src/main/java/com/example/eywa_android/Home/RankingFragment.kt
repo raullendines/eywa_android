@@ -1,5 +1,6 @@
 package com.example.eywa_android.Home
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,8 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eywa_android.Adapters.CategoryAdapter
 import com.example.eywa_android.Adapters.UserRankingAdapter
 import com.example.eywa_android.ClassObject.Category
+import com.example.eywa_android.ClassObject.QuizMatch
+import com.example.eywa_android.ClassObject.User
 import com.example.eywa_android.ClassObject.UserRanking
 import com.example.eywa_android.R
+import com.example.eywa_android.Utility.FilesManager
 import kotlinx.android.synthetic.main.fragment_ranking.*
 import kotlinx.android.synthetic.main.fragment_ranking.view.*
 
@@ -48,23 +52,48 @@ class RankingFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        val ranking = mutableListOf<UserRanking>(
-            UserRanking("Pau",15000,1, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
-            UserRanking("Pau",14000,2, R.drawable.logo_eywa,R.drawable.circulo_oro,"ACTION","EASY"),
-            UserRanking("Pau",13000,3, R.drawable.logo_eywa,R.drawable.circulo_oro,"COMEDY","EASY"),
-            UserRanking("Pau",12000,4, R.drawable.logo_eywa,R.drawable.circulo_oro,"ACTION","EASY"),
-            UserRanking("Pau",11000,5, R.drawable.logo_eywa,R.drawable.circulo_oro,"COMEDY","EASY"),
-            UserRanking("Marcelinho",10000,6, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
-            UserRanking("Pau",9000,7, R.drawable.logo_eywa,R.drawable.circulo_oro,"COMEDY","EASY"),
-            UserRanking("Pau",8000,8, R.drawable.logo_eywa,R.drawable.circulo_oro,"ANIMATION","EASY"),
-            UserRanking("Pau",7000,9, R.drawable.logo_eywa,R.drawable.circulo_oro,"ANIMATION","EASY"),
-            UserRanking("Pau",6000,10, R.drawable.logo_eywa,R.drawable.circulo_oro,"HORROR","EASY"),
-            UserRanking("Pau",5000,11, R.drawable.logo_eywa,R.drawable.circulo_oro,"DRAMA","EASY"),
-            UserRanking("Pau",4000,12, R.drawable.logo_eywa,R.drawable.circulo_oro,"DRAMA","EASY"),
-            UserRanking("Pau",3000,13, R.drawable.logo_eywa,R.drawable.circulo_oro,"DRAMA","EASY"),
-            UserRanking("Pau",2000,14, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
-            UserRanking("Pau",1000,15, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY")
-        )
+//        val ranking = mutableListOf<UserRanking>(
+//            UserRanking("Pau",15000,1, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+//            UserRanking("Pau",14000,2, R.drawable.logo_eywa,R.drawable.circulo_oro,"ACTION","EASY"),
+//            UserRanking("Pau",13000,3, R.drawable.logo_eywa,R.drawable.circulo_oro,"COMEDY","EASY"),
+//            UserRanking("Pau",12000,4, R.drawable.logo_eywa,R.drawable.circulo_oro,"ACTION","EASY"),
+//            UserRanking("Pau",11000,5, R.drawable.logo_eywa,R.drawable.circulo_oro,"COMEDY","EASY"),
+//            UserRanking("Marcelinho",10000,6, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+//            UserRanking("Pau",9000,7, R.drawable.logo_eywa,R.drawable.circulo_oro,"COMEDY","EASY"),
+//            UserRanking("Pau",8000,8, R.drawable.logo_eywa,R.drawable.circulo_oro,"ANIMATION","EASY"),
+//            UserRanking("Pau",7000,9, R.drawable.logo_eywa,R.drawable.circulo_oro,"ANIMATION","EASY"),
+//            UserRanking("Pau",6000,10, R.drawable.logo_eywa,R.drawable.circulo_oro,"HORROR","EASY"),
+//            UserRanking("Pau",5000,11, R.drawable.logo_eywa,R.drawable.circulo_oro,"DRAMA","EASY"),
+//            UserRanking("Pau",4000,12, R.drawable.logo_eywa,R.drawable.circulo_oro,"DRAMA","EASY"),
+//            UserRanking("Pau",3000,13, R.drawable.logo_eywa,R.drawable.circulo_oro,"DRAMA","EASY"),
+//            UserRanking("Pau",2000,14, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
+//            UserRanking("Pau",1000,15, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY")
+//        )
+
+        val allMatches = FilesManager.getMatches(requireContext())
+        allMatches.sortByDescending { it.points.toInt() }
+
+        var ranking = mutableListOf<UserRanking>()
+        var users = FilesManager.getUsers(requireContext())
+        var index = 0
+        for(match : QuizMatch in  allMatches){
+
+
+
+
+            var user = users.find { it.id == match.userId}
+            var userRanking = UserRanking(
+            user!!.username,
+            match.points.toInt(),
+            index + 1,
+            R.drawable.logo_eywa,
+            R.drawable.logo_eywa,
+            match.category.uppercase(),
+            match.difficulty.toString(),
+            )
+            index++
+            ranking.add(userRanking)
+        }
 
 
 

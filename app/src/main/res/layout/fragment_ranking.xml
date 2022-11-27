@@ -7,7 +7,7 @@
     android:background="@drawable/fondo_eywa"
     android:orientation="vertical"
     app:layoutDescription="@xml/fragment_ranking_scene"
-    tools:context=".RankingFragment">
+    tools:context=".Home.RankingFragment">
 
 
     <LinearLayout

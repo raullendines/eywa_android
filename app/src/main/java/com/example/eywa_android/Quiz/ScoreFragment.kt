@@ -14,6 +14,7 @@ import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.R
 import com.example.eywa_android.databinding.FragmentCharacterBinding
 import com.example.eywa_android.databinding.FragmentScoreBinding
+import kotlinx.android.synthetic.main.fragment_score.*
 import kotlinx.android.synthetic.main.fragment_user.*
 
 
@@ -50,13 +51,28 @@ class ScoreFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        initializeNumbersAndTexts()
+
+
         if (sharedViewModel.hasAchievementUnlocked){
-            val achievementAdapter = AchievementAdapter(requireContext(), sharedViewModel.achievementList)
-            binding.listAchievements.layoutManager = GridLayoutManager(requireContext(), 4)
-            binding.listAchievements.adapter = achievementAdapter
+            initializeAchievementList()
         }
         else {
             println("No has desbloqueado nada")
         }
+    }
+
+    fun initializeAchievementList() {
+        val achievementAdapter = AchievementAdapter(requireContext(), sharedViewModel.achievementList)
+        binding.listAchievements.layoutManager = GridLayoutManager(requireContext(), 4)
+        binding.listAchievements.adapter = achievementAdapter
+    }
+
+    fun initializeNumbersAndTexts() {
+        txtNumCorrects.text = sharedViewModel.correctAnswers.toString()
+        txtNumIncorrects.text = sharedViewModel.incorrectAnswers.toString()
+        txtPlayTime.text = sharedViewModel.timeUsed.toString()
+        txtDifficultyScore.text = sharedViewModel.difficulty
+        txtScoreScore.text = sharedViewModel.points.toString()
     }
 }

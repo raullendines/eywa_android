@@ -10,10 +10,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.LottieAnimationView
 import com.example.eywa_android.ClassObject.Characters
 import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.ClassObject.QuizMatch
@@ -98,6 +101,7 @@ class CharacterFragment : Fragment() {
         val diffPoints = (sharedViewModel.correctAnswers * difficultyMultiplier) / 10
         val quizScore : Int = (diffPoints * 1000) / sharedViewModel.timeUsed
 
+        sharedViewModel.points = quizScore
         val match = QuizMatch(
             userId = sharedViewModel.user.id,
             category = sharedViewModel.category,
@@ -113,6 +117,10 @@ class CharacterFragment : Fragment() {
         FilesManager.saveMatches(requireContext(), quizMatches)
 
         sharedViewModel.user.quizAchievementList = checkAchievement(sharedViewModel.user.quizAchievementList, match)
+
+        if(sharedViewModel.user.quizAchievementList.size > 0){
+
+        }
         val testUser = sharedViewModel.user
 
 
@@ -135,7 +143,6 @@ class CharacterFragment : Fragment() {
 
         if(characterToShow != null){
             var score = quizScore.toString()
-            binding.txtViewScore.setText(quizScore.toString())
             val imagePath = requireContext().filesDir.path.toString() + "/img/" + characterToShow.image + ".jpeg"
             val bitmap = BitmapFactory.decodeFile(imagePath)
             binding.imageCharacter.setImageBitmap(bitmap)
@@ -166,7 +173,7 @@ class CharacterFragment : Fragment() {
 //            if (sharedViewModel.hasAchievementUnlocked){
 //                val returnNewUserIntent = Intent(this.activity, HomeActivity::class.java)
 //                returnNewUserIntent.putExtra(QuestionsActivity.Questions.USER, sharedViewModel.user)
-//                myActivity.setResult(RESULT_OK, returnNewUserIntent)
+//                myActivity.setResult(RESULT_OK, returnNewUserIntent)w
 //            } else{
 //                myActivity.setResult(RESULT_CANCELED)
 //            }
