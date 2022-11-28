@@ -1,10 +1,7 @@
 package com.example.eywa_android.Utility
 
 import android.content.Context
-import com.example.eywa_android.ClassObject.Characters
-import com.example.eywa_android.ClassObject.Question
-import com.example.eywa_android.ClassObject.QuizMatch
-import com.example.eywa_android.ClassObject.User
+import com.example.eywa_android.ClassObject.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.FileReader
@@ -76,6 +73,14 @@ class FilesManager {
             var jsonElement = gson.toJson(quizMatchList)
             jsonFile.write(jsonElement)
             jsonFile.close()
+        }
+
+        fun getAchievements(context: Context) : MutableList<QuizAchievement>{
+            val quizAchievementJsonFilePath = context.filesDir.toString() + "/json/quizAchievements.json"
+            val quizAchievementJsonFile = FileReader(quizAchievementJsonFilePath)
+            val listQuizAchievementType = object: TypeToken<MutableList<QuizAchievement>>(){}.type
+            val quizAchievementList : MutableList<QuizAchievement> = Gson().fromJson(quizAchievementJsonFile,listQuizAchievementType)
+            return quizAchievementList
         }
     }
 }

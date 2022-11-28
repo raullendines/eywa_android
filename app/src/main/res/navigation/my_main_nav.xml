@@ -80,6 +80,10 @@
         android:id="@+id/rankingFragment"
         android:name="com.example.eywa_android.Home.RankingFragment"
         android:label="fragment_ranking"
-        tools:layout="@layout/fragment_ranking" />
+        tools:layout="@layout/fragment_ranking" >
+        <action
+            android:id="@+id/action_rankingFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
 
 </navigation>

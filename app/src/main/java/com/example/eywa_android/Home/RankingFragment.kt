@@ -7,11 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eywa_android.Adapters.CategoryAdapter
 import com.example.eywa_android.Adapters.UserRankingAdapter
 import com.example.eywa_android.ClassObject.Category
+import com.example.eywa_android.ClassObject.User
 import com.example.eywa_android.ClassObject.UserRanking
+import com.example.eywa_android.Quiz.QuestionsActivity
 import com.example.eywa_android.R
 import kotlinx.android.synthetic.main.fragment_ranking.*
 import kotlinx.android.synthetic.main.fragment_ranking.view.*
@@ -76,7 +81,31 @@ class RankingFragment : Fragment() {
         val usersRankingAdapter = UserRankingAdapter(requireContext(), top4_to_end)
         leaderboard_4_to_end.hasFixedSize()
         leaderboard_4_to_end.layoutManager = LinearLayoutManager(requireContext())
+
+
         leaderboard_4_to_end.adapter = usersRankingAdapter
+
+        usersRankingAdapter.setOnClickListener(){
+//            val bundle = bundleOf(
+//                "OTHER_USER" to false,
+//                QuestionsActivity.Questions.USER to user
+//            )
+//            findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
+            Toast.makeText(requireContext(), "LISTENER", Toast.LENGTH_LONG).show()
+
+        }
+
+        val user = User(
+            id = 22,
+            username = "TESTING",
+            password = "2",
+            image = "avatar",
+            quizAchievementList = mutableListOf(),
+            dateOfRegister = "11/11/1111")
+
+
+
+
 
         for (user : UserRanking in ranking){
             if (user.rank == 1 || user.rank == 2 || user.rank == 3) {
@@ -181,7 +210,6 @@ class RankingFragment : Fragment() {
                 TODO("Not yet implemented")
             }
         }
-
     }
 
     private fun filterCategory(categoryName: String, filteredList : MutableList<UserRanking>, top3_filtered : MutableList<UserRanking>, top4ToEndFiltered : MutableList<UserRanking>, category : Category, ranking: MutableList<UserRanking>) {

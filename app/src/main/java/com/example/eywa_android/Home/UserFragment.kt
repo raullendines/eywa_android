@@ -1,6 +1,7 @@
 package com.example.eywa_android.Home
 
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,9 +17,11 @@ import com.example.eywa_android.Adapters.MatchHistoryAdapter
 import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.ClassObject.QuizMatch
 import com.example.eywa_android.ClassObject.User
+import com.example.eywa_android.Quiz.QuestionsActivity
 import com.example.eywa_android.R
 import com.example.eywa_android.Utility.FilesManager
 import com.example.eywa_android.databinding.FragmentUserBinding
+import java.util.*
 
 
 class UserFragment : Fragment(), HomeActivity.mainPage {
@@ -28,10 +31,11 @@ class UserFragment : Fragment(), HomeActivity.mainPage {
 
     private val sharedViewModel : HomeSharedViewModel by activityViewModels()
 
+    private var otherUser : User? = null
+    private val otherUserMatches = mutableListOf<QuizMatch>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
 
     }
 
@@ -47,34 +51,36 @@ class UserFragment : Fragment(), HomeActivity.mainPage {
 
     override fun onStart() {
         super.onStart()
-        /*
-        postponeEnterTransition()
-        requireView().doOnPreDraw { startPostponedEnterTransition() }
 
 
-        val isTheUserProfile : Boolean = arguments?.get("Boolean") as Boolean
-
-        if (isTheUserProfile){
-            binding.buttonEditData.visibility = View.INVISIBLE
+        //If we want to a user other than the logged one to show their data we send FALSE to this fragment
+        var loggedUser = arguments?.getBoolean("OTHER_USER")
+        //If we don't get any arguments it's because we want to show the logged User
+        if (loggedUser == null){
+            loggedUser = true
         }
-        */
+        if (!loggedUser){
+            otherUser = arguments?.getSerializable(QuestionsActivity.Questions.USER) as User
+            binding.buttonEditData.visibility = View.INVISIBLE
 
-        //initiateTestUser()
+        }
 
-        initUser()
 
-        setAchievementGrid()
+        initUser(loggedUser)
 
-        getMatchHistory()
+        setAchievementGrid(loggedUser)
 
-        if (sharedViewModel.userMatches.isNotEmpty()){
+        getMatchHistory(loggedUser)
 
-            setMatchHistoryGrid()
+        if (sharedViewModel.userMatches.isNotEmpty() || otherUserMatches.isNotEmpty()){
+
+            setMatchHistoryGrid(loggedUser)
 
             binding.textNoGames.visibility = View.INVISIBLE
-        }
 
-        setPercetageGrid()
+            setBestScore(loggedUser)
+        }
+        setPercetageGrid(loggedUser)
 
         binding.buttonEditData.setOnClickListener(){
             //Navigation to the other fragment
@@ -86,39 +92,88 @@ class UserFragment : Fragment(), HomeActivity.mainPage {
         }
     }
 
-    private fun getMatchHistory(){
-        val allMatches = FilesManager.getMatches(requireContext())
-        val usersMatches = mutableListOf<QuizMatch>()
-        for (matches in allMatches){
-            if (matches.userId == sharedViewModel.displayUser!!.id){
-                usersMatches.add(matches)
+    private fun setBestScore(loggedUser: Boolean) {
+        var bestPuntuation = 0
+        if (loggedUser){
+            for (match in sharedViewModel.userMatches){
+                if (bestPuntuation < match.points.toInt()){
+                    bestPuntuation = match.points.toInt()
+                }
+            }
+        } else{
+            for (match in otherUserMatches){
+                if (bestPuntuation < match.points.toInt()){
+                    bestPuntuation = match.points.toInt()
+                }
             }
         }
-        sharedViewModel.userMatches = usersMatches
+        val textToDisplay = bestPuntuation.toString() + " " + getString(R.string.points)
+        binding.textBestScore.text = textToDisplay
+    }
+
+    private fun getMatchHistory(loggedUser: Boolean){
+        val allMatches = FilesManager.getMatches(requireContext())
+        if (loggedUser){
+            val usersMatches = mutableListOf<QuizMatch>()
+            for (matches in allMatches){
+                if (matches.userId == sharedViewModel.displayUser!!.id){
+                    usersMatches.add(matches)
+                }
+            }
+            sharedViewModel.userMatches = usersMatches
+        } else{
+            for (matches in allMatches){
+                if (matches.userId == otherUser!!.id){
+                    otherUserMatches.add(matches)
+                }
+            }
+        }
+
     }
 
 
 
-    private fun setAchievementGrid(){
+    private fun setAchievementGrid(loggedUser : Boolean){
 
-        //sharedViewModel.achievementListRefresh(QuizAchievement.generateList())
+        //load achievements
+        val listAchievements = FilesManager.getAchievements(requireContext())
 
-        val achievementAdapter = AchievementAdapter(requireContext(), sharedViewModel.displayUser!!.quizAchievementList)
-        binding.listAchievements.layoutManager = GridLayoutManager(requireContext(), 4)
-        binding.listAchievements.adapter = achievementAdapter
+        //create adapter
 
+        if (loggedUser){
+            val achievementAdapter = AchievementAdapter(
+                context = requireContext(),
+                achievementListUnchanged = listAchievements,
+                userAchievements = sharedViewModel.displayUser!!.quizAchievementList)
+            binding.listAchievements.layoutManager = GridLayoutManager(requireContext(), 4)
+            binding.listAchievements.adapter = achievementAdapter
+
+        } else{
+            val achievementAdapter = AchievementAdapter(
+                context = requireContext(),
+                achievementListUnchanged = listAchievements,
+                userAchievements = otherUser!!.quizAchievementList)
+            binding.listAchievements.layoutManager = GridLayoutManager(requireContext(), 4)
+            binding.listAchievements.adapter = achievementAdapter
+
+        }
 
     }
 
-    private fun setMatchHistoryGrid(){
-        val myList = sharedViewModel.userMatches.reversed().toMutableList()
-        val matchHistoryAdapter = MatchHistoryAdapter(requireContext(), myList)
-        binding.listMatchHistory.layoutManager = LinearLayoutManager(requireContext())
-        binding.listMatchHistory.adapter = matchHistoryAdapter
+    private fun setMatchHistoryGrid(loggedUser: Boolean){
+        if (loggedUser) {
+            val myList = sharedViewModel.userMatches.reversed().toMutableList()
+            val matchHistoryAdapter = MatchHistoryAdapter(requireContext(), myList)
+            binding.listMatchHistory.layoutManager = LinearLayoutManager(requireContext())
+            binding.listMatchHistory.adapter = matchHistoryAdapter
+        } else {
+
+        }
+
     }
 
-    private fun setPercetageGrid(){
-        var percentageAdapter = getPercentages()
+    private fun setPercetageGrid(loggedUser: Boolean){
+        var percentageAdapter = getPercentages(loggedUser)
 
         val categoryPercentageAdapter = CategoryPercentageAdapter(requireContext(), percentageAdapter)
 
@@ -127,14 +182,25 @@ class UserFragment : Fragment(), HomeActivity.mainPage {
         binding.listCategories.adapter = categoryPercentageAdapter
     }
 
-    private fun initUser(){
+    private fun initUser(userLogged : Boolean){
         //TODO Finish initialitzation
-        binding.textUsername.text = sharedViewModel.displayUser!!.username
-        val path = requireContext().filesDir.path.toString() + "/img/" + sharedViewModel.displayUser!!.image + ".jpeg"
-        val bitmap = BitmapFactory.decodeFile(path)
-        binding.imageUser.setImageBitmap(bitmap)
+        if (userLogged){
+            binding.textUsername.text = sharedViewModel.displayUser!!.username
+            val path = requireContext().filesDir.path.toString() + "/img/" + sharedViewModel.displayUser!!.image + ".jpeg"
+            val bitmap = BitmapFactory.decodeFile(path)
+            binding.imageUser.setImageBitmap(bitmap)
 
-        binding.textRegisterDate.text = sharedViewModel.displayUser!!.dateOfRegister
+            binding.textRegisterDate.text = sharedViewModel.displayUser!!.dateOfRegister
+        } else {
+            binding.textUsername.text = otherUser!!.username
+            val path = requireContext().filesDir.path.toString() + "/img/" + otherUser!!.image + ".jpeg"
+            val bitmap = BitmapFactory.decodeFile(path)
+            binding.imageUser.setImageBitmap(bitmap)
+
+            binding.textRegisterDate.text = otherUser!!.dateOfRegister
+        }
+
+
 
     }
 
@@ -176,7 +242,7 @@ class UserFragment : Fragment(), HomeActivity.mainPage {
 //        sharedViewModel.setUserToDisplay(user)
     }
 
-    private fun getPercentages() : MutableList<String>{
+    private fun getPercentages(loggedUser : Boolean) : MutableList<String>{
         var returningList = mutableListOf<String>()
 
         var percentages = mutableListOf(
@@ -197,41 +263,73 @@ class UserFragment : Fragment(), HomeActivity.mainPage {
             0
         )
 
-        if (sharedViewModel.userMatches.isEmpty()){
+        if (sharedViewModel.userMatches.isEmpty() && otherUserMatches.isEmpty()){
             for (index in 0 until percentages.size){
                 returningList.add("0%")
             }
         } else{
             //Iterate over the user match history
 
-            for (match in sharedViewModel.userMatches){
-                when(match.category){
-                    "action" -> {
-                        games[0]++
-                        percentages[0] += match.correctAnswers
+            if (loggedUser){
+                for (match in sharedViewModel.userMatches){
+                    when(match.category){
+                        "action" -> {
+                            games[0]++
+                            percentages[0] += match.correctAnswers
+                        }
+                        "science fiction" -> {
+                            games[1]++
+                            percentages[1] += match.correctAnswers
+                        }
+                        "animation" -> {
+                            games[2]++
+                            percentages[2] += match.correctAnswers
+                        }
+                        "comedy" -> {
+                            games[3]++
+                            percentages[3] += match.correctAnswers
+                        }
+                        "horror" -> {
+                            games[4]++
+                            percentages[4] += match.correctAnswers
+                        }
+                        "drama" -> {
+                            games[5]++
+                            percentages[5] += match.correctAnswers
+                        }
                     }
-                    "science fiction" -> {
-                        games[1]++
-                        percentages[1] += match.correctAnswers
-                    }
-                    "animation" -> {
-                        games[2]++
-                        percentages[2] += match.correctAnswers
-                    }
-                    "comedy" -> {
-                        games[3]++
-                        percentages[3] += match.correctAnswers
-                    }
-                    "horror" -> {
-                        games[4]++
-                        percentages[4] += match.correctAnswers
-                    }
-                    "drama" -> {
-                        games[5]++
-                        percentages[5] += match.correctAnswers
+                }
+            } else {
+                for (match in otherUserMatches){
+                    when(match.category){
+                        "action" -> {
+                            games[0]++
+                            percentages[0] += match.correctAnswers
+                        }
+                        "science fiction" -> {
+                            games[1]++
+                            percentages[1] += match.correctAnswers
+                        }
+                        "animation" -> {
+                            games[2]++
+                            percentages[2] += match.correctAnswers
+                        }
+                        "comedy" -> {
+                            games[3]++
+                            percentages[3] += match.correctAnswers
+                        }
+                        "horror" -> {
+                            games[4]++
+                            percentages[4] += match.correctAnswers
+                        }
+                        "drama" -> {
+                            games[5]++
+                            percentages[5] += match.correctAnswers
+                        }
                     }
                 }
             }
+
 
             for (index in 0 until percentages.size){
                 var percentage = 0
@@ -254,5 +352,10 @@ class UserFragment : Fragment(), HomeActivity.mainPage {
         binding.textMatchHistory.text = getString(R.string.match_history)
         binding.textNoGames.text = getString(R.string.no_games)
         binding.textPerformanceByCategory.text = getString(R.string.category_performance)
+
+        setAchievementGrid(binding.textUsername.text == sharedViewModel.displayUser!!.username)
+
+
+
     }
 }

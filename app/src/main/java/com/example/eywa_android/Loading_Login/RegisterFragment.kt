@@ -137,7 +137,7 @@ class RegisterFragment : Fragment() {
                         username = binding.LblUsernameRegister.text.toString(),
                         password = hashedPassword,
                         image = "avatar",
-                        quizAchievementList = QuizAchievement.generateList(),
+                        quizAchievementList = mutableListOf(),
                         dateOfRegister = currentDate
                         )
                     users.add(users.size-1, newUser)

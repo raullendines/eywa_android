@@ -65,4 +65,8 @@ class QuizSharedViewModel : ViewModel() {
         timeUsed++
     }
 
+    fun sortAchievementList(){
+        user.quizAchievementList.sort()
+    }
+
 }

@@ -30,9 +30,8 @@ class HomeSharedViewModel : ViewModel() {
         displayUser = newUser
     }
 
-    fun achievementListRefresh(newQuizAchievementList: MutableList<QuizAchievement>){
+    fun achievementListRefresh(newQuizAchievementList: MutableList<Int>){
         displayUser!!.quizAchievementList = newQuizAchievementList
     }
-
 
 }

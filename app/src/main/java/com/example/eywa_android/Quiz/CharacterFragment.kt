@@ -110,9 +110,8 @@ class CharacterFragment : Fragment() {
         FilesManager.saveMatches(requireContext(), quizMatches)
 
         sharedViewModel.user.quizAchievementList = checkAchievement(sharedViewModel.user.quizAchievementList, match)
-        val testUser = sharedViewModel.user
 
-        val newUser = sharedViewModel.user
+        sharedViewModel.sortAchievementList()
 
         val userList = FilesManager.getUsers(requireContext())
         var index : Int = -1
@@ -123,8 +122,6 @@ class CharacterFragment : Fragment() {
         }
         userList[index] = sharedViewModel.user
         FilesManager.saveUser(requireContext(), userList)
-
-
 
         characterList = FilesManager.getCharacters(requireContext())
         val characterToShow = findCharacter(characterList)
@@ -171,43 +168,78 @@ class CharacterFragment : Fragment() {
 
     }
 
-    fun checkAchievement(list : MutableList<QuizAchievement>, match : QuizMatch) : MutableList<QuizAchievement>{
+    fun checkAchievement(list : MutableList<Int>, match : QuizMatch) : MutableList<Int>{
         var listToReturn = list
-        when(match.category){
-            "action" -> {
-                listToReturn = checkPointAchievement(100, match, list, 2)
-                listToReturn = checkPointAchievement(250, match, list, 8)
-            }
-            "science fiction" -> {
-                listToReturn = checkPointAchievement(100, match, list, 3)
-                listToReturn = checkPointAchievement(250, match, list, 9)
-            }
-            "animation" -> {
-                listToReturn = checkPointAchievement(100, match, list, 4)
-                listToReturn = checkPointAchievement(250, match, list, 10)
-            }
-            "comedy" -> {
-                listToReturn = checkPointAchievement(100, match, list, 5)
-                listToReturn = checkPointAchievement(250, match, list, 11)
-            }
-            "horror" -> {
-                listToReturn = checkPointAchievement(100, match, list, 6)
-                listToReturn = checkPointAchievement(250, match, list, 12)
-            }
-            "drama" -> {
-                listToReturn = checkPointAchievement(100, match, list, 7)
-                listToReturn = checkPointAchievement(250, match, list, 13)
-            }
-        }
+        listToReturn = checkPlayAchievements(listToReturn, match)
+        listToReturn = checkPointsAchievements(listToReturn, match)
+
 
         return listToReturn
     }
 
-    private fun checkPointAchievement(points : Int, match: QuizMatch, list: MutableList<QuizAchievement>, achievementId : Int) : MutableList<QuizAchievement> {
+    private fun checkPointsAchievements(list : MutableList<Int>, match : QuizMatch) : MutableList<Int> {
+        var listToReturn = list
+        when(match.category){
+            "action" -> {
+                listToReturn = checkPointAchievement(100, match, list, 7)
+                listToReturn = checkPointAchievement(250, match, list, 13)
+            }
+            "science fiction" -> {
+                listToReturn = checkPointAchievement(100, match, list, 8)
+                listToReturn = checkPointAchievement(250, match, list, 14)
+            }
+            "animation" -> {
+                listToReturn = checkPointAchievement(100, match, list, 9)
+                listToReturn = checkPointAchievement(250, match, list, 15)
+            }
+            "comedy" -> {
+                listToReturn = checkPointAchievement(100, match, list, 10)
+                listToReturn = checkPointAchievement(250, match, list, 16)
+            }
+            "horror" -> {
+                listToReturn = checkPointAchievement(100, match, list, 11)
+                listToReturn = checkPointAchievement(250, match, list, 17)
+            }
+            "drama" -> {
+                listToReturn = checkPointAchievement(100, match, list, 12)
+                listToReturn = checkPointAchievement(250, match, list, 18)
+            }
+        }
+        checkPointAchievement(300, match, list, 19)
+        checkPointAchievement(600, match, list, 20)
+        return listToReturn
+    }
 
-        if (!list[achievementId].owned){
+    private fun checkPlayAchievements(list : MutableList<Int>, match : QuizMatch) : MutableList<Int> {
+        var listToReturn = list
+        when(match.category){
+            "action" -> listToReturn = checkPlayedCategories(list, 1)
+            "science fiction" -> listToReturn = checkPlayedCategories(list, 2)
+            "animation" -> listToReturn = checkPlayedCategories(list, 3)
+            "comedy" -> listToReturn = checkPlayedCategories(list, 4)
+            "horror" -> listToReturn = checkPlayedCategories(list, 5)
+            "drama" -> listToReturn = checkPlayedCategories(list, 6)
+        }
+        listToReturn = checkPlayedCategories(list, 0)
+
+        return listToReturn
+    }
+
+    private fun checkPlayedCategories(list: MutableList<Int>, achievementId: Int): MutableList<Int>{
+        if (!list.contains(achievementId)){
+            list.add(achievementId)
+            Toast.makeText(requireContext(), "Achievement $achievementId unlocked", Toast.LENGTH_SHORT).show()
+            sharedViewModel.achievementUnlocked()
+        }
+        return list
+    }
+
+
+    private fun checkPointAchievement(points : Int, match: QuizMatch, list: MutableList<Int>, achievementId : Int) : MutableList<Int> {
+
+        if (!list.contains(achievementId)){
             if (match.points.toInt() > points){
-                list[achievementId].owned = true
+                list.add(achievementId)
                 Toast.makeText(requireContext(), "Achievement $achievementId unlocked", Toast.LENGTH_SHORT).show()
                 sharedViewModel.achievementUnlocked()
             }

@@ -155,12 +155,12 @@
 
         <TextView
             android:id="@+id/textBestScore"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="5dp"
             android:background="@color/light_grey"
-            android:text="70000 pts"
+            android:text="@string/no_games_low"
             android:textColor="@color/purple_eywa"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
