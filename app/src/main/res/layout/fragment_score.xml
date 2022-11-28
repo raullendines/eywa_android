@@ -241,7 +241,8 @@
         android:layout_marginVertical="30dp"
         android:background="@drawable/rounded_corners_white">
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listUsersScore"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

@@ -25,6 +25,7 @@ import com.example.eywa_android.R
 import com.example.eywa_android.Utility.FilesManager
 
 import com.example.eywa_android.databinding.FragmentCharacterBinding
+import kotlinx.android.synthetic.main.fragment_character.*
 import java.util.*
 
 class CharacterFragment : Fragment() {
@@ -118,8 +119,15 @@ class CharacterFragment : Fragment() {
 
         sharedViewModel.user.quizAchievementList = checkAchievement(sharedViewModel.user.quizAchievementList, match)
 
-        if(sharedViewModel.user.quizAchievementList.size > 0){
-
+        if(sharedViewModel.achievementList.size > 0){
+            for (index in sharedViewModel.achievementList.indices){
+                achievementAnimation.clearAnimation()
+                achievementAnimation.setAnimation(R.raw.animation_achievement)
+                txtAchievementDescription.text = sharedViewModel.achievementList[index].title
+            }
+        }
+        else {
+            txtAchievementUnlocked.text = "NO HAS DESBLOQUEADO NINGÚN LOGRO"
         }
         val testUser = sharedViewModel.user
 

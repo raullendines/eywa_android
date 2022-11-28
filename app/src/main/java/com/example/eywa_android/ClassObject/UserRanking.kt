@@ -7,7 +7,8 @@ class UserRanking(
     var username : String,
     var score : Int,
     var rank : Int,
-    var userImage : Int,
+    var userImage : String,
+    @DrawableRes
     var categoryImage: Int,
     var category : String,
     var difficulty : String

@@ -52,24 +52,6 @@ class RankingFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-//        val ranking = mutableListOf<UserRanking>(
-//            UserRanking("Pau",15000,1, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
-//            UserRanking("Pau",14000,2, R.drawable.logo_eywa,R.drawable.circulo_oro,"ACTION","EASY"),
-//            UserRanking("Pau",13000,3, R.drawable.logo_eywa,R.drawable.circulo_oro,"COMEDY","EASY"),
-//            UserRanking("Pau",12000,4, R.drawable.logo_eywa,R.drawable.circulo_oro,"ACTION","EASY"),
-//            UserRanking("Pau",11000,5, R.drawable.logo_eywa,R.drawable.circulo_oro,"COMEDY","EASY"),
-//            UserRanking("Marcelinho",10000,6, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
-//            UserRanking("Pau",9000,7, R.drawable.logo_eywa,R.drawable.circulo_oro,"COMEDY","EASY"),
-//            UserRanking("Pau",8000,8, R.drawable.logo_eywa,R.drawable.circulo_oro,"ANIMATION","EASY"),
-//            UserRanking("Pau",7000,9, R.drawable.logo_eywa,R.drawable.circulo_oro,"ANIMATION","EASY"),
-//            UserRanking("Pau",6000,10, R.drawable.logo_eywa,R.drawable.circulo_oro,"HORROR","EASY"),
-//            UserRanking("Pau",5000,11, R.drawable.logo_eywa,R.drawable.circulo_oro,"DRAMA","EASY"),
-//            UserRanking("Pau",4000,12, R.drawable.logo_eywa,R.drawable.circulo_oro,"DRAMA","EASY"),
-//            UserRanking("Pau",3000,13, R.drawable.logo_eywa,R.drawable.circulo_oro,"DRAMA","EASY"),
-//            UserRanking("Pau",2000,14, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY"),
-//            UserRanking("Pau",1000,15, R.drawable.logo_eywa,R.drawable.circulo_oro,"SCIENCE FICTION","EASY")
-//        )
-
         val allMatches = FilesManager.getMatches(requireContext())
         allMatches.sortByDescending { it.points.toInt() }
 
@@ -77,8 +59,23 @@ class RankingFragment : Fragment() {
         var users = FilesManager.getUsers(requireContext())
         var index = 0
         for(match : QuizMatch in  allMatches){
+            var difficulty : String = ""
+            when(match.difficulty){
+                1 -> difficulty = "EASY"
+                2 -> difficulty = "MEDIUM"
+                3 -> difficulty = "HARD"
+                4 -> difficulty = "LEGEND"
+            }
 
-
+            var imgCategory : Int = 1
+            when (match.category.uppercase()){
+                "ACTION" -> imgCategory=R.drawable.gun
+                "SCIENCE FICTION" -> imgCategory=R.drawable.ufo
+                "ANIMATION" -> imgCategory=R.drawable.disneyland
+                "COMEDY" -> imgCategory=R.drawable.comedy
+                "HORROR" -> imgCategory=R.drawable.horror
+                "DRAMA" -> imgCategory=R.drawable.drama
+            }
 
 
             var user = users.find { it.id == match.userId}
@@ -86,10 +83,10 @@ class RankingFragment : Fragment() {
             user!!.username,
             match.points.toInt(),
             index + 1,
-            R.drawable.logo_eywa,
-            R.drawable.logo_eywa,
+            user.image,
+            imgCategory,
             match.category.uppercase(),
-            match.difficulty.toString(),
+            difficulty,
             )
             index++
             ranking.add(userRanking)
@@ -118,15 +115,21 @@ class RankingFragment : Fragment() {
 
         for (user : UserRanking in top3){
             if (user.rank == 1){
-                imgRank1.setImageResource(user.userImage)
+                val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
+                val bitmap = BitmapFactory.decodeFile(path)
+                imgRank1.setImageBitmap(bitmap)
                 txtUsernameRank1.text = user.username
                 txtScoreRank1.text = user.score.toString()
             }else if(user.rank == 2){
-                imgRank2.setImageResource(user.userImage)
+                val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
+                val bitmap = BitmapFactory.decodeFile(path)
+                imgRank2.setImageBitmap(bitmap)
                 txtUsernameRank2.text = user.username
                 txtScoreRank2.text = user.score.toString()
             }else {
-                imgRank3.setImageResource(user.userImage)
+                val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
+                val bitmap = BitmapFactory.decodeFile(path)
+                imgRank3.setImageBitmap(bitmap)
                 txtUsernameRank3.text = user.username
                 txtScoreRank3.text = user.score.toString()
             }
@@ -165,15 +168,21 @@ class RankingFragment : Fragment() {
 
                         for (user : UserRanking in top3){
                             if (user.rank == 1){
-                                imgRank1.setImageResource(user.userImage)
+                                val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
+                                val bitmap = BitmapFactory.decodeFile(path)
+                                imgRank1.setImageBitmap(bitmap)
                                 txtUsernameRank1.text = user.username
                                 txtScoreRank1.text = user.score.toString()
                             }else if(user.rank == 2){
-                                imgRank2.setImageResource(user.userImage)
+                                val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
+                                val bitmap = BitmapFactory.decodeFile(path)
+                                imgRank2.setImageBitmap(bitmap)
                                 txtUsernameRank2.text = user.username
                                 txtScoreRank2.text = user.score.toString()
                             }else {
-                                imgRank3.setImageResource(user.userImage)
+                                val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
+                                val bitmap = BitmapFactory.decodeFile(path)
+                                imgRank3.setImageBitmap(bitmap)
                                 txtUsernameRank3.text = user.username
                                 txtScoreRank3.text = user.score.toString()
                             }
@@ -246,17 +255,23 @@ class RankingFragment : Fragment() {
         for (position in top3_filtered.indices){
             when(position){
                 0 -> {
-                    imgRank1.setImageResource(top3_filtered[position].userImage)
+                    val path = requireContext().filesDir.path.toString() + "/img/" + top3_filtered[position].userImage + ".jpeg"
+                    val bitmap = BitmapFactory.decodeFile(path)
+                    imgRank1.setImageBitmap(bitmap)
                     txtUsernameRank1.text = top3_filtered[position].username
                     txtScoreRank1.text = top3_filtered[position].score.toString()
                 }
                 1 -> {
-                    imgRank2.setImageResource(top3_filtered[position].userImage)
+                    val path = requireContext().filesDir.path.toString() + "/img/" + top3_filtered[position].userImage + ".jpeg"
+                    val bitmap = BitmapFactory.decodeFile(path)
+                    imgRank2.setImageBitmap(bitmap)
                     txtUsernameRank2.text = top3_filtered[position].username
                     txtScoreRank2.text = top3_filtered[position].score.toString()
                 }
                 2 -> {
-                    imgRank3.setImageResource(top3_filtered[position].userImage)
+                    val path = requireContext().filesDir.path.toString() + "/img/" + top3_filtered[position].userImage + ".jpeg"
+                    val bitmap = BitmapFactory.decodeFile(path)
+                    imgRank3.setImageBitmap(bitmap)
                     txtUsernameRank3.text = top3_filtered[position].username
                     txtScoreRank3.text = top3_filtered[position].score.toString()
                 }

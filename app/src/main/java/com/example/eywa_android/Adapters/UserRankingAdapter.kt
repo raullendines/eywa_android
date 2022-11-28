@@ -1,6 +1,7 @@
 package com.example.eywa_android.Adapters
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,7 +58,9 @@ class UserRankingAdapter (private val context: Context,
     fun bindVideogame (holder: UserRankingViewHolder, user: UserRanking)
     {
         holder.txtRank?.text = user.rank.toString()
-        holder.imgUsername?.setImageResource(user.userImage)
+        val imagePath = context.filesDir.toString() + "/img/" + user.userImage + ".jpeg"
+        val bitmap = BitmapFactory.decodeFile(imagePath)
+        holder.imgUsername?.setImageBitmap(bitmap)
         holder.txtUsername?.text = user.username.uppercase()
         holder.imgCategory?.setImageResource(user.categoryImage)
         holder.txtCategory?.text = user.category
