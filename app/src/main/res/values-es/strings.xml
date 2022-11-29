@@ -45,5 +45,6 @@
     <string name="no_games">NO HAY PARTIDAS</string>
     <string name="no_games_low">No hay partidas jugadas</string>
     <string name="points">Puntos</string>
+    <string name="category">CATEGORÍA</string>
 
 </resources>

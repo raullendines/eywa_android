@@ -1,8 +1,12 @@
 package com.example.eywa_android.Home
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.transition.Transition
 import android.transition.TransitionManager
 import androidx.fragment.app.Fragment
@@ -28,6 +32,9 @@ class EditUserFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val sharedViewModel : HomeSharedViewModel by activityViewModels()
+
+    private val pickImage = 100
+    private var imageUri : Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,10 +83,23 @@ class EditUserFragment : Fragment() {
 
         }
 
+        binding.buttonGallery.setOnClickListener(){
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, pickImage)
+        }
+
         binding.btnSubmit.setOnClickListener(){
             saveUserData(path = path)
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == pickImage){
+            imageUri = data?.data
+            binding.imageProfile.setImageURI(imageUri)
+        }
     }
 
     private fun initUser(){

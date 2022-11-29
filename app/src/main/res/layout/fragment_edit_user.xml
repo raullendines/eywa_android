@@ -162,14 +162,35 @@
             android:id="@+id/end_card"
             >
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listProfilePics"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/grid_background"
-                android:numColumns="5"
-                android:layout_margin="5dp"/>
+                android:orientation="vertical"
+                >
 
+                <Button
+                    android:id="@+id/buttonGallery"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="end"
+                    android:layout_margin="20dp"
+                    android:text="Gallery"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/rounded_corners_white"
+                    android:backgroundTint="@color/purple_eywa"
+                    android:textColor="@color/white"/>
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/listProfilePics"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/grid_background"
+                    android:numColumns="5"
+                    android:layout_margin="5dp"/>
+            </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 

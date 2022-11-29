@@ -85,6 +85,22 @@ class RankingFragment : Fragment() {
 
         leaderboard_4_to_end.adapter = usersRankingAdapter
 
+        val user = User(
+            id = 22,
+            username = "TESTING",
+            password = "2",
+            image = "avatar",
+            quizAchievementList = mutableListOf(),
+            dateOfRegister = "11/11/1111")
+
+        imgRank2.setOnClickListener(){
+            val bundle = bundleOf(
+                "OTHER_USER" to false,
+                QuestionsActivity.Questions.USER to user
+            )
+            findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
+            Toast.makeText(requireContext(), "LISTENER", Toast.LENGTH_LONG).show()
+        }
         usersRankingAdapter.setOnClickListener(){
 //            val bundle = bundleOf(
 //                "OTHER_USER" to false,
@@ -95,13 +111,7 @@ class RankingFragment : Fragment() {
 
         }
 
-        val user = User(
-            id = 22,
-            username = "TESTING",
-            password = "2",
-            image = "avatar",
-            quizAchievementList = mutableListOf(),
-            dateOfRegister = "11/11/1111")
+
 
 
 
