@@ -146,7 +146,7 @@ class ScoreFragment : Fragment() {
     }
 
     fun initializeAchievementList() {
-        val achievementAdapter = AchievementAdapter(requireContext(), sharedViewModel.achievementList)
+        val achievementAdapter = AchievementAdapter(requireContext(), sharedViewModel.achievementList, sharedViewModel.user.quizAchievementList)
         binding.listAchievements.layoutManager = GridLayoutManager(requireContext(), 4)
         binding.listAchievements.adapter = achievementAdapter
     }
