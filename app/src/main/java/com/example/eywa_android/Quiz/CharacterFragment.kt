@@ -10,16 +10,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.LottieAnimationView
 import com.example.eywa_android.ClassObject.Characters
 import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.ClassObject.QuizMatch
 import com.example.eywa_android.Home.HomeActivity
+import com.example.eywa_android.R
 import com.example.eywa_android.Utility.FilesManager
 
 import com.example.eywa_android.databinding.FragmentCharacterBinding
+import kotlinx.android.synthetic.main.fragment_character.*
 import java.util.*
 
 class CharacterFragment : Fragment() {
@@ -30,6 +36,8 @@ class CharacterFragment : Fragment() {
 
     private var characterList : MutableList<Characters> = mutableListOf()
     private val sharedViewModel : QuizSharedViewModel by activityViewModels()
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +86,7 @@ class CharacterFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        sharedViewModel.achievementList.clear()
         val difficultyMultiplier : Int = when(sharedViewModel.difficulty){
             "1" -> 10
             "2" -> 15
@@ -93,6 +102,7 @@ class CharacterFragment : Fragment() {
         val diffPoints = (sharedViewModel.correctAnswers * difficultyMultiplier) / 10
         val quizScore : Int = (diffPoints * 1000) / sharedViewModel.timeUsed
 
+        sharedViewModel.points = quizScore
         val match = QuizMatch(
             userId = sharedViewModel.user.id,
             category = sharedViewModel.category,
@@ -113,6 +123,18 @@ class CharacterFragment : Fragment() {
 
         sharedViewModel.sortAchievementList()
 
+        if(sharedViewModel.achievementList.size > 0){
+            for (index in sharedViewModel.achievementList.indices){
+                achievementAnimation.clearAnimation()
+                achievementAnimation.setAnimation(R.raw.animation_achievement)
+                txtAchievementDescription.text = sharedViewModel.achievementList[index].title
+            }
+        }
+        else {
+            txtAchievementUnlocked.text = "NO HAS DESBLOQUEADO NINGÚN LOGRO"
+        }
+
+
         val userList = FilesManager.getUsers(requireContext())
         var index : Int = -1
         for (user in userList){
@@ -128,7 +150,6 @@ class CharacterFragment : Fragment() {
 
         if(characterToShow != null){
             var score = quizScore.toString()
-            binding.txtViewScore.setText(quizScore.toString())
             val imagePath = requireContext().filesDir.path.toString() + "/img/" + characterToShow.image + ".jpeg"
             val bitmap = BitmapFactory.decodeFile(imagePath)
             binding.imageCharacter.setImageBitmap(bitmap)
@@ -154,16 +175,18 @@ class CharacterFragment : Fragment() {
         }
 
         binding.btnPlay.setOnClickListener(){
-            viewModelStore.clear()
-            val myActivity = this.activity as QuestionsActivity
-            if (sharedViewModel.hasAchievementUnlocked){
-                val returnNewUserIntent = Intent(this.activity, HomeActivity::class.java)
-                returnNewUserIntent.putExtra(QuestionsActivity.Questions.USER, sharedViewModel.user)
-                myActivity.setResult(RESULT_OK, returnNewUserIntent)
-            } else{
-                myActivity.setResult(RESULT_CANCELED)
-            }
-            myActivity.finishActivity()
+//            viewModelStore.clear()
+//            val myActivity = this.activity as QuestionsActivity
+//            if (sharedViewModel.hasAchievementUnlocked){
+//                val returnNewUserIntent = Intent(this.activity, HomeActivity::class.java)
+//                returnNewUserIntent.putExtra(QuestionsActivity.Questions.USER, sharedViewModel.user)
+//                myActivity.setResult(RESULT_OK, returnNewUserIntent)w
+//            } else{
+//                myActivity.setResult(RESULT_CANCELED)
+//            }
+//            myActivity.finishActivity()
+
+            findNavController().navigate(R.id.action_characterFragment_to_scoreFragment)
         }
 
     }

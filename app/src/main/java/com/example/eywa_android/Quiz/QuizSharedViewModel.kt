@@ -2,6 +2,7 @@ package com.example.eywa_android.Quiz
 
 import androidx.lifecycle.ViewModel
 import com.example.eywa_android.ClassObject.Question
+import com.example.eywa_android.ClassObject.QuizAchievement
 import com.example.eywa_android.ClassObject.User
 
 class QuizSharedViewModel : ViewModel() {
@@ -9,6 +10,7 @@ class QuizSharedViewModel : ViewModel() {
     lateinit var questions : MutableList<Question>
     lateinit var difficulty : String
     lateinit var category : String
+    var points : Int = 0
     var correctAnswers : Int = 0
     var incorrectAnswers : Int = 0
     var countQuestion : Int = 0
@@ -18,6 +20,7 @@ class QuizSharedViewModel : ViewModel() {
 
     lateinit var currentPossibleAnswers : ArrayList<String>
     var currentQuestionCorrectAnswer : Int = 0
+    var achievementList : MutableList<QuizAchievement> = mutableListOf()
 
     var timeLeft : Long = 15
 

@@ -28,5 +28,13 @@
     <fragment
         android:id="@+id/characterFragment"
         android:name="com.example.eywa_android.Quiz.CharacterFragment"
-        android:label="CharacterFragment" />
+        android:label="CharacterFragment" >
+        <action
+            android:id="@+id/action_characterFragment_to_scoreFragment"
+            app:destination="@id/scoreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scoreFragment"
+        android:name="com.example.eywa_android.Quiz.ScoreFragment"
+        android:label="ScoreFragment" />
 </navigation>
