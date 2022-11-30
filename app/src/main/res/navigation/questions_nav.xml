@@ -36,5 +36,14 @@
     <fragment
         android:id="@+id/scoreFragment"
         android:name="com.example.eywa_android.Quiz.ScoreFragment"
-        android:label="ScoreFragment" />
+        android:label="ScoreFragment" >
+        <action
+            android:id="@+id/action_scoreFragment_to_rankingFragment2"
+            app:destination="@id/rankingFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/rankingFragment2"
+        android:name="com.example.eywa_android.Home.RankingFragment"
+        android:label="fragment_ranking"
+        tools:layout="@layout/fragment_ranking" />
 </navigation>

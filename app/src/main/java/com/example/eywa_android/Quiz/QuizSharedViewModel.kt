@@ -20,7 +20,8 @@ class QuizSharedViewModel : ViewModel() {
 
     lateinit var currentPossibleAnswers : ArrayList<String>
     var currentQuestionCorrectAnswer : Int = 0
-    var achievementList : MutableList<QuizAchievement> = mutableListOf()
+    var achievementList : MutableList<Int> = mutableListOf()
+    var achievementMatch : MutableList<QuizAchievement> = mutableListOf()
 
     var timeLeft : Long = 15
 

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -123,16 +124,60 @@ class CharacterFragment : Fragment() {
 
         sharedViewModel.sortAchievementList()
 
+        val listAchievements = FilesManager.getAchievements(requireContext())
+
+        sharedViewModel.achievementMatch.clear()
         if(sharedViewModel.achievementList.size > 0){
             for (index in sharedViewModel.achievementList.indices){
-                achievementAnimation.clearAnimation()
-                achievementAnimation.setAnimation(R.raw.animation_achievement)
-                txtAchievementDescription.text = sharedViewModel.achievementList[index].title
+                for (achievement in listAchievements){
+                    if(achievement.id  == sharedViewModel.achievementList[index]){
+                        println(achievement.title)
+                        sharedViewModel.achievementMatch.add(achievement)
+                    }
+                }
+
             }
         }
         else {
             txtAchievementUnlocked.text = "NO HAS DESBLOQUEADO NINGÚN LOGRO"
         }
+
+        val animDurationConst : Long = 2L
+
+        val fullDuration : Long = animDurationConst * sharedViewModel.achievementMatch.size * 1000
+        val animDuration : Long = animDurationConst * 1000
+
+        var indexAnim = 0
+        val animationTimer = object : CountDownTimer(
+            fullDuration,
+            animDuration){
+            override fun onTick(p0: Long) {
+                achievementAnimation.cancelAnimation()
+                achievementAnimation.playAnimation()
+                txtAchievementDescription.text = sharedViewModel.achievementMatch[indexAnim].title
+                indexAnim += 1
+            }
+
+            override fun onFinish() {
+
+            }
+        }
+
+        if(sharedViewModel.achievementMatch.size > 0){
+            animationTimer.start()
+        }
+
+
+
+//        if(sharedViewModel.achievementMatch.size > 0){
+//            for(achievement in sharedViewModel.achievementMatch){
+//                achievementAnimation.playAnimation()
+//                txtAchievementDescription.text = achievement.title
+//            }
+//
+//
+//        }
+
 
 
         val userList = FilesManager.getUsers(requireContext())
@@ -250,6 +295,7 @@ class CharacterFragment : Fragment() {
 
     private fun checkPlayedCategories(list: MutableList<Int>, achievementId: Int): MutableList<Int>{
         if (!list.contains(achievementId)){
+            sharedViewModel.achievementList.add(achievementId)
             list.add(achievementId)
             Toast.makeText(requireContext(), "Achievement $achievementId unlocked", Toast.LENGTH_SHORT).show()
             sharedViewModel.achievementUnlocked()
@@ -262,6 +308,7 @@ class CharacterFragment : Fragment() {
 
         if (!list.contains(achievementId)){
             if (match.points.toInt() > points){
+                sharedViewModel.achievementList.add(achievementId)
                 list.add(achievementId)
                 Toast.makeText(requireContext(), "Achievement $achievementId unlocked", Toast.LENGTH_SHORT).show()
                 sharedViewModel.achievementUnlocked()

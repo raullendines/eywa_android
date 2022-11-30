@@ -131,7 +131,8 @@ class UserFragment : Fragment(), HomeActivity.mainPage {
         val achievementAdapter = AchievementAdapter(
             context = requireContext(),
             achievementListUnchanged = listAchievements,
-            userAchievements = userToDisplay.quizAchievementList
+            userAchievements = userToDisplay.quizAchievementList,
+            fullList = true
         )
         binding.listAchievements.layoutManager = GridLayoutManager(requireContext(), 4)
         binding.listAchievements.adapter = achievementAdapter

@@ -22,7 +22,8 @@ import java.util.*
 class AchievementAdapter(
     private val context: Context,
     private val achievementListUnchanged: MutableList<QuizAchievement>,
-    private val userAchievements: MutableList<Int>
+    private val userAchievements: MutableList<Int>,
+    private val fullList :Boolean
 ) :
     RecyclerView.Adapter<AchievementAdapter.ImageViewHolder>(),
     View.OnClickListener{
@@ -51,10 +52,17 @@ class AchievementAdapter(
     }
 
     init {
-        for (id in userAchievements){
-            achievementList[id].owned = true
+        if(fullList){
+            for (id in userAchievements){
+                achievementList[id].owned = true
+            }
+            achievementList.sortBy { !it.owned }
+        } else {
+            for (element in achievementList){
+                element.owned = true
+            }
         }
-        achievementList.sortBy { !it.owned }
+
 
         //Find out what is the current lang displayed
         var locale : Locale? = null
