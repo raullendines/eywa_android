@@ -21,6 +21,7 @@ import com.example.eywa_android.Quiz.QuestionsActivity
 import com.example.eywa_android.R
 import com.example.eywa_android.Utility.FilesManager
 import com.example.eywa_android.databinding.FragmentUserBinding
+import kotlinx.android.synthetic.main.fragment_user.*
 import java.util.*
 
 
@@ -118,6 +119,24 @@ class UserFragment : Fragment(), HomeActivity.mainPage {
             }
         }
         sharedViewModel.userMatches = usersMatches
+        getRanking(allMatches)
+    }
+
+    private fun getRanking(allMatches : MutableList<QuizMatch>){
+        allMatches.sortByDescending { it.points.toInt() }
+        var userIds = mutableListOf<Int>()
+        var index = 0
+        var found = false
+        do {
+            if (allMatches[index].userId == userToDisplay.id){
+                found = true
+                val ranking = userIds.size + 1
+                textRankingNumber.text = ranking.toString()
+            } else if (!userIds.contains(allMatches[index].userId)){
+                userIds.add(allMatches[index].userId)
+            }
+            index += 1
+        } while (index < allMatches.size && !found )
     }
 
 
