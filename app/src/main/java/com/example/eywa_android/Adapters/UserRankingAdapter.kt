@@ -53,6 +53,7 @@ class UserRankingAdapter (private val context: Context,
     {
         val planet = ranking[position]
         bindVideogame(holder,planet)
+
     }
 
     fun bindVideogame (holder: UserRankingViewHolder, user: UserRanking)

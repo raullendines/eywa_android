@@ -112,6 +112,9 @@ class HomeActivity : AppCompatActivity() {
             is DifficultyFragment -> findNavController(R.id.nav_host_fragment_container_main).navigate(
                 R.id.action_difficultyFragment_to_userFragment
             )
+            is RankingFragment -> findNavController(R.id.nav_host_fragment_container_main).navigate(
+                R.id.action_rankingFragment_to_userFragment
+            )
         }
     }
 
