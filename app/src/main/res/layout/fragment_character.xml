@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="ACHIEVEMENT UNLOCKED!"
             android:layout_marginTop="25dp"
-            android:textSize="45dp"
+            android:textSize="30dp"
             android:textColor="@color/white"
             android:textStyle="bold"
             />
@@ -57,7 +57,7 @@
         android:layout_height="350dp"
         android:background="@drawable/rounded_corners_white"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         >
         <LinearLayout
@@ -130,7 +130,7 @@
         android:background="@drawable/rounded_corners_yellow"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:text="NEXT"
         android:textStyle="bold"
         android:textColor="@color/purple_eywa"
