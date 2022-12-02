@@ -9,7 +9,4 @@ class QuizAchievement (
     val title_es : String,
     val title_ca : String,
     var owned : Boolean) : Serializable {
-
-
-
 }

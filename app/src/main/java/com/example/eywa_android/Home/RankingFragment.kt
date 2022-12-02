@@ -21,6 +21,7 @@ import com.example.eywa_android.ClassObject.UserRanking
 import com.example.eywa_android.Quiz.QuestionsActivity
 import com.example.eywa_android.R
 import com.example.eywa_android.Utility.FilesManager
+import com.example.eywa_android.Utility.RecyclerItemClickListenr
 import kotlinx.android.synthetic.main.fragment_ranking.*
 import kotlinx.android.synthetic.main.fragment_ranking.view.*
 
@@ -106,8 +107,6 @@ class RankingFragment : Fragment() {
         val usersRankingAdapter = UserRankingAdapter(requireContext(), top4_to_end)
         leaderboard_4_to_end.hasFixedSize()
         leaderboard_4_to_end.layoutManager = LinearLayoutManager(requireContext())
-
-
         leaderboard_4_to_end.adapter = usersRankingAdapter
 
         val user = User(
@@ -126,15 +125,41 @@ class RankingFragment : Fragment() {
             findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
             Toast.makeText(requireContext(), "LISTENER", Toast.LENGTH_LONG).show()
         }
-        usersRankingAdapter.setOnClickListener(){
+//        usersRankingAdapter.setOnClickListener(){
+//
+//            val userRanking :UserRanking = top4_to_end[leaderboard_4_to_end.getChildAdapterPosition(it)]
+//
 //            val bundle = bundleOf(
 //                "OTHER_USER" to false,
 //                QuestionsActivity.Questions.USER to user
 //            )
 //            findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
-            Toast.makeText(requireContext(), "LISTENER", Toast.LENGTH_LONG).show()
+//            Toast.makeText(requireContext(), "LISTENER", Toast.LENGTH_LONG).show()
+//
+//        }
 
-        }
+        leaderboard_4_to_end.addOnItemTouchListener(RecyclerItemClickListenr(requireContext(),leaderboard_4_to_end, object : RecyclerItemClickListenr.OnItemClickListener {
+
+            override fun onItemClick(view: View, position: Int) {
+//                Toast.makeText(requireContext(), top4_to_end[position].rank.toString(), Toast.LENGTH_LONG).show()
+
+                var userRanking = top4_to_end[position]
+                lateinit var userProfile : User
+                for (user in users){
+                    if (user.username == userRanking.username){
+                         userProfile= user
+                    }
+                }
+                val bundle = bundleOf(
+                    "OTHER_USER" to false,
+                    QuestionsActivity.Questions.USER to userProfile
+                )
+                findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
+            }
+            override fun onItemLongClick(view: View?, position: Int) {
+                Toast.makeText(requireContext(), "LISTENER LONG", Toast.LENGTH_LONG).show()
+            }
+        }))
 
 
 
