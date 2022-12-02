@@ -187,8 +187,12 @@ class RankingFragment : Fragment() {
                 val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
                 val bitmap = BitmapFactory.decodeFile(path)
                 imgRank2.setImageBitmap(bitmap)
-                txtUsernameRank2.text = user.username
+                txtUsernameRank2.text = user.username.uppercase()
                 txtScoreRank2.text = user.score.toString()
+                imgCategoryRank2.setImageResource(user.categoryImage)
+                txtCategoryRank2.text = user.category
+                txtDifficultyRank2.text = user.difficulty
+
             }else {
                 val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
                 val bitmap = BitmapFactory.decodeFile(path)
