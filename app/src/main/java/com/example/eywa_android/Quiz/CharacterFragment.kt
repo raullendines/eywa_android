@@ -73,9 +73,11 @@ class CharacterFragment : Fragment() {
         var founded = false
         var count = 0
         do{
-            if (characterList[count].category == sharedViewModel.category
+            if ((characterList[count].category == sharedViewModel.category
                 //&& characterList[count].difficulty == sharedViewModel.difficulty.toString()
-                && characterList[count].num_correct == sharedViewModel.correctAnswers.toString()){
+                && characterList[count].num_correct == sharedViewModel.correctAnswers.toString())
+                || (characterList[count].category == "all"
+                && sharedViewModel.correctAnswers.toString() == "0")){
                 characterToReturn=characterList[count]
                 founded = true
             }
