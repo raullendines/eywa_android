@@ -16,6 +16,11 @@ class QuizSharedViewModel : ViewModel() {
     var countQuestion : Int = 0
     var timeUsed = 0
 
+    val easyPoints : Int = 30
+    val mediumPoints: Int = 40
+    val hardPoints :Int = 50
+    val legendPoints:Int = 60
+
 
 
     lateinit var currentPossibleAnswers : ArrayList<String>

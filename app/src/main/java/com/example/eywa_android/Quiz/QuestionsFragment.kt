@@ -115,7 +115,7 @@ class QuestionsFragment : Fragment() {
                     binding.txtTimer.text = sharedViewModel.timeLeft.toString()
                 }
 
-                //If the user didn't reponded before the 15sec countdown, the answer is set on incorrect
+                //If the user didn't answer before the 15sec countdown, the answer is set on incorrect
                 override fun onFinish() {
                     disabled()
                     Handler().postDelayed({

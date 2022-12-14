@@ -102,8 +102,18 @@ class CharacterFragment : Fragment() {
             sharedViewModel.addTime()
         }
 
-        val diffPoints = (sharedViewModel.correctAnswers * difficultyMultiplier) / 10
-        val quizScore : Int = (diffPoints * 1000) / sharedViewModel.timeUsed
+        var diffPoints : Int
+        if (sharedViewModel.difficulty.toInt() == 1){
+            diffPoints = sharedViewModel.easyPoints * sharedViewModel.correctAnswers
+        }else if (sharedViewModel.difficulty.toInt() == 2){
+            diffPoints = sharedViewModel.mediumPoints * sharedViewModel.correctAnswers
+        }else if (sharedViewModel.difficulty.toInt() == 3){
+            diffPoints = sharedViewModel.hardPoints * sharedViewModel.correctAnswers
+        }else {
+            diffPoints = sharedViewModel.legendPoints * sharedViewModel.correctAnswers
+        }
+        //val diffPoints = (sharedViewModel.correctAnswers * difficultyMultiplier) / 10
+        val quizScore : Int = diffPoints + (150 - sharedViewModel.timeUsed)
 
         sharedViewModel.points = quizScore
         val match = QuizMatch(
