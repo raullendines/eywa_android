@@ -25,16 +25,7 @@ import com.example.eywa_android.Utility.RecyclerItemClickListenr
 import kotlinx.android.synthetic.main.fragment_ranking.*
 import kotlinx.android.synthetic.main.fragment_ranking.view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RankingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RankingFragment : Fragment() {
 
 
@@ -118,25 +109,47 @@ class RankingFragment : Fragment() {
             dateOfRegister = "11/11/1111")
 
         imgRank2.setOnClickListener(){
+            var userRanking = top3[1]
+            lateinit var userProfile : User
+            for (user in users){
+                if (user.username == userRanking.username){
+                    userProfile= user
+                }
+            }
             val bundle = bundleOf(
                 "OTHER_USER" to false,
-                QuestionsActivity.Questions.USER to user
+                QuestionsActivity.Questions.USER to userProfile
             )
             findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
-            Toast.makeText(requireContext(), "LISTENER", Toast.LENGTH_LONG).show()
         }
-//        usersRankingAdapter.setOnClickListener(){
-//
-//            val userRanking :UserRanking = top4_to_end[leaderboard_4_to_end.getChildAdapterPosition(it)]
-//
-//            val bundle = bundleOf(
-//                "OTHER_USER" to false,
-//                QuestionsActivity.Questions.USER to user
-//            )
-//            findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
-//            Toast.makeText(requireContext(), "LISTENER", Toast.LENGTH_LONG).show()
-//
-//        }
+        imgRank1.setOnClickListener(){
+            var userRanking = top3[0]
+            lateinit var userProfile : User
+            for (user in users){
+                if (user.username == userRanking.username){
+                    userProfile= user
+                }
+            }
+            val bundle = bundleOf(
+                "OTHER_USER" to false,
+                QuestionsActivity.Questions.USER to userProfile
+            )
+            findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
+        }
+        imgRank3.setOnClickListener(){
+            var userRanking = top3[2]
+            lateinit var userProfile : User
+            for (user in users){
+                if (user.username == userRanking.username){
+                    userProfile= user
+                }
+            }
+            val bundle = bundleOf(
+                "OTHER_USER" to false,
+                QuestionsActivity.Questions.USER to userProfile
+            )
+            findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
+        }
 
         leaderboard_4_to_end.addOnItemTouchListener(RecyclerItemClickListenr(requireContext(),leaderboard_4_to_end, object : RecyclerItemClickListenr.OnItemClickListener {
 
