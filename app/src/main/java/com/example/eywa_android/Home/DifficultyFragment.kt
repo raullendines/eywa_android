@@ -195,7 +195,7 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
                 questionsReturn as ArrayList<Question>
             )
             intentQuestion.putExtra(QuestionsActivity.Questions.USER, sharedViewModel.displayUser!!)
-
+            intentQuestion.putExtra(QuestionsActivity.Questions.MUTED, sharedViewModel.muted)
             startForResult.launch(intentQuestion)
 
         }

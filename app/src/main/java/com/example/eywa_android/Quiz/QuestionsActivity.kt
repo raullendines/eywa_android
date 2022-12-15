@@ -16,6 +16,7 @@ class QuestionsActivity : AppCompatActivity() {
     object Questions {
         const val QUESTIONS = "QUESTIONS"
         const val USER = "USER"
+        const val MUTED = "MUTED"
     }
 
 
@@ -27,6 +28,9 @@ class QuestionsActivity : AppCompatActivity() {
 
         val questions : MutableList<Question> = extras?.getParcelableArrayList<Question>(Questions.QUESTIONS) as MutableList<Question>
         val user : User = extras.getSerializable(Questions.USER) as User
+        val muted : Boolean = extras.getBoolean(Questions.MUTED)
+
+        sharedViewModel.muted = muted
         sharedViewModel.user = user
         sharedViewModel.initQuestions(questions)
 

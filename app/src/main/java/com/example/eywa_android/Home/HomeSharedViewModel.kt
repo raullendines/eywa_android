@@ -13,7 +13,7 @@ class HomeSharedViewModel : ViewModel() {
     private var _difficulty = MutableLiveData(0)
     val category : LiveData<String> = _category
     val difficulty : LiveData<Int> = _difficulty
-
+    var muted = false;
     var displayUser : User? = null
 
     var userMatches = mutableListOf<QuizMatch>()

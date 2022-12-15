@@ -16,6 +16,7 @@ import com.example.eywa_android.ClassObject.User
 import com.example.eywa_android.R
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.transition.MaterialContainerTransform
+import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 
 
@@ -49,6 +50,11 @@ class HomeActivity : AppCompatActivity() {
         val userLayout = findViewById<LinearLayout>(R.id.userLayout)
         val settingsLayout = findViewById<LinearLayout>(R.id.settingsLayout)
         val lougoutLayout = findViewById<LinearLayout>(R.id.logoutLayout)
+        val changeVolume = findViewById<ImageView>(R.id.changeVolume)
+
+        changeVolume.setOnClickListener(){
+            changeVolume()
+        }
 
         userLayout.setOnClickListener(){
             hideUserMenu(btnUser)
@@ -145,6 +151,20 @@ class HomeActivity : AppCompatActivity() {
                 imageBandera.setImageResource(R.drawable.english_bandera)
                 textLang.setText("ENG")
             }
+        }
+
+    }
+
+    private fun changeVolume(){
+        if (changeVolume.tag == "unmute"){
+            changeVolume.setImageResource(R.drawable.ic_baseline_volume_off_24)
+            changeVolume.tag = "mute"
+            sharedViewModel.muted = true;
+        }
+        else{
+            changeVolume.setImageResource(R.drawable.ic_baseline_volume_on_24)
+            changeVolume.tag = "unmute"
+            sharedViewModel.muted = false;
         }
 
     }

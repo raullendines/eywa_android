@@ -15,6 +15,7 @@ class QuizSharedViewModel : ViewModel() {
     var incorrectAnswers : Int = 0
     var countQuestion : Int = 0
     var timeUsed = 0
+    var muted = false;
 
 
 

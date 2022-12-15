@@ -2,9 +2,11 @@ package com.example.eywa_android.Quiz
 
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.provider.MediaStore.Audio.Media
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +22,7 @@ import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
 import com.example.eywa_android.ClassObject.Question
 import com.example.eywa_android.R
+import com.example.eywa_android.databinding.ActivityHomeBinding
 import com.example.eywa_android.databinding.FragmentQuestionsBinding
 import kotlin.collections.ArrayList
 
@@ -29,12 +32,14 @@ private const val SCORE = "SCORE"
 
 class QuestionsFragment : Fragment() {
 
-
     private var _binding : FragmentQuestionsBinding? = null
     private val binding get() = _binding!!
 
 
+
     private val sharedViewModel : QuizSharedViewModel by activityViewModels()
+    private var correctMusic: MediaPlayer? = null
+    private var incorrectMusic: MediaPlayer? = null
 
     private lateinit var contador_timer: CountDownTimer
     private lateinit var optional_timer : CountDownTimer
@@ -43,7 +48,6 @@ class QuestionsFragment : Fragment() {
     var correcto = true
     var correct_answer = true
     var maxAnswers = 9
-
     private fun getObject() = object {
         val selected: Drawable? =
             ResourcesCompat.getDrawable(resources, R.drawable.answer_button_selected, null)
@@ -65,6 +69,7 @@ class QuestionsFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
@@ -78,6 +83,10 @@ class QuestionsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentQuestionsBinding.inflate(inflater, container, false)
+        //_bindingMenu = ActivityHomeBinding.inflate(inflater, container, false)
+
+        correctMusic = MediaPlayer.create(context, R.raw.music_correct)
+        incorrectMusic = MediaPlayer.create(context, R.raw.music_incorrect)
 
         return binding.root
     }
@@ -471,6 +480,7 @@ class QuestionsFragment : Fragment() {
         animation.alpha = 1.0f
         animation.playAnimation()
 
+
         val animacion = AnimationUtils.loadAnimation(this.activity, R.anim.fade_out)
 
 
@@ -512,12 +522,16 @@ class QuestionsFragment : Fragment() {
     }
 
     fun correct(animation: LottieAnimationView, shuffle: MutableList<Question>, myButton: Button) {
+        if(sharedViewModel.muted == false) {
+            correctMusic?.start()
+        }
         correcto = true
         correct_answer = true
         animationCorrect(animation)
         colorBtn(correcto, myButton, shuffle)
         sharedViewModel.questionCorrect()
         //correctAnswers+= 1
+
 
         object : CountDownTimer(4000, 1000) {
 
@@ -535,12 +549,17 @@ class QuestionsFragment : Fragment() {
 
     // INCORRECT ANSWER
     fun incorrect(animation: LottieAnimationView, shuffle: MutableList<Question>, myButton: Button) {
+        if(sharedViewModel.muted == false) {
+            incorrectMusic?.start()
+        }
         animationIncorrect(animation)
         correcto = false
         correct_answer = false
         colorBtn(correcto, myButton, shuffle)
         sharedViewModel.questionIncorrect()
         //incorrectAnswers+= 1
+
+
 
         object : CountDownTimer(4000, 1000) {
 
