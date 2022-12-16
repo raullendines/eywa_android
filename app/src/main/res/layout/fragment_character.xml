@@ -18,14 +18,14 @@
             android:layout_height="wrap_content"
             android:text="ACHIEVEMENT UNLOCKED!"
             android:layout_marginTop="25dp"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:textColor="@color/white"
             android:textStyle="bold"
             />
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/achievementAnimation"
             android:layout_width="200dp"
-            android:layout_height="150dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:scaleX="1"
