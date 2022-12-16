@@ -5,8 +5,10 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.OpenableColumns
 import android.transition.Transition
 import android.transition.TransitionManager
 import androidx.fragment.app.Fragment
@@ -14,6 +16,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.navigation.fragment.findNavController
@@ -25,6 +28,10 @@ import com.example.eywa_android.Utility.Bcrypt
 
 import com.example.eywa_android.databinding.FragmentEditUserBinding
 import com.google.android.material.transition.MaterialContainerTransform
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.InputStream
 
 class EditUserFragment : Fragment() {
 
@@ -50,12 +57,22 @@ class EditUserFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
 
         initUser()
 
+
+
         var path = sharedViewModel.displayUser!!.image
+
+        if (imageUri != null){
+            val customImagePath = createFileFromContentUri(imageUri!!)
+            val pathWithoutFormat = customImagePath.dropLast(4)
+            path = pathWithoutFormat
+
+        }
 
         val charactersList = FilesManager.getCharacters(requireContext())
         val imagesList = mutableListOf<String>()
@@ -94,11 +111,12 @@ class EditUserFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == pickImage){
             imageUri = data?.data
-            binding.imageProfile.setImageURI(imageUri)
+            //binding.imageProfile.setImageURI(imageUri)
         }
     }
 
@@ -205,5 +223,58 @@ class EditUserFragment : Fragment() {
         binding.imageProfile.visibility = View.VISIBLE
         binding.backgroundOpacity.isClickable = false
         binding.backgroundOpacity.visibility = View.INVISIBLE
+    }
+
+
+
+
+
+    //Image URI handler
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createFileFromContentUri(fileUri : Uri) : String {
+
+        var fileName : String = ""
+
+        fileUri.let { returnUri ->
+            requireActivity().contentResolver.query(returnUri,null,null,null)
+        }?.use { cursor ->
+            val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+            cursor.moveToFirst()
+            fileName = cursor.getString(nameIndex)
+        }
+
+    //  For extract file mimeType
+        val fileType: String? = fileUri.let { returnUri ->
+            requireActivity().contentResolver.getType(returnUri)
+        }
+
+        val iStream : InputStream =
+            requireActivity().contentResolver.openInputStream(fileUri)!!
+        val outputDir = File(requireContext().filesDir.path.toString() + "/img/")
+        val outputFile : File = File(outputDir,fileName)
+        copyStreamToFile(iStream, outputFile)
+        iStream.close()
+
+
+        val imagePath =requireContext().filesDir.path.toString() + "/img/" + fileName
+        val bitmap = BitmapFactory.decodeFile(imagePath)
+        binding.imageProfile.setImageBitmap(bitmap)
+
+        return  fileName
+    }
+
+    private fun copyStreamToFile(inputStream: InputStream, outputFile: File) {
+        inputStream.use { input ->
+            val outputStream = FileOutputStream(outputFile)
+            outputStream.use { output ->
+                val buffer = ByteArray(4 * 1024) // buffer size
+                while (true) {
+                    val byteCount = input.read(buffer)
+                    if (byteCount < 0) break
+                    output.write(buffer, 0, byteCount)
+                }
+                output.flush()
+            }
+        }
     }
 }

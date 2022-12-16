@@ -22,6 +22,7 @@ import com.example.eywa_android.R
 import com.example.eywa_android.Utility.FilesManager
 import com.example.eywa_android.databinding.FragmentUserBinding
 import kotlinx.android.synthetic.main.fragment_user.*
+import java.io.FileNotFoundException
 import java.util.*
 
 
@@ -186,7 +187,15 @@ class UserFragment : Fragment(), HomeActivity.mainPage {
         val path =
             requireContext().filesDir.path.toString() + "/img/" + userToDisplay.image + ".jpeg"
         val bitmap = BitmapFactory.decodeFile(path)
-        binding.imageUser.setImageBitmap(bitmap)
+        if (bitmap == null){
+            val newPath = path.dropLast(5)
+            val newPathFormat = "$newPath.jpg"
+            val newBitmap = BitmapFactory.decodeFile(newPathFormat)
+            binding.imageUser.setImageBitmap(newBitmap)
+        } else{
+            binding.imageUser.setImageBitmap(bitmap)
+        }
+
 
         binding.textRegisterDate.text = userToDisplay.dateOfRegister
 
