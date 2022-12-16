@@ -1,5 +1,6 @@
 package com.example.eywa_android.Quiz
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,7 @@ class QuestionsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions)
+
         val intent = intent
         val extras : Bundle? = intent.extras
 
@@ -36,11 +38,46 @@ class QuestionsActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
 
-    fun finishActivity(){
-        finish()
+        categoryMusic()
     }
 
 
+    fun finishActivity(){
+        sharedViewModel.mediaPlayerQuiz.release()
+        finish()
+    }
+
+    fun categoryMusic(){
+        println(sharedViewModel.category)
+        when (sharedViewModel.category) {
+            "action" -> {
+                sharedViewModel.mediaPlayerQuiz = MediaPlayer.create(this, R.raw.black_panther)
+            }
+            "drama" -> {
+                sharedViewModel.mediaPlayerQuiz = MediaPlayer.create(this, R.raw.el_padrino)
+            }
+            "horror" -> {
+                sharedViewModel.mediaPlayerQuiz = MediaPlayer.create(this, R.raw.el_exorcista)
+            }
+            "science fiction" -> {
+                sharedViewModel.mediaPlayerQuiz = MediaPlayer.create(this, R.raw.star_wars)
+            }
+            "comedy" -> {
+                sharedViewModel.mediaPlayerQuiz = MediaPlayer.create(this, R.raw.comedia)
+            }
+            "animation" -> {
+                sharedViewModel.mediaPlayerQuiz = MediaPlayer.create(this, R.raw.rey_leon)
+            }
+
+        }
+
+        if(!sharedViewModel.muted){
+            sharedViewModel.mediaPlayerQuiz.isLooping = true
+            sharedViewModel.mediaPlayerQuiz.start()
+        }
+    }
 }
 

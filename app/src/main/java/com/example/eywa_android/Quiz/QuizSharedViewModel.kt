@@ -1,5 +1,6 @@
 package com.example.eywa_android.Quiz
 
+import android.media.MediaPlayer
 import androidx.lifecycle.ViewModel
 import com.example.eywa_android.ClassObject.Question
 import com.example.eywa_android.ClassObject.QuizAchievement
@@ -16,7 +17,7 @@ class QuizSharedViewModel : ViewModel() {
     var countQuestion : Int = 0
     var timeUsed = 0
     var muted = false;
-
+    var mediaPlayerQuiz = MediaPlayer()
     val easyPoints : Int = 30
     val mediumPoints: Int = 40
     val hardPoints :Int = 50
