@@ -48,6 +48,10 @@ class RankingFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        buttonGoBack.setOnClickListener() {
+            findNavController().popBackStack()
+        }
+
         val allMatches = FilesManager.getMatches(requireContext())
         allMatches.sortByDescending { it.points.toInt() }
 

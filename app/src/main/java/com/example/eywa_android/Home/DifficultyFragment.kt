@@ -89,6 +89,10 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
             binding.btnLegend
         )
 
+        binding.buttonGoBack.setOnClickListener() {
+            findNavController().popBackStack()
+        }
+
 
         sharedViewModel.difficulty.observe(viewLifecycleOwner) { difficulty ->
             difficultyButtons[difficultySelected].backgroundTintList =
@@ -215,6 +219,8 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
         difficultyButtons[1].setText(R.string.medium)
         difficultyButtons[2].setText(R.string.hard)
         difficultyButtons[3].setText(R.string.legend)
+
+        setCategoryColor(sharedViewModel.category.value.toString())
 
 
         binding.btnPlay.setText(R.string.btnPlay)

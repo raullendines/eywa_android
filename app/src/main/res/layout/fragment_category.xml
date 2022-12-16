@@ -1,23 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutAll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Home.CategoryFragment">
 
-    <TextView
-        android:id="@+id/txtCategories"
-        android:layout_width="500dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/category_title"
-        android:textColor="@color/white"
-        android:textSize="70sp"
-        android:textStyle="bold"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/horror"
+            app:cardCornerRadius="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageButton
+                android:id="@+id/buttonGoBack"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/black"
+                android:contentDescription="BackArrow"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                app:tint="@color/white" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/txtCategories"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="-80dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/category_title"
+            android:textColor="@color/white"
+            android:textSize="70sp"
+            android:textStyle="bold"
+
+            />
+    </LinearLayout>
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

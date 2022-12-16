@@ -63,6 +63,10 @@ class CategoryFragment : Fragment(), HomeActivity.mainPage {
             binding.textDrama
         )
 
+        binding.buttonGoBack.setOnClickListener() {
+            findNavController().popBackStack()
+        }
+
 
         sharedViewModel.category.observe(viewLifecycleOwner) { category ->
             when(category){
