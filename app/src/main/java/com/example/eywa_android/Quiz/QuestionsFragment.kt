@@ -522,7 +522,7 @@ class QuestionsFragment : Fragment() {
     }
 
     fun correct(animation: LottieAnimationView, shuffle: MutableList<Question>, myButton: Button) {
-        if(sharedViewModel.muted == false) {
+        if(!sharedViewModel.muted) {
             correctMusic?.start()
         }
         correcto = true
@@ -549,7 +549,7 @@ class QuestionsFragment : Fragment() {
 
     // INCORRECT ANSWER
     fun incorrect(animation: LottieAnimationView, shuffle: MutableList<Question>, myButton: Button) {
-        if(sharedViewModel.muted == false) {
+        if(!sharedViewModel.muted) {
             incorrectMusic?.start()
         }
         animationIncorrect(animation)
@@ -576,8 +576,9 @@ class QuestionsFragment : Fragment() {
     }
 
     private fun endGame(){
-        progressCircles()
 
+        progressCircles()
+        sharedViewModel.mediaPlayerQuiz.release()
         incorrectMusic?.release()
         correctMusic?.release()
 
