@@ -135,7 +135,7 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
         }
 
         binding.btnPlay.setOnClickListener() {
-
+            sharedViewModel.mediaPlayer.release()
 
             val intentQuestion = Intent(this.activity, QuestionsActivity::class.java)
 
@@ -199,7 +199,7 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
                 questionsReturn as ArrayList<Question>
             )
             intentQuestion.putExtra(QuestionsActivity.Questions.USER, sharedViewModel.displayUser!!)
-
+            intentQuestion.putExtra(QuestionsActivity.Questions.MUTED, sharedViewModel.muted)
             startForResult.launch(intentQuestion)
 
         }

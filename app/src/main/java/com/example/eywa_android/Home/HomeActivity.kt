@@ -1,6 +1,7 @@
 package com.example.eywa_android.Home
 
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.transition.Transition
@@ -16,6 +17,7 @@ import com.example.eywa_android.ClassObject.User
 import com.example.eywa_android.R
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.transition.MaterialContainerTransform
+import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 
 
@@ -29,16 +31,19 @@ class HomeActivity : AppCompatActivity() {
     }
     private var goingBack = false
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
         if (!userLoaded){
             val intent = getIntent()
             val user = intent.getSerializableExtra("USER") as User
             sharedViewModel.setUserToDisplay(user)
         }
         userLoaded = true
+
+
 
         //MATERIAL CARD USER MENU
 
@@ -49,6 +54,11 @@ class HomeActivity : AppCompatActivity() {
         val userLayout = findViewById<LinearLayout>(R.id.userLayout)
         val settingsLayout = findViewById<LinearLayout>(R.id.settingsLayout)
         val lougoutLayout = findViewById<LinearLayout>(R.id.logoutLayout)
+        val changeVolume = findViewById<ImageView>(R.id.changeVolume)
+
+        changeVolume.setOnClickListener(){
+            changeVolume()
+        }
 
         userLayout.setOnClickListener(){
             hideUserMenu(btnUser)
@@ -71,7 +81,6 @@ class HomeActivity : AppCompatActivity() {
         btnLang.setOnClickListener(){
             displayLangMenu(btnLang)
         }
-
 
 
         val catalanLayout = findViewById<LinearLayout>(R.id.catalanLayout)
@@ -97,6 +106,14 @@ class HomeActivity : AppCompatActivity() {
         //SET LANGUAGE BUTTON AND TEXT
         setLangTextImage()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        sharedViewModel.mediaPlayer = MediaPlayer.create(this, R.raw.fondo)
+        sharedViewModel.mediaPlayer.isLooping = true
+        sharedViewModel.mediaPlayer.start()
     }
 
     private fun navigateToUserMenu(){
@@ -147,6 +164,23 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun changeVolume(){
+        if (changeVolume.tag == "unmute"){
+            sharedViewModel.mediaPlayer?.release()
+            changeVolume.setImageResource(R.drawable.ic_baseline_volume_off_24)
+            changeVolume.tag = "mute"
+            sharedViewModel.muted = true;
+        }
+        else{
+            changeVolume.setImageResource(R.drawable.ic_baseline_volume_on_24)
+            changeVolume.tag = "unmute"
+            sharedViewModel.muted = false;
+            sharedViewModel.mediaPlayer = MediaPlayer.create(this, R.raw.fondo)
+            sharedViewModel.mediaPlayer.isLooping = true
+            sharedViewModel.mediaPlayer.start()
+        }
     }
 
     private fun displayLangMenu(selectLang : LinearLayout){
