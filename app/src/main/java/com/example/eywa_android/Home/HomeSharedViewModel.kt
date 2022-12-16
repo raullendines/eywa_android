@@ -1,5 +1,6 @@
 package com.example.eywa_android.Home
 
+import android.media.MediaPlayer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +15,7 @@ class HomeSharedViewModel : ViewModel() {
     val category : LiveData<String> = _category
     val difficulty : LiveData<Int> = _difficulty
     var muted = false;
+    var mediaPlayer = MediaPlayer()
     var displayUser : User? = null
 
     var userMatches = mutableListOf<QuizMatch>()

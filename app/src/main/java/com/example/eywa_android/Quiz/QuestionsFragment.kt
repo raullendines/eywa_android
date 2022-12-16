@@ -35,8 +35,6 @@ class QuestionsFragment : Fragment() {
     private var _binding : FragmentQuestionsBinding? = null
     private val binding get() = _binding!!
 
-
-
     private val sharedViewModel : QuizSharedViewModel by activityViewModels()
     private var correctMusic: MediaPlayer? = null
     private var incorrectMusic: MediaPlayer? = null
@@ -47,7 +45,7 @@ class QuestionsFragment : Fragment() {
     private var bothTimers = false
     var correcto = true
     var correct_answer = true
-    var maxAnswers = 9
+    var maxAnswers = 2
     private fun getObject() = object {
         val selected: Drawable? =
             ResourcesCompat.getDrawable(resources, R.drawable.answer_button_selected, null)
@@ -172,6 +170,8 @@ class QuestionsFragment : Fragment() {
 
 
     }
+
+
 
     private fun answersButtonsClickListeners(){
 
@@ -577,6 +577,9 @@ class QuestionsFragment : Fragment() {
 
     private fun endGame(){
         progressCircles()
+
+        incorrectMusic?.release()
+        correctMusic?.release()
 
         val animation = requireView().findViewById<LottieAnimationView>(R.id.animationWin)
         stopBothTimers()

@@ -131,7 +131,7 @@ class DifficultyFragment : Fragment(), HomeActivity.mainPage {
         }
 
         binding.btnPlay.setOnClickListener() {
-
+            sharedViewModel.mediaPlayer.release()
 
             val intentQuestion = Intent(this.activity, QuestionsActivity::class.java)
 

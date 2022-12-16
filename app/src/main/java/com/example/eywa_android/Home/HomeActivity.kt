@@ -1,6 +1,7 @@
 package com.example.eywa_android.Home
 
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.transition.Transition
@@ -30,16 +31,19 @@ class HomeActivity : AppCompatActivity() {
     }
     private var goingBack = false
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
         if (!userLoaded){
             val intent = getIntent()
             val user = intent.getSerializableExtra("USER") as User
             sharedViewModel.setUserToDisplay(user)
         }
         userLoaded = true
+
+
 
         //MATERIAL CARD USER MENU
 
@@ -79,7 +83,6 @@ class HomeActivity : AppCompatActivity() {
         }
 
 
-
         val catalanLayout = findViewById<LinearLayout>(R.id.catalanLayout)
         val espanyolLayout = findViewById<LinearLayout>(R.id.espanyolLayout)
         val englishLayout = findViewById<LinearLayout>(R.id.englishLayout)
@@ -103,6 +106,14 @@ class HomeActivity : AppCompatActivity() {
         //SET LANGUAGE BUTTON AND TEXT
         setLangTextImage()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        sharedViewModel.mediaPlayer = MediaPlayer.create(this, R.raw.fondo)
+        sharedViewModel.mediaPlayer.isLooping = true
+        sharedViewModel.mediaPlayer.start()
     }
 
     private fun navigateToUserMenu(){
@@ -157,6 +168,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun changeVolume(){
         if (changeVolume.tag == "unmute"){
+            sharedViewModel.mediaPlayer?.release()
             changeVolume.setImageResource(R.drawable.ic_baseline_volume_off_24)
             changeVolume.tag = "mute"
             sharedViewModel.muted = true;
@@ -165,8 +177,10 @@ class HomeActivity : AppCompatActivity() {
             changeVolume.setImageResource(R.drawable.ic_baseline_volume_on_24)
             changeVolume.tag = "unmute"
             sharedViewModel.muted = false;
+            sharedViewModel.mediaPlayer = MediaPlayer.create(this, R.raw.fondo)
+            sharedViewModel.mediaPlayer.isLooping = true
+            sharedViewModel.mediaPlayer.start()
         }
-
     }
 
     private fun displayLangMenu(selectLang : LinearLayout){
