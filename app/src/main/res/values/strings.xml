@@ -49,6 +49,10 @@
     <string name="no_games_low">No games played</string>
     <string name="points">Points</string>
     <string name="category">CATEGORY</string>
+    <string name="change_password">Change Password</string>
+    <string name="edit_profile">EDIT PROFILE</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="gallery">GALLERY</string>
 
 
 </resources>

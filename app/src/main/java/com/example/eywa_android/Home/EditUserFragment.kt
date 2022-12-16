@@ -124,7 +124,15 @@ class EditUserFragment : Fragment() {
         binding.editUser.setText(sharedViewModel.displayUser!!.username)
         val imagePath = requireContext().filesDir.path.toString() + "/img/" + sharedViewModel.displayUser!!.image + ".jpeg"
         val bitmap = BitmapFactory.decodeFile(imagePath)
-        binding.imageProfile.setImageBitmap(bitmap)
+        if (bitmap == null){
+            val newPath = imagePath.dropLast(5)
+            val newPathFormat = "$newPath.jpg"
+            val newBitmap = BitmapFactory.decodeFile(newPathFormat)
+            binding.imageProfile.setImageBitmap(newBitmap)
+        } else{
+            binding.imageProfile.setImageBitmap(bitmap)
+        }
+
     }
 
     private fun saveUserData(path : String){

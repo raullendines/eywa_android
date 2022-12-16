@@ -46,5 +46,9 @@
     <string name="no_games_low">No hay partidas jugadas</string>
     <string name="points">Puntos</string>
     <string name="category">CATEGORÍA</string>
+    <string name="change_password">Cambiar Contraseña</string>
+    <string name="edit_profile">" EDITAR PERFIL"</string>
+    <string name="confirm">CONFIRMAR</string>
+    <string name="gallery">GALERÍA</string>
 
 </resources>
