@@ -8,12 +8,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.eywa_android.Adapters.AchievementAdapter
 import com.example.eywa_android.Adapters.UserRankingAdapter
 import com.example.eywa_android.ClassObject.QuizAchievement
@@ -28,6 +30,7 @@ import com.example.eywa_android.databinding.FragmentScoreBinding
 import kotlinx.android.synthetic.main.fragment_ranking.*
 import kotlinx.android.synthetic.main.fragment_score.*
 import kotlinx.android.synthetic.main.fragment_user.*
+import kotlinx.android.synthetic.main.layout_ranking.*
 
 
 class ScoreFragment : Fragment() {
@@ -98,9 +101,11 @@ class ScoreFragment : Fragment() {
 
         var ranking = mutableListOf<UserRanking>()
         var users = FilesManager.getUsers(requireContext())
+        var difficulty : String = ""
+        var imgCategory : Int = 1
         var index = 0
         for(match : QuizMatch in  allMatches){
-            var difficulty : String = ""
+
             when(match.difficulty){
                 1 -> difficulty = "EASY"
                 2 -> difficulty = "MEDIUM"
@@ -108,7 +113,6 @@ class ScoreFragment : Fragment() {
                 4 -> difficulty = "LEGEND"
             }
 
-            var imgCategory : Int = 1
             when (match.category.uppercase()){
                 "ACTION" -> imgCategory=R.drawable.gun
                 "SCIENCE FICTION" -> imgCategory=R.drawable.ufo
@@ -167,15 +171,44 @@ class ScoreFragment : Fragment() {
 
     fun initializeAchievementList() {
         val achievementAdapter = AchievementAdapter(requireContext(), sharedViewModel.achievementMatch, sharedViewModel.user.quizAchievementList,false)
-        binding.listAchievements.layoutManager = GridLayoutManager(requireContext(), 4)
+        binding.listAchievements.layoutManager = LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
         binding.listAchievements.adapter = achievementAdapter
     }
 
     fun initializeNumbersAndTexts() {
+
+        txtCongratulationsUsername.text = "CONGRATULATIONS " + sharedViewModel.user.username + "!"
+
+        when(sharedViewModel.difficulty){
+            "1" -> {
+                txtDifficultyScore.text =  "EASY"
+                txtDifficultyScore.setTextColor(resources.getColor(R.color.green))
+            }
+            "2" -> {
+                txtDifficultyScore.text =  "MEDIUM"
+                txtDifficultyScore.setTextColor(resources.getColor(R.color.orange))
+            }
+            "3" -> {
+                txtDifficultyScore.text = "HARD"
+                txtDifficultyScore.setTextColor(resources.getColor(R.color.red))
+            }
+            "4" -> {
+                txtDifficultyScore.text = "LEGEND"
+                txtDifficultyScore.setTextColor(resources.getColor(R.color.amarillo_eywa))
+            }
+        }
+
+        when (sharedViewModel.category.uppercase()){
+            "ACTION" -> imgCategoryScore.setImageResource(R.drawable.gun)
+            "SCIENCE FICTION" -> imgCategoryScore.setImageResource(R.drawable.ufo)
+            "ANIMATION" -> imgCategoryScore.setImageResource(R.drawable.disneyland)
+            "COMEDY" -> imgCategoryScore.setImageResource(R.drawable.comedy)
+            "HORROR" -> imgCategoryScore.setImageResource(R.drawable.horror)
+            "DRAMA" -> imgCategoryScore.setImageResource(R.drawable.drama)
+        }
         txtNumCorrects.text = sharedViewModel.correctAnswers.toString()
         txtNumIncorrects.text = sharedViewModel.incorrectAnswers.toString()
         txtPlayTime.text = sharedViewModel.timeUsed.toString()
-        txtDifficultyScore.text = sharedViewModel.difficulty
         txtScoreScore.text = sharedViewModel.points.toString()
     }
 }

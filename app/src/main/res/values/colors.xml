@@ -25,6 +25,7 @@
     <color name="red">#EB080E</color>
     <color name="orange">#FFA500</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="purple_score">#8C52FF</color>
 
 
 </resources>

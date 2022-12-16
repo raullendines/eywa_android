@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,9 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.core.view.MarginLayoutParamsCompat
+import androidx.core.view.isVisible
+import androidx.core.view.marginTop
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
@@ -152,6 +156,9 @@ class CharacterFragment : Fragment() {
         }
         else {
             txtAchievementUnlocked.text = "NO HAS DESBLOQUEADO NINGÚN LOGRO"
+            txtAchievementUnlocked.setTextSize(TypedValue.COMPLEX_UNIT_SP,50.0f)
+            achievementAnimation.isVisible = false;
+            txtAchievementUnlocked.setPadding(0,100,0,0)
         }
 
         val animDurationConst : Long = 2L
