@@ -550,6 +550,7 @@ class QuestionsFragment : Fragment() {
     // INCORRECT ANSWER
     fun incorrect(animation: LottieAnimationView, shuffle: MutableList<Question>, myButton: Button) {
         if(!sharedViewModel.muted) {
+            incorrectMusic?.setVolume(0.15f, 0.15f)
             incorrectMusic?.start()
         }
         animationIncorrect(animation)

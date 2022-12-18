@@ -6,7 +6,7 @@
     <string name="category_title">CATEGORIES</string>
     <string name="category_action">Acció</string>
     <string name="category_scifi">Ciencia ficció</string>
-    <string name="category_comedy">Comedia</string>
+    <string name="category_comedy">Comèdia</string>
     <string name="category_horror">Terror</string>
     <string name="category_animation">Animació</string>
     <string name="category_drama">Drama</string>
@@ -17,7 +17,7 @@
     <string name="difficulty">DIFICULTAT</string>
     <string name="easy">FÀCIL</string>
     <string name="medium">MITJANA</string>
-    <string name="hard">DIFICUL</string>
+    <string name="hard">DIFÍCIL</string>
     <string name="legend">LLEGENDA</string>
 
     <string name="loading">Carregant</string>
@@ -39,8 +39,8 @@
     <string name="best_score">MILLOR PUNTUACIÓ</string>
     <string name="achievements">Assoliments</string>
     <string name="match_history">HISTORIAL DE PARTIDES</string>
-    <string name="category_performance">DESSEMPENY PER CATEGORIA</string>
-    <string name="no_games">NO HI HA PARTIDES</string>
+    <string name="category_performance">DESEMPENY PER CATEGORIA</string>
+    <string name="no_games">NO HI HAN PARTIDES</string>
     <string name="no_games_low">No hi ha partides jugades</string>
     <string name="points">Punts</string>
     <string name="category">CATEGORIA</string>
