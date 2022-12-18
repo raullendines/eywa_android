@@ -48,6 +48,63 @@ class RankingFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        val top3 = mutableListOf<UserRanking>()
+        val top4_to_end = mutableListOf<UserRanking>()
+
+        var ranking = mutableListOf<UserRanking>()
+        var users = FilesManager.getUsers(requireContext())
+
+
+        var rankingFromScore = arguments?.getBoolean("FROM_SCORE")
+        if (rankingFromScore == null){
+            imgRank2.setOnClickListener(){
+                var userRanking = top3[1]
+                lateinit var userProfile : User
+                for (user in users){
+                    if (user.username == userRanking.username){
+                        userProfile= user
+                    }
+                }
+                val bundle = bundleOf(
+                    "OTHER_USER" to false,
+                    QuestionsActivity.Questions.USER to userProfile
+                )
+                findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
+            }
+            imgRank1.setOnClickListener(){
+                var userRanking = top3[0]
+                lateinit var userProfile : User
+                for (user in users){
+                    if (user.username == userRanking.username){
+                        userProfile= user
+                    }
+                }
+                val bundle = bundleOf(
+                    "OTHER_USER" to false,
+                    QuestionsActivity.Questions.USER to userProfile
+                )
+                findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
+            }
+            imgRank3.setOnClickListener(){
+                var userRanking = top3[2]
+                lateinit var userProfile : User
+                for (user in users){
+                    if (user.username == userRanking.username){
+                        userProfile= user
+                    }
+                }
+                val bundle = bundleOf(
+                    "OTHER_USER" to false,
+                    QuestionsActivity.Questions.USER to userProfile
+                )
+                findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
+            }
+        }else {
+            imgRank1.isClickable = false
+            imgRank1.isClickable = false
+            imgRank1.isClickable = false
+        }
+
         buttonGoBack.setOnClickListener() {
             findNavController().popBackStack()
         }
@@ -55,8 +112,7 @@ class RankingFragment : Fragment() {
         val allMatches = FilesManager.getMatches(requireContext())
         allMatches.sortByDescending { it.points.toInt() }
 
-        var ranking = mutableListOf<UserRanking>()
-        var users = FilesManager.getUsers(requireContext())
+
         var index = 0
         for(match : QuizMatch in  allMatches){
             var difficulty : String = ""
@@ -95,8 +151,7 @@ class RankingFragment : Fragment() {
 
 
 
-        val top3 = mutableListOf<UserRanking>()
-        val top4_to_end = mutableListOf<UserRanking>()
+
 
 
         val usersRankingAdapter = UserRankingAdapter(requireContext(), top4_to_end)
@@ -104,56 +159,9 @@ class RankingFragment : Fragment() {
         leaderboard_4_to_end.layoutManager = LinearLayoutManager(requireContext())
         leaderboard_4_to_end.adapter = usersRankingAdapter
 
-        val user = User(
-            id = 22,
-            username = "TESTING",
-            password = "2",
-            image = "avatar",
-            quizAchievementList = mutableListOf(),
-            dateOfRegister = "11/11/1111")
 
-        imgRank2.setOnClickListener(){
-            var userRanking = top3[1]
-            lateinit var userProfile : User
-            for (user in users){
-                if (user.username == userRanking.username){
-                    userProfile= user
-                }
-            }
-            val bundle = bundleOf(
-                "OTHER_USER" to false,
-                QuestionsActivity.Questions.USER to userProfile
-            )
-            findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
-        }
-        imgRank1.setOnClickListener(){
-            var userRanking = top3[0]
-            lateinit var userProfile : User
-            for (user in users){
-                if (user.username == userRanking.username){
-                    userProfile= user
-                }
-            }
-            val bundle = bundleOf(
-                "OTHER_USER" to false,
-                QuestionsActivity.Questions.USER to userProfile
-            )
-            findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
-        }
-        imgRank3.setOnClickListener(){
-            var userRanking = top3[2]
-            lateinit var userProfile : User
-            for (user in users){
-                if (user.username == userRanking.username){
-                    userProfile= user
-                }
-            }
-            val bundle = bundleOf(
-                "OTHER_USER" to false,
-                QuestionsActivity.Questions.USER to userProfile
-            )
-            findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
-        }
+
+
 
         leaderboard_4_to_end.addOnItemTouchListener(RecyclerItemClickListenr(requireContext(),leaderboard_4_to_end, object : RecyclerItemClickListenr.OnItemClickListener {
 
@@ -200,6 +208,7 @@ class RankingFragment : Fragment() {
                 imgRank1.setImageBitmap(bitmap)
                 txtUsernameRank1.text = user.username
                 txtScoreRank1.text = user.score.toString()
+                imgCategoryRank1.setImageResource(user.categoryImage)
             }else if(user.rank == 2){
                 val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
                 val bitmap = BitmapFactory.decodeFile(path)
@@ -207,7 +216,6 @@ class RankingFragment : Fragment() {
                 txtUsernameRank2.text = user.username.uppercase()
                 txtScoreRank2.text = user.score.toString()
                 imgCategoryRank2.setImageResource(user.categoryImage)
-                txtCategoryRank2.text = user.category
                 txtDifficultyRank2.text = user.difficulty
 
             }else {
@@ -215,18 +223,19 @@ class RankingFragment : Fragment() {
                 val bitmap = BitmapFactory.decodeFile(path)
                 imgRank3.setImageBitmap(bitmap)
                 txtUsernameRank3.text = user.username
+                imgCategoryRank3.setImageResource(user.categoryImage)
                 txtScoreRank3.text = user.score.toString()
             }
         }
 
         val categories = mutableListOf<Category>(
-            Category(R.drawable.logo_eywa,"ALL"),
-            Category(R.drawable.logo_eywa,"SCIENCE FICTION"),
-            Category(R.drawable.logo_eywa,"ACTION"),
-            Category(R.drawable.logo_eywa,"COMEDY"),
-            Category(R.drawable.logo_eywa,"DRAMA"),
-            Category(R.drawable.logo_eywa,"ANIMATION"),
-            Category(R.drawable.logo_eywa,"HORROR")
+            Category(R.drawable.cine,"ALL"),
+            Category(R.drawable.ufo,"SCIENCE FICTION"),
+            Category(R.drawable.gun,"ACTION"),
+            Category(R.drawable.comedy,"COMEDY"),
+            Category(R.drawable.drama,"DRAMA"),
+            Category(R.drawable.disneyland,"ANIMATION"),
+            Category(R.drawable.horror,"HORROR")
         )
 
 
@@ -322,17 +331,7 @@ class RankingFragment : Fragment() {
             }
         }
 
-        imgRank1.setImageResource(R.drawable.logo_eywa)
-        txtUsernameRank1.text = ""
-        txtScoreRank1.text = ""
 
-        imgRank2.setImageResource(R.drawable.logo_eywa)
-        txtUsernameRank2.text = ""
-        txtScoreRank2.text = ""
-
-        imgRank3.setImageResource(R.drawable.logo_eywa)
-        txtUsernameRank3.text = ""
-        txtScoreRank3.text = ""
 
 
         for (position in top3_filtered.indices){
@@ -343,6 +342,8 @@ class RankingFragment : Fragment() {
                     imgRank1.setImageBitmap(bitmap)
                     txtUsernameRank1.text = top3_filtered[position].username
                     txtScoreRank1.text = top3_filtered[position].score.toString()
+                    imgCategoryRank1.setImageResource(top3_filtered[position].categoryImage)
+                    txtDifficultyRank1.text = top3_filtered[position].difficulty
                 }
                 1 -> {
                     val path = requireContext().filesDir.path.toString() + "/img/" + top3_filtered[position].userImage + ".jpeg"
@@ -350,6 +351,8 @@ class RankingFragment : Fragment() {
                     imgRank2.setImageBitmap(bitmap)
                     txtUsernameRank2.text = top3_filtered[position].username
                     txtScoreRank2.text = top3_filtered[position].score.toString()
+                    imgCategoryRank2.setImageResource(top3_filtered[position].categoryImage)
+                    txtDifficultyRank2.text = top3_filtered[position].difficulty
                 }
                 2 -> {
                     val path = requireContext().filesDir.path.toString() + "/img/" + top3_filtered[position].userImage + ".jpeg"
@@ -357,6 +360,8 @@ class RankingFragment : Fragment() {
                     imgRank3.setImageBitmap(bitmap)
                     txtUsernameRank3.text = top3_filtered[position].username
                     txtScoreRank3.text = top3_filtered[position].score.toString()
+                    imgCategoryRank3.setImageResource(top3_filtered[position].categoryImage)
+                    txtDifficultyRank3.text = top3_filtered[position].difficulty
                 }
             }
         }

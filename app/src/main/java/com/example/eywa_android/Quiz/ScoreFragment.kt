@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -81,7 +82,8 @@ class ScoreFragment : Fragment() {
 
 
         btnLeaderboard.setOnClickListener (){
-            findNavController().navigate(R.id.action_scoreFragment_to_rankingFragment2)
+            val bundle = bundleOf("FROM_SCORE" to true)
+            findNavController().navigate(R.id.action_scoreFragment_to_rankingFragment2,bundle)
         }
 
         initializeNumbersAndTexts()
