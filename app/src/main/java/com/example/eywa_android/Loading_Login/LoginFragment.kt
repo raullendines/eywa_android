@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.os.SystemClock
 import android.text.InputType
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -61,13 +62,19 @@ class LoginFragment : Fragment() {
 
         var users = FilesManager.getUsers(this.requireContext())
 
-        btnRegister.setOnClickListener(){
+        btnRegister.setOnClickListener {
             //change fragments
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
+        var mLastClickTime : Long = 0
+
         btnLogin.setOnClickListener(){
-           loginFun(users)
+            if (SystemClock.elapsedRealtime() - mLastClickTime >= 1000) {
+                loginFun(users)
+            }
+            mLastClickTime = SystemClock.elapsedRealtime()
+
         }
 
         //Turn on password
@@ -99,8 +106,8 @@ class LoginFragment : Fragment() {
         animation.alpha = 1.0f
         animation.playAnimation()
 
-        var layoutLogin = binding.layoutLogin;
-        layoutLogin.setBackgroundColor(Color.parseColor("#A6000000"));
+        var layoutLogin = binding.layoutLogin
+        layoutLogin.setBackgroundColor(Color.parseColor("#A6000000"))
 
         object : CountDownTimer(4000, 1000) {
 
@@ -109,7 +116,7 @@ class LoginFragment : Fragment() {
 
             override fun onFinish() {
                 Handler().postDelayed({
-                    layoutLogin.setBackgroundColor(Color.parseColor("#00000000"));
+                    layoutLogin.setBackgroundColor(Color.parseColor("#00000000"))
                     animation.visibility = View.INVISIBLE
                 }, 100)
             }
@@ -117,11 +124,10 @@ class LoginFragment : Fragment() {
     }
 
     fun loginFun(users : MutableList<User>){
-        //animationLogin(binding.animationLogin)
-        binding.btnLogin.isClickable = false
+
+        animationLogin(binding.animationLogin)
+
         var userExists = userExist(binding.textUsername.text.toString(),binding.textPassword.text.toString(),users)
-
-
 
         //Omplir amb les dades per contrastar amb el JSON
         if (binding.textUsername.text.isEmpty() || binding.textPassword.text.isEmpty()){
@@ -131,16 +137,16 @@ class LoginFragment : Fragment() {
             if (userExists != -1){
                 val intentHome = Intent(activity, HomeActivity::class.java)
                 val userToSend = users[userExists]
-                binding.btnLogin.isClickable = true
                 intentHome.putExtra("USER", userToSend)
                 startActivity(intentHome)
+
             }
             else {
+
                 Toast.makeText(this.activity, "User doesn't exist", Toast.LENGTH_SHORT).show()
-                binding.btnLogin.isClickable = true
             }
         }
-        binding.btnLogin.isClickable = true
+
     }
 
     fun userExist(user : String, password : String, users : MutableList<User>): Int {

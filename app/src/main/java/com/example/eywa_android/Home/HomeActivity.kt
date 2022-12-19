@@ -68,6 +68,10 @@ class HomeActivity : AppCompatActivity() {
         }
         lougoutLayout.setOnClickListener(){
             hideUserMenu(btnUser)
+            if (sharedViewModel.mediaPlayer.isPlaying){
+                sharedViewModel.mediaPlayer.release()
+
+            }
             finish()
         }
 
