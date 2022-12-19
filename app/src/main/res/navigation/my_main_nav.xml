@@ -27,7 +27,11 @@
             app:popExitAnim="@anim/slide_out_top"/>
 		<action
             android:id="@+id/action_homeFragment_to_rankingFragment"
-            app:destination="@id/rankingFragment" />
+            app:destination="@id/rankingFragment"
+            app:enterAnim="@anim/slide_in_top"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_top" />
 
     </fragment>
     <fragment
@@ -83,7 +87,9 @@
         tools:layout="@layout/fragment_ranking" >
         <action
             android:id="@+id/action_rankingFragment_to_userFragment"
-            app:destination="@id/userFragment" />
+            app:destination="@id/userFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_bottom" />
     </fragment>
 
 </navigation>

@@ -179,7 +179,7 @@ class ScoreFragment : Fragment() {
 
     fun initializeNumbersAndTexts() {
 
-        txtCongratulationsUsername.text = "CONGRATULATIONS " + sharedViewModel.user.username + "!"
+        txtCongratulationsUsername.text = getString(R.string.congratulations) +" " + sharedViewModel.user.username + "!"
 
         when(sharedViewModel.difficulty){
             "1" -> {

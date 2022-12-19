@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.fragment_ranking.*
 import kotlinx.android.synthetic.main.fragment_ranking.view.*
 
 
-class RankingFragment : Fragment() {
+class RankingFragment : Fragment(), HomeActivity.mainPage {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,6 +99,29 @@ class RankingFragment : Fragment() {
                 )
                 findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
             }
+
+            leaderboard_4_to_end.addOnItemTouchListener(RecyclerItemClickListenr(requireContext(),leaderboard_4_to_end, object : RecyclerItemClickListenr.OnItemClickListener {
+
+                override fun onItemClick(view: View, position: Int) {
+//                Toast.makeText(requireContext(), top4_to_end[position].rank.toString(), Toast.LENGTH_LONG).show()
+
+                    var userRanking = top4_to_end[position]
+                    lateinit var userProfile : User
+                    for (user in users){
+                        if (user.username == userRanking.username){
+                            userProfile= user
+                        }
+                    }
+                    val bundle = bundleOf(
+                        "OTHER_USER" to false,
+                        QuestionsActivity.Questions.USER to userProfile
+                    )
+                    findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
+                }
+                override fun onItemLongClick(view: View?, position: Int) {
+                    Toast.makeText(requireContext(), "LISTENER LONG", Toast.LENGTH_LONG).show()
+                }
+            }))
         }else {
             imgRank1.isClickable = false
             imgRank1.isClickable = false
@@ -163,28 +186,7 @@ class RankingFragment : Fragment() {
 
 
 
-        leaderboard_4_to_end.addOnItemTouchListener(RecyclerItemClickListenr(requireContext(),leaderboard_4_to_end, object : RecyclerItemClickListenr.OnItemClickListener {
 
-            override fun onItemClick(view: View, position: Int) {
-//                Toast.makeText(requireContext(), top4_to_end[position].rank.toString(), Toast.LENGTH_LONG).show()
-
-                var userRanking = top4_to_end[position]
-                lateinit var userProfile : User
-                for (user in users){
-                    if (user.username == userRanking.username){
-                         userProfile= user
-                    }
-                }
-                val bundle = bundleOf(
-                    "OTHER_USER" to false,
-                    QuestionsActivity.Questions.USER to userProfile
-                )
-                findNavController().navigate(R.id.action_rankingFragment_to_userFragment, bundle)
-            }
-            override fun onItemLongClick(view: View?, position: Int) {
-                Toast.makeText(requireContext(), "LISTENER LONG", Toast.LENGTH_LONG).show()
-            }
-        }))
 
 
 
@@ -419,6 +421,10 @@ class RankingFragment : Fragment() {
         leaderboard_4_to_end.hasFixedSize()
         leaderboard_4_to_end.layoutManager = LinearLayoutManager(requireContext())
         leaderboard_4_to_end.adapter = usersRankingAdapter
+    }
+
+    override fun changeLang() {
+
     }
 
 }

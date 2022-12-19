@@ -44,8 +44,7 @@ class HomeFragment : Fragment(), HomeActivity.mainPage {
 
     override fun changeLang() {
         //TODO
-
-
+        playQuiz.text = getString(R.string.btnPlay)
     }
 
 }

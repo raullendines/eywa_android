@@ -43,10 +43,11 @@
                 android:background="@drawable/rounded_corners_yellow">
 
                 <TextView
+                    android:id="@+id/playQuiz"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
-                    android:text="PLAY"
+                    android:text="@string/btnPlay"
                     android:textColor="@color/purple_700"
                     android:textStyle="bold"
                     android:textSize="30dp"
@@ -95,7 +96,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
-                    android:text="LEADERBOARD"
+                    android:text="@string/leaderboard"
                     android:textColor="@color/purple_700"
                     android:textStyle="bold"
                     android:textSize="30dp"

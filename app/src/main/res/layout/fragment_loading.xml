@@ -57,7 +57,7 @@
             android:id="@+id/txtPressAnywhereToContinue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PRESS ANYWHERE TO CONTINUE"
+            android:text="@string/press_anywhere_to_continue"
             android:gravity="center"
             android:textSize="55sp"
             android:layout_gravity="center|bottom"

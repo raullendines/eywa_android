@@ -155,7 +155,7 @@ class CharacterFragment : Fragment() {
             }
         }
         else {
-            txtAchievementUnlocked.text = "NO HAS DESBLOQUEADO NINGÚN LOGRO"
+            txtAchievementUnlocked.text = getString(R.string.no_achievement)
             txtAchievementUnlocked.setTextSize(TypedValue.COMPLEX_UNIT_SP,50.0f)
             achievementAnimation.isVisible = false;
             txtAchievementUnlocked.setPadding(0,100,0,0)

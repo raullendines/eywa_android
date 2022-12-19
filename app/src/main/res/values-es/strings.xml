@@ -13,7 +13,7 @@
     <string name="category_horror">Terror</string>
     <string name="category_animation">Animación</string>
     <string name="category_drama">Drama</string>
-    <string name="btnPlay">Jugar</string>
+    <string name="btnPlay">JUGAR</string>
 
     <string name="score">PUNTUACIÓN</string>
     <string name="play_again">VOLVER A JUGAR</string>
@@ -50,5 +50,9 @@
     <string name="edit_profile">" EDITAR PERFIL"</string>
     <string name="confirm">CONFIRMAR</string>
     <string name="gallery">GALERÍA</string>
+    <string name="leaderboard">LEADERBOARD</string>
+    <string name="no_achievement">NO HAS DESBLOQUEADO NINGÚN LOGRO</string>
+    <string name="congratulations">ENHORABUENA</string>
+    <string name="achievements_score">LOGROS</string>
 
 </resources>

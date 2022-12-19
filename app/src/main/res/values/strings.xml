@@ -13,7 +13,7 @@
     <string name="category_horror">Horror</string>
     <string name="category_animation">Animation</string>
     <string name="category_drama">Drama</string>
-    <string name="btnPlay">Play</string>
+    <string name="btnPlay">PLAY</string>
 
     <string name="score">SCORE</string>
     <string name="play_again">PLAY AGAIN</string>
@@ -53,6 +53,10 @@
     <string name="edit_profile">EDIT PROFILE</string>
     <string name="confirm">CONFIRM</string>
     <string name="gallery">GALLERY</string>
+    <string name="leaderboard">LEADERBOARD</string>
+    <string name="no_achievement">NO ACHIEVEMENT UNLOCKED</string>
+    <string name="congratulations">CONGRATULATIONS</string>
+    <string name="achievements_score">ACHIEVEMENTS</string>
 
 
 </resources>

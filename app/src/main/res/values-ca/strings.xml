@@ -10,7 +10,7 @@
     <string name="category_horror">Terror</string>
     <string name="category_animation">Animació</string>
     <string name="category_drama">Drama</string>
-    <string name="btnPlay">Jugar</string>
+    <string name="btnPlay">JUGAR</string>
 
     <string name="score">PUNTUACIÓ</string>
     <string name="play_again">TORNAR A JUGAR</string>
@@ -48,5 +48,9 @@
     <string name="edit_profile">EDITA EL PERFIL</string>
     <string name="confirm">CONFIRMAR</string>
     <string name="gallery">GALERIA</string>
+    <string name="leaderboard">LEADERBOARD</string>
+    <string name="no_achievement">NO HAS DESBLOQUEJAT CAP ASSOLIMENT</string>
+    <string name="congratulations">ENHORABONA</string>
+    <string name="achievements_score">ASSOLIMENTS</string>
 
 </resources>
