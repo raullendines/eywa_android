@@ -51,6 +51,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_baseline_person_24"
                 android:layout_gravity="center"
+                android:scaleType="centerCrop"
                 />
         </androidx.cardview.widget.CardView>
         <TextView

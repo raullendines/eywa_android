@@ -45,7 +45,7 @@ class QuestionsFragment : Fragment() {
     private var bothTimers = false
     var correcto = true
     var correct_answer = true
-    var maxAnswers = 2
+    var maxAnswers = 9
     private fun getObject() = object {
         val selected: Drawable? =
             ResourcesCompat.getDrawable(resources, R.drawable.answer_button_selected, null)
@@ -522,7 +522,7 @@ class QuestionsFragment : Fragment() {
     }
 
     fun correct(animation: LottieAnimationView, shuffle: MutableList<Question>, myButton: Button) {
-        if(sharedViewModel.muted == false) {
+        if(!sharedViewModel.muted) {
             correctMusic?.start()
         }
         correcto = true
@@ -549,7 +549,8 @@ class QuestionsFragment : Fragment() {
 
     // INCORRECT ANSWER
     fun incorrect(animation: LottieAnimationView, shuffle: MutableList<Question>, myButton: Button) {
-        if(sharedViewModel.muted == false) {
+        if(!sharedViewModel.muted) {
+            incorrectMusic?.setVolume(0.15f, 0.15f)
             incorrectMusic?.start()
         }
         animationIncorrect(animation)
@@ -576,8 +577,9 @@ class QuestionsFragment : Fragment() {
     }
 
     private fun endGame(){
-        progressCircles()
 
+        progressCircles()
+        sharedViewModel.mediaPlayerQuiz.release()
         incorrectMusic?.release()
         correctMusic?.release()
 

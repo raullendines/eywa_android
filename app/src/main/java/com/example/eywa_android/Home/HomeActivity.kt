@@ -43,8 +43,6 @@ class HomeActivity : AppCompatActivity() {
         }
         userLoaded = true
 
-
-
         //MATERIAL CARD USER MENU
 
         val btnUser = findViewById<ImageButton>(R.id.userMenu)
@@ -111,9 +109,11 @@ class HomeActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        sharedViewModel.mediaPlayer = MediaPlayer.create(this, R.raw.fondo)
-        sharedViewModel.mediaPlayer.isLooping = true
-        sharedViewModel.mediaPlayer.start()
+        if (!sharedViewModel.muted){
+            sharedViewModel.mediaPlayer = MediaPlayer.create(this, R.raw.fondo)
+            sharedViewModel.mediaPlayer.isLooping = true
+            sharedViewModel.mediaPlayer.start()
+        }
     }
 
     private fun navigateToUserMenu(){

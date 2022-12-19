@@ -82,7 +82,7 @@
             android:layout_width="300dp"
             android:layout_height="100dp"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="170dp"
+            android:layout_marginLeft="190dp"
             android:paddingBottom="10sp"
             android:adjustViewBounds="true"
             android:scaleX="3"

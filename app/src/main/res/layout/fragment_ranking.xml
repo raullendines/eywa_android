@@ -58,7 +58,7 @@
     <LinearLayout
         android:id="@+id/layoutTop"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="270dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,73 +78,54 @@
                 android:background="@drawable/circulo_plata"
                 android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/imgRank2"
+                <androidx.cardview.widget.CardView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:src="@drawable/logo_eywa"
-                    android:clickable="true"
-                    android:focusable="true"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/txtUsernameRank2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center|right"
-                    android:text="USERNAME"
-                    android:paddingEnd="40dp"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/txtScoreRank2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center|left"
-                    android:text="4000"
-                    android:paddingStart="40dp"
-                    android:textColor="@color/amarillo_eywa"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:paddingEnd="40dp"
-                    android:paddingStart="65dp">
+                    android:layout_marginBottom="15dp"
+                    app:cardCornerRadius="50dp"
                     >
+
+                    <ImageView
+                        android:id="@+id/imgRank2"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:scaleType="centerCrop"
+                        android:clickable="true"
+
+
+                        android:src="@drawable/logo_eywa" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtUsernameRank2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="USERNAME"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
                 <ImageView
                     android:id="@+id/imgCategoryRank2"
-                    android:layout_width="30dp"
+                    android:layout_width="0dp"
                     android:layout_height="30dp"
-                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:layout_gravity="center|right"
+                    android:paddingStart="150dp"
                      />
-                    <TextView
-                        android:id="@+id/txtCategoryRank2"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="right|center_vertical"
-                        android:text="SCIENCE-FICTION"
-                        android:textColor="@color/white"
-                        android:textSize="9sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+
+
                 <TextView
                     android:id="@+id/txtDifficultyRank2"
                     android:layout_width="0dp"
@@ -152,11 +133,23 @@
                     android:layout_weight="1"
                     android:gravity="center|left"
                     android:text="LEGEND"
-                    android:paddingStart="40dp"
+                    android:paddingStart="10dp"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
+
+
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtScoreRank2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="4000"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -173,13 +166,23 @@
                 android:background="@drawable/circulo_oro"
                 android:gravity="center">
 
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="15dp"
+                    app:cardCornerRadius="50dp"
+                    >
+
                 <ImageView
                     android:id="@+id/imgRank1"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/logo_eywa" />
+
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
 
             <TextView
@@ -192,6 +195,38 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:id="@+id/imgCategoryRank1"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center|right"
+                    android:paddingStart="150dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/txtDifficultyRank1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:text="LEGEND"
+                    android:paddingStart="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/txtScoreRank1"
                 android:layout_width="match_parent"
@@ -199,7 +234,7 @@
                 android:gravity="center"
                 android:text="5000"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -217,13 +252,22 @@
                 android:background="@drawable/circulo_bronce"
                 android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/imgRank3"
+                <androidx.cardview.widget.CardView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:src="@drawable/logo_eywa" />
+                    android:layout_marginBottom="15dp"
+                    app:cardCornerRadius="50dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/imgRank3"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/logo_eywa" />
+
+                    </androidx.cardview.widget.CardView>
             </LinearLayout>
 
             <TextView
@@ -236,6 +280,37 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:id="@+id/imgCategoryRank3"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center|right"
+                    android:paddingStart="150dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/txtDifficultyRank3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:text="LEGEND"
+                    android:paddingStart="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/txtScoreRank3"
                 android:layout_width="match_parent"
@@ -243,7 +318,7 @@
                 android:gravity="center"
                 android:text="3000"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
