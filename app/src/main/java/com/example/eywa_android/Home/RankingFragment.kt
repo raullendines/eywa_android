@@ -205,14 +205,31 @@ class RankingFragment : Fragment() {
             if (user.rank == 1){
                 val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
                 val bitmap = BitmapFactory.decodeFile(path)
-                imgRank1.setImageBitmap(bitmap)
+                if (bitmap == null){
+                    val newPath = path.dropLast(5)
+                    val newPathFormat = "$newPath.jpg"
+                    val newBitmap = BitmapFactory.decodeFile(newPathFormat)
+                    imgRank1.setImageBitmap(newBitmap)
+                } else{
+                    imgRank1.setImageBitmap(bitmap)
+                }
+
+                //imgRank1.setImageBitmap(bitmap)
                 txtUsernameRank1.text = user.username
                 txtScoreRank1.text = user.score.toString()
                 imgCategoryRank1.setImageResource(user.categoryImage)
             }else if(user.rank == 2){
                 val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
                 val bitmap = BitmapFactory.decodeFile(path)
-                imgRank2.setImageBitmap(bitmap)
+                if (bitmap == null){
+                    val newPath = path.dropLast(5)
+                    val newPathFormat = "$newPath.jpg"
+                    val newBitmap = BitmapFactory.decodeFile(newPathFormat)
+                    imgRank2.setImageBitmap(newBitmap)
+                } else{
+                    imgRank2.setImageBitmap(bitmap)
+                }
+                //imgRank2.setImageBitmap(bitmap)
                 txtUsernameRank2.text = user.username.uppercase()
                 txtScoreRank2.text = user.score.toString()
                 imgCategoryRank2.setImageResource(user.categoryImage)
@@ -221,7 +238,15 @@ class RankingFragment : Fragment() {
             }else {
                 val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
                 val bitmap = BitmapFactory.decodeFile(path)
-                imgRank3.setImageBitmap(bitmap)
+                if (bitmap == null){
+                    val newPath = path.dropLast(5)
+                    val newPathFormat = "$newPath.jpg"
+                    val newBitmap = BitmapFactory.decodeFile(newPathFormat)
+                    imgRank3.setImageBitmap(newBitmap)
+                } else{
+                    imgRank3.setImageBitmap(bitmap)
+                }
+                //imgRank3.setImageBitmap(bitmap)
                 txtUsernameRank3.text = user.username
                 imgCategoryRank3.setImageResource(user.categoryImage)
                 txtScoreRank3.text = user.score.toString()
@@ -263,19 +288,43 @@ class RankingFragment : Fragment() {
                             if (user.rank == 1){
                                 val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
                                 val bitmap = BitmapFactory.decodeFile(path)
-                                imgRank1.setImageBitmap(bitmap)
+                                if (bitmap == null){
+                                    val newPath = path.dropLast(5)
+                                    val newPathFormat = "$newPath.jpg"
+                                    val newBitmap = BitmapFactory.decodeFile(newPathFormat)
+                                    imgRank1.setImageBitmap(newBitmap)
+                                } else{
+                                    imgRank1.setImageBitmap(bitmap)
+                                }
+                                //imgRank1.setImageBitmap(bitmap)
                                 txtUsernameRank1.text = user.username
                                 txtScoreRank1.text = user.score.toString()
                             }else if(user.rank == 2){
                                 val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
                                 val bitmap = BitmapFactory.decodeFile(path)
-                                imgRank2.setImageBitmap(bitmap)
+                                if (bitmap == null){
+                                    val newPath = path.dropLast(5)
+                                    val newPathFormat = "$newPath.jpg"
+                                    val newBitmap = BitmapFactory.decodeFile(newPathFormat)
+                                    imgRank2.setImageBitmap(newBitmap)
+                                } else{
+                                    imgRank2.setImageBitmap(bitmap)
+                                }
+                                //imgRank2.setImageBitmap(bitmap)
                                 txtUsernameRank2.text = user.username
                                 txtScoreRank2.text = user.score.toString()
                             }else {
                                 val path = requireContext().filesDir.path.toString() + "/img/" + user.userImage + ".jpeg"
                                 val bitmap = BitmapFactory.decodeFile(path)
-                                imgRank3.setImageBitmap(bitmap)
+                                if (bitmap == null){
+                                    val newPath = path.dropLast(5)
+                                    val newPathFormat = "$newPath.jpg"
+                                    val newBitmap = BitmapFactory.decodeFile(newPathFormat)
+                                    imgRank3.setImageBitmap(newBitmap)
+                                } else{
+                                    imgRank3.setImageBitmap(bitmap)
+                                }
+                                //imgRank3.setImageBitmap(bitmap)
                                 txtUsernameRank3.text = user.username
                                 txtScoreRank3.text = user.score.toString()
                             }

@@ -118,6 +118,7 @@ class LoginFragment : Fragment() {
 
     fun loginFun(users : MutableList<User>){
         //animationLogin(binding.animationLogin)
+        binding.btnLogin.isClickable = false
         var userExists = userExist(binding.textUsername.text.toString(),binding.textPassword.text.toString(),users)
 
 
@@ -130,13 +131,16 @@ class LoginFragment : Fragment() {
             if (userExists != -1){
                 val intentHome = Intent(activity, HomeActivity::class.java)
                 val userToSend = users[userExists]
+                binding.btnLogin.isClickable = true
                 intentHome.putExtra("USER", userToSend)
                 startActivity(intentHome)
             }
             else {
                 Toast.makeText(this.activity, "User doesn't exist", Toast.LENGTH_SHORT).show()
+                binding.btnLogin.isClickable = true
             }
         }
+        binding.btnLogin.isClickable = true
     }
 
     fun userExist(user : String, password : String, users : MutableList<User>): Int {

@@ -61,7 +61,14 @@ class UserRankingAdapter (private val context: Context,
         holder.txtRank?.text = user.rank.toString()
         val imagePath = context.filesDir.toString() + "/img/" + user.userImage + ".jpeg"
         val bitmap = BitmapFactory.decodeFile(imagePath)
-        holder.imgUsername?.setImageBitmap(bitmap)
+        if (bitmap == null){
+            val newPath = imagePath.dropLast(5)
+            val newPathFormat = "$newPath.jpg"
+            val newBitmap = BitmapFactory.decodeFile(newPathFormat)
+            holder.imgUsername?.setImageBitmap(newBitmap)
+        } else{
+            holder.imgUsername?.setImageBitmap(bitmap)
+        }
         holder.txtUsername?.text = user.username.uppercase()
         holder.imgCategory?.setImageResource(user.categoryImage)
         holder.txtCategory?.text = user.category
