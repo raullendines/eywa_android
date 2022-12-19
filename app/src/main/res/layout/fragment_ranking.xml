@@ -147,7 +147,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="4000"
-                android:textColor="@color/amarillo_eywa"
+                android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 

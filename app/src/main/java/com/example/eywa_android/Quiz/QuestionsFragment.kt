@@ -45,7 +45,7 @@ class QuestionsFragment : Fragment() {
     private var bothTimers = false
     var correcto = true
     var correct_answer = true
-    var maxAnswers = 2
+    var maxAnswers = 9
     private fun getObject() = object {
         val selected: Drawable? =
             ResourcesCompat.getDrawable(resources, R.drawable.answer_button_selected, null)
