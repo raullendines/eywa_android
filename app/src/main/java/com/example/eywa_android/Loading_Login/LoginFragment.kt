@@ -117,9 +117,10 @@ class LoginFragment : Fragment() {
     }
 
     fun loginFun(users : MutableList<User>){
+        //animationLogin(binding.animationLogin)
         var userExists = userExist(binding.textUsername.text.toString(),binding.textPassword.text.toString(),users)
 
-        animationLogin(binding.animationLogin)
+
 
         //Omplir amb les dades per contrastar amb el JSON
         if (binding.textUsername.text.isEmpty() || binding.textPassword.text.isEmpty()){
@@ -145,11 +146,12 @@ class LoginFragment : Fragment() {
         var returnIndex = -1
 
         do {
-            var hashedPasswordEquals = Bcrypt.checkpw(password,users[index].password)
-            if (users[index].username == user && hashedPasswordEquals)
+            if (users[index].username == user)
             {
-                existUser = true
-                returnIndex = index
+                if (Bcrypt.checkpw(password,users[index].password)){
+                    existUser = true
+                    returnIndex = index
+                }
             }
             index++
         }while(!existUser && index < users.size)

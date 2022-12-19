@@ -249,7 +249,8 @@ class CharacterFragment : Fragment() {
 //                myActivity.setResult(RESULT_CANCELED)
 //            }
 //            myActivity.finishActivity()
-
+            animationTimer.cancel()
+            binding.achievementAnimation.cancelAnimation()
             findNavController().navigate(R.id.action_characterFragment_to_scoreFragment)
         }
 
